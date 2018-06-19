@@ -7,6 +7,8 @@ export (float) var gun_cooldown
 export (float) var turret_speed = 1.0
 export (int) var detect_radius = 400
 
+signal shoot
+
 var target = null
 
 var can_shoot = true
@@ -22,6 +24,7 @@ func control(delta):
 
 func _process(delta):
 	if target:
+		shoot()
 		var target_dir = (target.global_position - $Body.global_position).normalized()
 		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
@@ -32,3 +35,14 @@ func _on_DetectRadius_body_entered(body):
 
 func _on_DetectRadius_body_exited(body):
 	target = null
+
+func shoot():
+    if can_shoot:
+        can_shoot = false
+        $GunCooldown.start()
+        var dir = Vector2(1, 0).rotated($Body.global_rotation)
+        emit_signal('shoot', Bullet,
+                $Body.global_position, dir)
+
+func _on_GunCooldown_timeout():
+	can_shoot = true

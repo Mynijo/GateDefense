@@ -5,10 +5,11 @@
 [node name="Tower" type="KinematicBody2D" index="0"]
 
 input_pickable = false
-collision_layer = 1
-collision_mask = 1
+collision_layer = 2
+collision_mask = 2
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Material", "Pickable", "Visibility", "collision" ]
 Bullet = null
 gun_cooldown = null
 turret_speed = 1.0
@@ -37,6 +38,8 @@ audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius" index="0"]
+
+[connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
 
 [connection signal="body_entered" from="DetectRadius" to="." method="_on_DetectRadius_body_entered"]
 

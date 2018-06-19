@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+signal take_damage
 signal health_changed
 signal dead
 
