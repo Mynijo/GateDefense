@@ -12,8 +12,8 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pickable", "Visibility", "collision" ]
 Bullet = null
 gun_cooldown = null
-turret_speed = 1.0
-detect_radius = 500
+turret_speed = 0.0
+detect_radius = null
 
 [node name="Body" type="Sprite" parent="." index="0"]
 

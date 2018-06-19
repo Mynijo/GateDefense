@@ -36,11 +36,14 @@ __meta__ = {
 [node name="TowerPhy" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 122.799, 326.064 )
-detect_radius = 400
+collision_layer = 1
+collision_mask = 1
+gun_cooldown = 0.1
+turret_speed = 50.0
 
 [node name="EnemySpawner" parent="." index="2" instance=ExtResource( 4 )]
 
-position = Vector2( 767.061, 248.023 )
+position = Vector2( 1244.89, 327.912 )
 
 [node name="Gate" parent="." index="3" instance=ExtResource( 5 )]
 

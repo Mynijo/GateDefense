@@ -5,13 +5,13 @@
 [ext_resource path="res://Bullet/BulletPhy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=4]
 
-[node name="TowerPhy" instance=ExtResource( 1 )]
+[node name="TowerPhy" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-_sections_unfolded = [ "Collision", "Pickable", "collision" ]
 Bullet = ExtResource( 3 )
 gun_cooldown = 1.0
-turret_speed = 2.0
+turret_speed = 20.0
+detect_radius = 1000
 
 [node name="Body" parent="." index="0"]
 

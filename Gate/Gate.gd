@@ -16,6 +16,6 @@ func _on_DetectArea_body_entered(body):
 		body.dead()
 		
 func take_damage(damage):
-	health += damage
+	health -= damage
 	if health <= 0:
 		pass
