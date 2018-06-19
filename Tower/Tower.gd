@@ -25,7 +25,9 @@ func control(delta):
 func _process(delta):
 
 	if target.size() != 0:		
-		var target_dir = ((target.front()).global_position - $Body.global_position).normalized()
+		var pos = target.front().global_position		
+		pos.x -= 50
+		var target_dir = ( pos - $Body.global_position).normalized()
 		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		

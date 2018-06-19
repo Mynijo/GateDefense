@@ -12,16 +12,17 @@ func _ready():
 	
 
 func _on_SpawnTimer_timeout():	
-	var e = enemy.instance()
-	add_child(e)	
+
+	for i in range(int(wave/10)+1):
+		var e = enemy.instance()
+		add_child(e)		
+		var pos = Vector2()
+		pos.x = position.normalized().x	
+		pos.y = ((randi() % 640 )+ 1) -320	
+		e.spawn(pos)		
 	
-	var pos = Vector2()
-	pos.x = position.normalized().x
-	pos.y = ((randi() % 640 )+ 1) -320	
-	e.spawn(pos)
-	
-	$SpawnTimer.wait_time = StartIntervall - wave
+	$SpawnTimer.wait_time = StartIntervall - (wave % 10)
 	$SpawnTimer.start()
-	if wave < StartIntervall -1:
-		wave += 1
+	wave += 1
+		
 
