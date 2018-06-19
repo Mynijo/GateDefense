@@ -10,7 +10,7 @@ config_version=3
 
 [application]
 
-config/name="GateDefens"
+config/name="GateDefense"
 run/main_scene="res://terrain/Map01.tscn"
 config/icon="res://icon.png"
 

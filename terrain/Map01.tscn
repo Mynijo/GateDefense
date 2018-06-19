@@ -2,13 +2,14 @@
 
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Tower/TowerPhy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemy/EnimySpawner.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy/EnemySpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Gate/Gate.tscn" type="PackedScene" id=4]
 
 [node name="Map01" type="Node2D" index="0"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
+position = Vector2( -134, 0 )
 mode = 0
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 64, 64 )
@@ -32,9 +33,9 @@ tile_data = PoolIntArray( 0, 105, 0, 1, 105, 0, 2, 106, 0, 3, 54, 0, 4, 55, 0, 5
 position = Vector2( 150.734, 321.064 )
 detect_radius = 400
 
-[node name="EnimySpawner" parent="." index="2" instance=ExtResource( 3 )]
+[node name="EnemySpawner" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 577.468, 193.971 )
+position = Vector2( 1056.47, 339.971 )
 
 [node name="Gate" parent="." index="3" instance=ExtResource( 4 )]
 

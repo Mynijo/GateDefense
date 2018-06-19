@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://EnimySpawner.gd" type="Script" id=1]
+[ext_resource path="res://EnemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://Enemy/EnemyBlue.tscn" type="PackedScene" id=2]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=3]
 
-[node name="EnimySpawner" type="Node2D" index="0"]
+[node name="EnemySpawner" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
