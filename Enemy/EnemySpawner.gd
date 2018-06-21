@@ -17,7 +17,7 @@ func _on_SpawnTimer_timeout():
 		var e = enemy.instance()
 		add_child(e)		
 		var pos = Vector2()
-		pos.x = position.normalized().x	
+		pos.x = ((randi() % 100 )+ 1) + position.normalized().x	
 		pos.y = ((randi() % 640 )+ 1) -320	
 		e.spawn(pos)		
 	
