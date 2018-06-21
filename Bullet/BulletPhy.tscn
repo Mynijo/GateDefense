@@ -12,8 +12,8 @@ extents = Vector2( 10, 10 )
 [node name="BulletPhy" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-speed = 500
-damage = 100
+speed = 750
+damage = 10
 lifetime = 20.0
 
 [node name="Sprite" parent="." index="0"]
