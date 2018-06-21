@@ -51,6 +51,15 @@ money = 120
 
 [node name="TowerPlace" parent="." index="4" instance=ExtResource( 6 )]
 
+position = Vector2( 159.277, 121.563 )
 tower = ExtResource( 7 )
+
+[node name="TowerPlace2" parent="." index="5" instance=ExtResource( 6 )]
+
+position = Vector2( 154.037, 335.207 )
+
+[node name="TowerPlace3" parent="." index="6" instance=ExtResource( 6 )]
+
+position = Vector2( 149.455, 519.35 )
 
 

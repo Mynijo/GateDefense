@@ -20,3 +20,6 @@ func take_damage(damage):
 	health -= damage
 	if health <= 0:
 		pass
+		
+func set_player(_player):
+	player = _player

@@ -2,8 +2,9 @@ extends Node2D
 
 
 func _ready():
-	$Gate.player = $Player
-	$TowerPlace.player = $Player
+	for x in get_children():
+		if x.has_method('set_player'):
+			x.set_player($Player)
 
 func _on_Tower_shoot(bullet, _position, _direction):
     var b = bullet.instance()
