@@ -4,6 +4,7 @@ signal take_damage
 signal dead
 
 export (int) var health
+export (PackedScene) var player
 
 
 func _ready():
@@ -12,7 +13,7 @@ func _ready():
 
 func _on_DetectArea_body_entered(body):
 	if body.has_method('dead'):
-		take_damage(body.damage)
+		player.take_damage(body.damage)
 		body.dead()
 		
 func take_damage(damage):

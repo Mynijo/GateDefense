@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 export (PackedScene) var Bullet
 export (float) var gun_cooldown
-
+export (int) var cost
 
 export (float) var turret_speed = 1.0
 export (int) var detect_radius
@@ -33,6 +33,10 @@ func _process(delta):
 		
 		if target_dir.dot(current_dir) > 0.90:
 			shoot()
+			
+			
+func spawn(_position):
+	position = _position
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)

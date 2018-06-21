@@ -22,8 +22,8 @@ func control(delta):
 	velocity = Vector2(speed * delta * -100, 0)
 	
 func take_damage(damage):
-	emit_signal('health_changed',health)
 	health -= damage
+	emit_signal('health_changed',health)
 	if health <= 0:
 		dead()
 		

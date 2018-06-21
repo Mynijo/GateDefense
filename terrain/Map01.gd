@@ -2,7 +2,10 @@ extends Node2D
 
 
 func _ready():
-	pass
+	$Gate.player = $Player
+	$TurretPlace.player = $Player
+	$TurretPlace2.player = $Player
+	$TurretPlace3.player = $Player
 
 
 

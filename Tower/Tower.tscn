@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tower/Tower.gd" type="Script" id=1]
 
-[node name="Tower" type="KinematicBody2D" index="0"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 10, 10 )
+
+[node name="Tower" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 2
@@ -11,9 +16,10 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pickable", "Visibility", "collision" ]
 Bullet = null
-gun_cooldown = null
-turret_speed = 0.0
-detect_radius = null
+gun_cooldown = 2.0
+cost = 50
+turret_speed = 100.0
+detect_radius = 800
 
 [node name="Body" type="Sprite" parent="." index="0"]
 
@@ -31,13 +37,15 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-collision_layer = 4
-collision_mask = 4
+collision_layer = 2
+collision_mask = 2
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius" index="0"]
+
+shape = SubResource( 1 )
 
 [connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
 
