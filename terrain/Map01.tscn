@@ -43,7 +43,6 @@ position = Vector2( 1235.37, 322.47 )
 [node name="Gate" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 0.541534, -0.865265 )
-player = null
 
 [node name="Player" parent="." index="3" instance=ExtResource( 5 )]
 
@@ -57,7 +56,7 @@ tower = ExtResource( 7 )
 
 [node name="TurretPlace2" parent="." index="5" instance=ExtResource( 6 )]
 
-position = Vector2( 135.01, 323.546 )
+position = Vector2( 140, 320 )
 tower = ExtResource( 7 )
 
 [node name="TurretPlace3" parent="." index="6" instance=ExtResource( 6 )]

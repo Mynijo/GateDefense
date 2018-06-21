@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Area2D
 
 signal take_damage
 signal dead
@@ -11,7 +11,7 @@ func _ready():
 	pass
 
 
-func _on_DetectArea_body_entered(body):
+func _on_Gate_body_entered(body):
 	if body.has_method('dead'):
 		player.take_damage(body.damage)
 		body.dead()
