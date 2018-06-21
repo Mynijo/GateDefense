@@ -1,7 +1,7 @@
 extends Node
 
-export (int) var health
-export (int) var money
+export (int) var health = 100
+export (int) var money = 120
 
 func _ready():
 	pass

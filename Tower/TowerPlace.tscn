@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Tower/TurretPlace.gd" type="Script" id=1]
+[ext_resource path="res://Tower/TowerPlace.gd" type="Script" id=1]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -8,14 +8,14 @@
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="TurretPlace" type="Node2D" index="0"]
+[node name="TowerPlace" type="Node2D" index="0"]
 
 position = Vector2( 174.01, 315.546 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-turret = null
+tower = null
 player = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]

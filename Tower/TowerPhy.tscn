@@ -20,4 +20,6 @@ region_enabled = true
 region_rect = Rect2( 132.26, 1227.06, 54.75, 42.125 )
 _sections_unfolded = [ "Region", "Transform" ]
 
+[connection signal="shoot" from="." to="." method="_on_TowerPhy_shoot"]
+
 

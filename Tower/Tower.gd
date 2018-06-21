@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 export (PackedScene) var Bullet
-export (float) var gun_cooldown
-export (int) var cost
+export (float) var gun_cooldown = 2
+export (int) var cost = 50
 
 export (float) var turret_speed = 1.0
-export (int) var detect_radius
+export (int) var detect_radius = 800
 
 signal shoot
 
@@ -37,6 +37,7 @@ func _process(delta):
 			
 func spawn(_position):
 	position = _position
+	self.connect("shoot", self.get_parent().get_parent(), "_on_Tower_shoot")
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)
@@ -49,8 +50,7 @@ func shoot():
         can_shoot = false
         $GunCooldown.start()
         var dir = Vector2(1, 0).rotated($Body.global_rotation)
-        emit_signal('shoot', Bullet,
-                $Body.global_position, dir)
+        emit_signal('shoot', Bullet, $Body.global_position, dir)
 
 func _on_GunCooldown_timeout():
 	can_shoot = true
