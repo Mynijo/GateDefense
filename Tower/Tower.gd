@@ -23,7 +23,6 @@ func control(delta):
         pass
 
 func _process(delta):
-
 	if target.size() != 0:		
 		var pos = target.front().global_position		
 		pos.x -= 50

@@ -4,10 +4,10 @@
 [ext_resource path="res://Bullet/BulletPhy.gd" type="Script" id=2]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+radius = 10.0
 
 [node name="BulletPhy" index="0" instance=ExtResource( 1 )]
 

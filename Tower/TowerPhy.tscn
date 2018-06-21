@@ -9,7 +9,7 @@
 
 script = ExtResource( 2 )
 Bullet = ExtResource( 3 )
-gun_cooldown = 1.0
+gun_cooldown = 0.2
 turret_speed = 20.0
 detect_radius = 1000
 
@@ -19,7 +19,5 @@ texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 132.26, 1227.06, 54.75, 42.125 )
 _sections_unfolded = [ "Region", "Transform" ]
-
-[connection signal="shoot" from="." to="." method="_on_TowerPhy_shoot"]
 
 

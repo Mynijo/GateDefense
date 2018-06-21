@@ -60,4 +60,16 @@ position = Vector2( 154.037, 335.207 )
 
 position = Vector2( 149.455, 519.35 )
 
+[node name="TowerPlace4" parent="." index="7" instance=ExtResource( 6 )]
+
+position = Vector2( 89.6668, 126.454 )
+
+[node name="TowerPlace5" parent="." index="8" instance=ExtResource( 6 )]
+
+position = Vector2( 88.3064, 520.963 )
+
+[node name="TowerPlace6" parent="." index="9" instance=ExtResource( 6 )]
+
+position = Vector2( 93.7479, 330.51 )
+
 

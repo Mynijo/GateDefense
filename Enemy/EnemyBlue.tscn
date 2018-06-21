@@ -4,10 +4,11 @@
 [ext_resource path="res://Enemy/EnemyBlue.gd" type="Script" id=2]
 [ext_resource path="res://media/mapPack_tilesheet.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+radius = 10.0
+height = 20.0
 
 [node name="EnemyBlue" index="0" instance=ExtResource( 1 )]
 
@@ -18,8 +19,8 @@ damage = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
 
-position = Vector2( 0.737361, 1.74811 )
-scale = Vector2( 2.41469, 1.85828 )
+position = Vector2( 1.48312, 1.12791 )
+scale = Vector2( 2.30324, 0.92388 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
