@@ -4,12 +4,21 @@ export (int) var health = 100
 export (int) var money = 120
 
 func _ready():
-	pass
+	$Live.text = "Health:" + String(health)
+	$Wave.text = "Wave:"
+	$Money.text = "Money:" + String(money)
 	
-func addMoney(value):
+func add_money(value):
 	money += value
+	$Money.text = "Money:" + String(money)
+	
 	
 func take_damage(damage):
 	health -= damage
+	$Live.text = "Health:" + String(health)
 	if health <= 0:
 		pass
+		
+func wave_changed(_wave):
+	$Wave.text = "Wave:" + String(_wave)
+	

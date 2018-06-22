@@ -11,6 +11,8 @@ _sections_unfolded = [ "Transform" ]
 StartIntervall = 5
 wave = 1
 enemy = ExtResource( 2 )
+player = null
+mobs_counter = 0
 
 [node name="SpawnTimer" type="Timer" parent="." index="0"]
 

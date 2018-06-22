@@ -8,11 +8,11 @@
 custom_solver_bias = 0.0
 radius = 5.24559
 
-[node name="BulletSchrot" instance=ExtResource( 1 )]
+[node name="BulletSchrot" index="0" instance=ExtResource( 1 )]
 
 speed = 900
-damage = 5
-lifetime = 0.5
+damage = 10
+lifetime = 1.0
 
 [node name="Sprite" parent="." index="0"]
 

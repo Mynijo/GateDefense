@@ -6,6 +6,8 @@ export (int) var detect_radius = 100
 var chain_counter = 0
 var target = []
 var enemys_hitted = []
+var firstLook = true
+
 
 func start(_position, _direction):
 	position = _position
@@ -18,9 +20,12 @@ func start(_position, _direction):
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
+
 func _on_Bullet_body_entered(body):
 	if enemys_hitted.has(body):
 		return
+	
+
 	enemys_hitted.append(body)
 	if body.has_method('take_damage'):
 	    body.take_damage(damage)
@@ -49,15 +54,22 @@ func chain():
 					closestTaget = x
 	
 	if closestTaget:
-		var dir = (closestTaget.global_position - global_position).normalized()
+		var distance = (closestTaget.global_position - position).length()
+		var _time = (distance / speed)
+		var predicted_position = closestTaget.global_position + (closestTaget.get_velocity() * _time)
+		
+		var dir = (predicted_position - global_position).normalized()
 		rotation = dir.angle()
 		velocity = dir * speed
 	else:
 		explode()
+
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)
 
 
 func _on_DetectRadius_body_exited(body):
-	target.erase(body) 
+	target.erase(body)
+	if target.size() == enemys_hitted.size():
+		explode()

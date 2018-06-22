@@ -4,12 +4,13 @@
 [ext_resource path="res://Bullet/BulletSchrotPatrone.gd" type="Script" id=2]
 [ext_resource path="res://Bullet/BulletSchrot.tscn" type="PackedScene" id=3]
 
-[node name="BulletSchrotPatrone" instance=ExtResource( 1 )]
+[node name="BulletSchrotPatrone" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 speed = 800
-damage = 5
-lifetime = 0.05
+damage = 10
+lifetime = 0.01
 Bullet = ExtResource( 3 )
+scattering = 0.1
 
 

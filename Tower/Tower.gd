@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export (PackedScene) var Bullet
+
 export (float) var gun_cooldown = 2
 export (int) var cost = 50
 
@@ -14,6 +15,7 @@ var target = []
 var can_shoot = true
 
 func _ready():
+	
 	var circle = CircleShape2D.new()
 	$GunCooldown.wait_time = gun_cooldown	
 	$DetectRadius/CollisionShape2D.shape = circle
@@ -28,12 +30,15 @@ func _process(delta):
 		var _time = (distance / Bullet.instance().get_speed())
 		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
 		
+		if predicted_position.x < global_position.x:
+			target.erase(target[0])
+		
 		var target_dir = (predicted_position - global_position).normalized()
 		
 		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
-		if target_dir.dot(current_dir) > 0.99:
+		if target_dir.dot(current_dir) > 0.9999:
 			shoot()
 			
 			

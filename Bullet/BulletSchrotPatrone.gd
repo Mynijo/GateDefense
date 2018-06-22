@@ -16,7 +16,7 @@ func explode():
 			var dir =  Vector2(0.8, rand_range(-scattering,scattering)).rotated(rotation)
 			emit_signal('shoot', Bullet ,position, dir)
 	
-	for i in range(4):
+	for i in range(5):
 		var dir =  Vector2(0.7, rand_range(-scattering,scattering)).rotated(rotation)
 		emit_signal('shoot', Bullet ,position, dir)
 			

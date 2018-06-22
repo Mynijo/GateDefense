@@ -7,6 +7,7 @@ signal dead
 export (int) var speed
 export (int) var health
 export (int) var damage
+export (int) var goldValue = 5
 
 
 var velocity = Vector2()
@@ -28,6 +29,8 @@ func take_damage(damage):
 		dead()
 		
 func dead():
+	get_parent().player.add_money(goldValue)
+	get_parent().mobs_counter -= 1
 	queue_free()
 	
 func _physics_process(delta):
