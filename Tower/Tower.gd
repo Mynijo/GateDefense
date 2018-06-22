@@ -23,14 +23,17 @@ func control(delta):
         pass
 
 func _process(delta):
-	if target.size() != 0:		
-		var pos = target.front().global_position		
-		pos.x -= 50
-		var target_dir = ( pos - $Body.global_position).normalized()
+	if target.size() != 0:
+		var distance = (target.front().global_position - position).length()
+		var _time = (distance / Bullet.instance().get_speed())
+		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
+		
+		var target_dir = (predicted_position - global_position).normalized()
+		
 		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
-		if target_dir.dot(current_dir) > 0.90:
+		if target_dir.dot(current_dir) > 0.95:
 			shoot()
 			
 			
@@ -45,11 +48,12 @@ func _on_DetectRadius_body_exited(body):
 	target.erase(body)
 
 func shoot():
-    if can_shoot:
-        can_shoot = false
-        $GunCooldown.start()
-        var dir = Vector2(1, 0).rotated($Body.global_rotation)
-        emit_signal('shoot', Bullet, $Body.global_position, dir)
+	if can_shoot:
+		$GunCooldown.start()
+		can_shoot = false
+		var dir = Vector2(1, 0).rotated($Body.global_rotation)
+		emit_signal('shoot', Bullet, $Body.global_position, dir)
+		
 
 func _on_GunCooldown_timeout():
 	can_shoot = true

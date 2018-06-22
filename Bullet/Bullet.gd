@@ -7,16 +7,20 @@ export (float) var lifetime
 var velocity = Vector2()
 
 func start(_position, _direction):
-    position = _position
-    rotation = _direction.angle()
-    $Lifetime.wait_time = lifetime
-    velocity = _direction * speed
+	position = _position
+	rotation = _direction.angle()
+	$Lifetime.wait_time = lifetime
+	velocity = _direction * speed
+	$Lifetime.start()
 
 func _process(delta):
-    position += velocity * delta
+	position += velocity * delta
 
 func explode():
-    queue_free()
+	queue_free()
+	
+func get_speed():
+	return speed
 	
 func _on_Bullet_body_entered(body):
 	explode()
@@ -24,4 +28,4 @@ func _on_Bullet_body_entered(body):
 	    body.take_damage(damage)
 
 func _on_Lifetime_timeout():
-    explode()
+	explode()

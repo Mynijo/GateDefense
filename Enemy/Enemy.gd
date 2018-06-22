@@ -35,3 +35,7 @@ func _physics_process(delta):
 			return
 		control(delta)
 		move_and_slide(velocity)
+		
+		
+func get_velocity():
+	return velocity
