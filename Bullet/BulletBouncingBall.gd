@@ -23,8 +23,7 @@ func start(_position, _direction):
 
 func _on_Bullet_body_entered(body):
 	if enemys_hitted.has(body):
-		return
-	
+		return	
 
 	enemys_hitted.append(body)
 	if body.has_method('take_damage'):

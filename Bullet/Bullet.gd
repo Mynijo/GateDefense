@@ -22,10 +22,10 @@ func explode():
 func get_speed():
 	return speed
 	
-func _on_Bullet_body_entered(body):
-	explode()
+func _on_Bullet_body_entered(body):	
 	if body.has_method('take_damage'):
 	    body.take_damage(damage)
+	explode()
 
 func _on_Lifetime_timeout():
 	explode()

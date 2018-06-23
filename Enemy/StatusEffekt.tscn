@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Enemy/StatusEffekt.gd" type="Script" id=1]
+
+[node name="StatusEffekt" type="Node" index="0"]
+
+script = ExtResource( 1 )
+tags = null
+duration = 10
+
+[node name="Duration" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="Duration" to="." method="_on_Duration_timeout"]
+
+

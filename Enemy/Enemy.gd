@@ -9,6 +9,8 @@ export (int) var health
 export (int) var damage
 export (int) var goldValue = 5
 
+var StatusEffekte = []
+
 
 var velocity = Vector2()
 var alive = true
@@ -18,9 +20,16 @@ func _ready():
 		
 func spawn(_position):
 		position = _position
+var tags
 
 func control(delta):
-	velocity = Vector2(speed * delta * -100, 0)
+	var changed_speed = speed
+	for x in StatusEffekte:
+		tags = x.get_tags()
+		if x.has_tag(x.e_tags.speed):
+			changed_speed = x.effekt(speed)
+			
+	velocity = Vector2(changed_speed * delta * -100, 0)
 	
 func take_damage(damage):
 	health -= damage
@@ -42,3 +51,12 @@ func _physics_process(delta):
 		
 func get_velocity():
 	return velocity
+	
+func add_Status(_status):
+	var s = _status.instance()
+	add_child(s)
+	StatusEffekte.append(s)
+	s._init()
+	
+func remove_Status(_status):
+	StatusEffekte.erase(_status)
