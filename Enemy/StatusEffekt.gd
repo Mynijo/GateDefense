@@ -2,7 +2,7 @@ extends Node
 
 enum e_tags{
 	speed,
-	helath
+	health
 }
 
 export (e_tags) var tags = []
@@ -21,7 +21,7 @@ func has_tag(_tag):
 		return false
 	return tags.has(_tag)
 	
-func effekt(value):
+func effekt(value, tag):
 	pass
 
 func _on_Duration_timeout():

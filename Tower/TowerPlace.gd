@@ -9,6 +9,7 @@ var accTower
 
 func _ready():
 	BulletList.append(load("res://Bullet/BulletPhy.tscn"))
+	BulletList.append(load("res://Bullet/BulletFire.tscn"))
 	BulletList.append(load("res://Bullet/BulletSchrotPatrone.tscn"))
 	BulletList.append(load("res://Bullet/BulletBouncingBall.tscn"))
 	BulletList.append(load("res://Bullet/BulletFreez.tscn"))
