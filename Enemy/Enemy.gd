@@ -26,9 +26,9 @@ func control(delta):
 	var changed_speed = speed
 	for x in StatusEffekte:
 		if x.has_tag(x.e_tags.speed):
-			changed_speed = x.effekt(speed)
+			changed_speed = x.effekt(speed, x.e_tags.speed)
 		if x.has_tag(x.e_tags.health):
-			take_damage(-x.effekt(0))
+			take_damage(-x.effekt(0, x.e_tags.health))
 			
 	velocity = Vector2(changed_speed * delta * -100, 0)
 	
@@ -54,7 +54,7 @@ func get_velocity():
 	return velocity
 	
 func add_Status(_status):
-	var s = _status.instance(NOTIFICATION_INSTANCED )
+	var s = _status.instance()
 	add_child(s)
 	StatusEffekte.append(s)
 	s._init()

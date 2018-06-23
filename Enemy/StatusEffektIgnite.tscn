@@ -17,4 +17,6 @@ wait_time = 0.5
 one_shot = false
 autostart = false
 
+[connection signal="timeout" from="IgniteTicker" to="." method="_on_IgniteTicker_timeout"]
+
 
