@@ -35,7 +35,7 @@ func _on_SpawnTimer_timeout():
 		pos.y = ((randi() % 640 )+ 1) -320	
 		e.spawn(pos)		
 	
-	$SpawnTimer.wait_time = StartIntervall - (wave % 10)
+	$SpawnTimer.wait_time = StartIntervall - (wave % StartIntervall)
 	$SpawnTimer.start()
 	wave += 1
 	

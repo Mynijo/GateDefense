@@ -11,9 +11,10 @@
 custom_solver_bias = 0.0
 radius = 24.3639
 
-[node name="BulletSlowBomb" index="0" instance=ExtResource( 1 )]
+[node name="BulletSlowBomb" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Transform", "Z Index" ]
 speed = 400
 damage = 10
 lifetime = 10.0

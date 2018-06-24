@@ -11,6 +11,7 @@ _sections_unfolded = [ "Transform" ]
 StartIntervall = 5
 wave = 1
 enemy = ExtResource( 2 )
+enemy02 = null
 player = null
 mobs_counter = 0
 
