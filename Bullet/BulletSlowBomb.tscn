@@ -17,6 +17,7 @@ script = ExtResource( 2 )
 speed = 400
 damage = 10
 lifetime = 10.0
+gunCooldownMultiplier = 5.0
 Bullet = ExtResource( 3 )
 freez = ExtResource( 4 )
 

@@ -1,19 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tower/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tower/TowerPhy.gd" type="Script" id=2]
-[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=3]
+[ext_resource path="res://Bullet/BulletPhy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=4]
 
 [node name="TowerPhy" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
+Bullet = ExtResource( 3 )
 gun_cooldown = 1.0
 turret_speed = 20.0
 detect_radius = 1000
 
 [node name="Body" parent="." index="0"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 132.26, 1227.06, 54.75, 42.125 )
 _sections_unfolded = [ "Region", "Transform" ]

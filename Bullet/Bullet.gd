@@ -3,6 +3,7 @@ extends Area2D
 export (int) var speed
 export (int) var damage
 export (float) var lifetime
+export (float) var gunCooldownMultiplier = 1
 
 var velocity = Vector2()
 
@@ -18,7 +19,7 @@ func _process(delta):
 
 func explode():
 	queue_free()
-	
+
 func get_speed():
 	return speed
 	

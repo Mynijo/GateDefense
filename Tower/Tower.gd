@@ -17,7 +17,7 @@ var can_shoot = true
 func _ready():
 	
 	var circle = CircleShape2D.new()
-	$GunCooldown.wait_time = gun_cooldown	
+	$GunCooldown.wait_time = gun_cooldown * Bullet.instance().gunCooldownMultiplier
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
@@ -45,6 +45,15 @@ func _process(delta):
 func spawn(_position):
 	position = _position
 	self.connect("shoot", self.get_parent().get_parent(), "_on_Tower_shoot")
+
+
+func setBullet(_Bullet):
+	Bullet = _Bullet
+	var temp = Bullet.instance().gunCooldownMultiplier
+	var temp2 = gun_cooldown * temp
+	$GunCooldown.wait_time = temp2
+	$GunCooldown.start()
+
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)

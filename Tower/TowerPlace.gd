@@ -29,7 +29,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				t.spawn(position.normalized())
 				accTower = t
 				placed = true
-				accTower.Bullet = BulletList[0]
+				accTower.setBullet(BulletList[0])
 		else:
 			cycleBullet(accTower)
 		
@@ -37,7 +37,7 @@ func cycleBullet(_tower):
 	bulletIndex += 1
 	if bulletIndex >= BulletList.size():
 		bulletIndex = 0
-	_tower.Bullet = BulletList[bulletIndex]
+	_tower.setBullet(BulletList[bulletIndex])
 
 func set_player(_player):
 	player = _player
