@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://effects/StatusEffekt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/StatusEffektSlow.gd" type="Script" id=2]
+
+[node name="StatusEffektFreez" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+SlowRate = 0.5
+
+

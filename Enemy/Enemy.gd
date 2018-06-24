@@ -53,11 +53,10 @@ func _physics_process(delta):
 func get_velocity():
 	return velocity
 	
-func add_Status(_status):
-	var s = _status.instance()
-	add_child(s)
-	StatusEffekte.append(s)
-	s._init()
+func add_Status(_status):	
+	add_child(_status)
+	StatusEffekte.append(_status)
+	
 	
 func remove_Status(_status):
 	StatusEffekte.erase(_status)

@@ -13,6 +13,7 @@ func _ready():
 	BulletList.append(load("res://Bullet/BulletSchrotPatrone.tscn"))
 	BulletList.append(load("res://Bullet/BulletBouncingBall.tscn"))
 	BulletList.append(load("res://Bullet/BulletFreez.tscn"))
+	BulletList.append(load("res://Bullet/BulletArrow.tscn"))
 	
 
 func _on_Area2D_input_event(viewport, event, shape_idx):

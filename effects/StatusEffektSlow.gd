@@ -1,8 +1,9 @@
-extends "res://Enemy/StatusEffekt.gd"
+extends "res://effects/StatusEffekt.gd"
 
-var SlowRate = 0.5
+export (float) var SlowRate = 0.5
 
-
+func _ready():
+	_init()
 
 func _init():
 	tags.append(e_tags.speed)

@@ -12,10 +12,13 @@ height = 20.0
 
 [node name="EnemyBlue" index="0" instance=ExtResource( 1 )]
 
+collision_mask = 0
 script = ExtResource( 2 )
+_sections_unfolded = [ "Collision", "Transform" ]
 speed = 50
-health = 100
+health = 200
 damage = 5
+goldValue = 5
 
 [node name="CollisionShape2D" parent="." index="0"]
 

@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Enemy/StatusEffekt.tscn" type="PackedScene" id=1]
-[ext_resource path="res://StatusEffektIgnite.gd" type="Script" id=2]
+[ext_resource path="res://effects/StatusEffekt.tscn" type="PackedScene" id=1]
+[ext_resource path="res://effects/StatusEffektIgnite.gd" type="Script" id=2]
 
 [node name="StatusEffektIgnite" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-damge = 10
-igniteTickRate = 0.5
-speedInc = 1.2
+damage = 10
+igniteTickRate = 0.25
+speedInc = 1.25
 
 [node name="IgniteTicker" type="Timer" parent="." index="1"]
 
