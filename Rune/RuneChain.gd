@@ -3,42 +3,51 @@ extends "res://Rune/RuneEffect.gd"
 export (int) var chain
 export (int) var detect_radius = 400
 
-var bullet
-
 var chain_counter = 0
 var targetHits = []
 var target = []
 var detectRadius
-
+var first = false
 	
 func _ready():
 	_init()
 
 func _init():
 	tags.append(e_runeTag.enemyWasHit)
+
 	
 func effect(_obj):
-	bullet = _obj
-	if _obj.name.is_subsequence_of('Bullet'):
-		detectRadius = Area2D.new()
-		detectRadius.set_collision_mask_bit(2, true)
-		detectRadius.name = "DetectRadius"
-		var c = CollisionShape2D.new()
-		c.name = "CollisionShape2D"
-		detectRadius.add_child(c)
-		var circle = CircleShape2D.new()
-		c.shape = circle
-		c.shape.radius = detect_radius
-		_obj.add_child(detectRadius)
+	sort_Obj(_obj)
+	
+	if _obj == tower:
+		return
+	
+	if bullet and !first:
+		first = true
+		generate_detectRadius()
+		if bullet.has_method('set_exploseAfterHit'):
+			bullet.set_exploseAfterHit(self, false)
 		
-	if _obj.has_method('set_exploseAfterHit'):
-		_obj.set_exploseAfterHit(self, false)
+func generate_detectRadius():
+	detectRadius = Area2D.new()
+	detectRadius.set_collision_mask_bit(2, true)
+	detectRadius.name = "DetectRadius"
+	var c = CollisionShape2D.new()
+	c.name = "CollisionShape2D"
+	detectRadius.add_child(c)
+	var circle = CircleShape2D.new()
+	c.shape = circle
+	c.shape.radius = detect_radius
+	bullet.add_child(detectRadius)
 		
 func enemyWasHit(body):
 	targetHits.append(body)
+	effect(null)
 	chain()
 	
 func chain():
+	#if !bullet:
+		#return
 	chain_counter += 1
 	
 	if chain_counter >= chain:

@@ -3,10 +3,15 @@ extends KinematicBody2D
 
 
 export (float) var gun_cooldown
+var gun_cooldown_effected
+export (int) var detect_radius
+var detect_radius_effected
+
+
 export (int) var cost = 50
 
 export (float) var turret_speed = 1.0
-export (int) var detect_radius
+
 
 var runesScreen = []
 var runes = []
@@ -23,14 +28,23 @@ func _ready():
 	
 func myInit():
 	$GunCooldown.wait_time = gun_cooldown
-	var circle = CircleShape2D.new()
-	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
+		
 
 func control(delta):
         pass
-
+		
 func _process(delta):
+	gun_cooldown_effected = gun_cooldown
+	detect_radius_effected = detect_radius
+	for r in runes:
+		r.effect(self)
+	if $GunCooldown.wait_time != gun_cooldown_effected:
+		$GunCooldown.wait_time = gun_cooldown_effected
+	if $DetectRadius/CollisionShape2D.shape.radius != detect_radius_effected:	
+		$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
+	
+	
 	if target.size() != 0:
 		var distance = (target.front().global_position - position).length()
 		var _time = (distance / (Bullet.instance().get_speed() * 2))
@@ -47,15 +61,12 @@ func _process(delta):
 		if target_dir.dot(current_dir) > 0.9999:
 			shoot()
 			
-			
 func spawn(_position):
 	position = _position
 	self.connect("shoot", self.get_parent().get_parent(), "_on_Tower_shoot")
 
-
 func set_Bullet(_Bullet):
 	Bullet = _Bullet
-
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)
@@ -78,38 +89,50 @@ func shoot():
 		
 func emit_shoot(_sig, _bullet, _pos, _dir):
 	if runesScreen:
-			_bullet.set_Runes(runesScreen)
+		var bullet_r = []
+		for rs in runesScreen:
+			var r = rs.instance()
+			r.sort_Obj(self)
+			bullet_r.append(r)
+		_bullet.set_Runes(bullet_r)
 	emit_signal(_sig, _bullet, _pos, _dir)
 		
-
+func get_pos():
+	return position
+	
+func get_global_pos():
+	return global_position
+	
 func _on_GunCooldown_timeout():
 	can_shoot = true
 	
 func get_gun_cooldown():
 	return gun_cooldown
 	
-func change_gun_cooldown(_gun_cooldown):
-	gun_cooldown = _gun_cooldown
-	$GunCooldown.wait_time = gun_cooldown
-	$GunCooldown.start()
+func effect_gun_cooldown(_gun_cooldown):
+	gun_cooldown_effected = _gun_cooldown
 	
 func get_detect_radius():
 	return detect_radius
 	
-func change_detect_radius(_detect_radius):
-	detect_radius = _detect_radius
-	var circle = CircleShape2D.new()
-	$DetectRadius/CollisionShape2D.shape = circle
-	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
-	
+func effect_detect_radius(_detect_radius):
+	detect_radius_effected = _detect_radius
 	
 func set_Runes(_runes):
-	runesScreen = _runes
 	for r in _runes:
+		runes.append(r)
+	initRunes()
+
+func set_RunesScreen(_runesScreen):
+	runesScreen = _runesScreen
+	for r in _runesScreen:
 		runes.append(r.instance())
 	initRunes()
-	
+
 func initRunes():
 	for r in runes:
 		r._init()
 		r.effect(self)
+
+func is_Tower():
+	return true

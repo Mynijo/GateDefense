@@ -3,6 +3,8 @@ extends Area2D
 export (int) var speed
 export (int) var damage
 export (float) var lifetime
+var lifetime_effected
+
 
 var velocity = Vector2()
 var runes = []
@@ -15,7 +17,9 @@ var explose = []
 func start(_position, _direction):
 	position = _position
 	rotation = _direction.angle()
-	$Lifetime.wait_time = lifetime
+	if !lifetime_effected:
+		lifetime_effected = lifetime
+	$Lifetime.wait_time = lifetime_effected
 	velocity = _direction * speed
 	$Lifetime.start()
 
@@ -37,7 +41,7 @@ func get_speed():
 func _on_Bullet_body_entered(body):
 	if body.has_method('add_Status'):
 		for s in status:
-			body.add_Status(s.duplicate())		
+			body.add_Status(s.duplicate(DUPLICATE_USE_INSTANCING))		
 	if body.has_method('take_damage'):
 	    body.take_damage(damage)
 	
@@ -80,10 +84,24 @@ func add_Status(_status):
 	status.append(_status)	
 
 func set_Runes(_runes):
-	runesScreen = _runes
 	for r in _runes:
+		runes.append(r)
+	initRunes()
+	
+func set_RunesScreen(_runesScreen):
+	runesScreen = _runesScreen
+	for r in _runesScreen:
 		runes.append(r.instance())
 	initRunes()
+
+func get_lifetime():
+	return lifetime
+
+func effect_lifetime(_lifetime):
+	lifetime_effected = _lifetime
+
+func is_Bullet():
+	return true
 
 func initRunes():
 	for r in runes:

@@ -1,5 +1,10 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Rune/RuneEffect.gd" type="Script" id=1]
 
 [node name="RuneEffect" type="Node" index="0"]
+
+script = ExtResource( 1 )
+tags = null
 
 
