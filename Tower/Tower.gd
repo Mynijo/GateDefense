@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 
-export (float) var gun_cooldown = 2
+export (float) var gun_cooldown
 export (int) var cost = 50
 
 export (float) var turret_speed = 1.0
@@ -84,7 +84,14 @@ func emit_shoot(_sig, _bullet, _pos, _dir):
 
 func _on_GunCooldown_timeout():
 	can_shoot = true
-
+	
+func get_gun_cooldown():
+	return gun_cooldown
+	
+func change_gun_cooldown(_gun_cooldown):
+	gun_cooldown = _gun_cooldown
+	$GunCooldown.wait_time = gun_cooldown
+	$GunCooldown.start()
 	
 func get_detect_radius():
 	return detect_radius
