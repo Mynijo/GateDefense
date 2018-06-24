@@ -10,6 +10,7 @@ var runesScreen = []
 var status = []
 
 var exploseAfterHit = []
+var explose = []
 
 func start(_position, _direction):
 	position = _position
@@ -22,7 +23,13 @@ func _process(delta):
 	position += velocity * delta
 
 func explode():
-	queue_free()
+	for r in runes:
+		var temp = r.get_tags()
+		if r.has_tag(r.e_runeTag.explode):
+			r.explode()
+			
+	if !explose:
+		queue_free()
 
 func get_speed():
 	return speed
@@ -45,8 +52,14 @@ func _on_Bullet_body_entered(body):
 func _on_Lifetime_timeout():
 	explode()
 
+func get_rotation():
+	return rotation
+
 func set_rotation(_rotation):
 	rotation = _rotation
+	
+func get_velocity():
+	return velocity
 	
 func set_velocity(_vel):
 	velocity = _vel
@@ -56,6 +69,12 @@ func set_exploseAfterHit(_who, _flag):
 		exploseAfterHit.erase(_who)
 	else:
 		exploseAfterHit.append(_who)
+		
+func set_explose(_who, _flag):
+	if _flag:
+		explose.erase(_who)
+	else:
+		explose.append(_who)
 	
 func add_Status(_status):
 	status.append(_status)	

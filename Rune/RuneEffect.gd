@@ -2,7 +2,8 @@ extends Node
 
 enum e_runeTag{
 	enemyWasHit,
-	shoot
+	shoot,
+	explode
 }
 
 export (e_runeTag) var tags = []

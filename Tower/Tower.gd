@@ -101,7 +101,8 @@ func change_detect_radius(_detect_radius):
 	var circle = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
-		
+	
+	
 func set_Runes(_runes):
 	runesScreen = _runes
 	for r in _runes:

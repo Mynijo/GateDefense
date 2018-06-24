@@ -10,3 +10,8 @@ func _on_Tower_shoot(bullet, _position, _direction):
     var b = bullet
     add_child(b)
     b.start(_position, _direction)
+
+
+func _on_MapBoarder_area_entered(area):
+	if area.has_method('explode'):
+		area.explode()

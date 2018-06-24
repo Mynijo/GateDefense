@@ -11,14 +11,14 @@ var runes = []
 
 func _ready():
 	bullet = load("res://Bullet/Bullet.tscn")
-	runes.append(load("res://Rune/RuneChain.tscn"))
-	runes.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
-	runes.append(load("res://Rune/RuneAddSlow.tscn"))
-	runes.append(load("res://Rune/RuneAddIgnite.tscn"))
-	runes.append(load("res://Rune/RuneScatterShot.tscn"))
-	runes.append(load("res://Rune/RuneIncrasedAps.tscn"))
 	runes.append(load("res://Rune/RunePierce.tscn"))
-	
+	#runes.append(load("res://Rune/RuneChain.tscn"))
+	runes.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
+	#runes.append(load("res://Rune/RuneAddSlow.tscn"))
+	#runes.append(load("res://Rune/RuneAddIgnite.tscn"))
+	#runes.append(load("res://Rune/RuneScatterShot.tscn"))
+	#runes.append(load("res://Rune/RuneIncrasedAps.tscn"))
+	runes.append(load("res://Rune/RuneBoomerang.tscn"))
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
