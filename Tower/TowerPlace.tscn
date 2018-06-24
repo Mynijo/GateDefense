@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tower/TowerPlace.gd" type="Script" id=1]
-[ext_resource path="res://Tower/TowerPhy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Tower/Tower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -11,13 +11,14 @@ extents = Vector2( 10, 10 )
 
 [node name="TowerPlace" type="Node2D" index="0"]
 
-position = Vector2( 174.01, 315.546 )
 script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
 __meta__ = {
 "_edit_group_": true
 }
 tower = ExtResource( 2 )
 player = null
+bullet = null
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

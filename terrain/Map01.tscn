@@ -38,7 +38,7 @@ __meta__ = {
 
 [node name="EnemySpawner" parent="." index="1" instance=ExtResource( 3 )]
 
-position = Vector2( 1312.91, 329.272 )
+position = Vector2( 1311.24, 337.623 )
 enemy02 = ExtResource( 4 )
 
 [node name="Gate" parent="." index="2" instance=ExtResource( 5 )]
@@ -49,26 +49,6 @@ position = Vector2( 0.541534, -0.865265 )
 
 [node name="TowerPlace" parent="." index="4" instance=ExtResource( 7 )]
 
-position = Vector2( 159.277, 121.563 )
-
-[node name="TowerPlace2" parent="." index="5" instance=ExtResource( 7 )]
-
-position = Vector2( 152.677, 332.486 )
-
-[node name="TowerPlace3" parent="." index="6" instance=ExtResource( 7 )]
-
-position = Vector2( 149.455, 519.35 )
-
-[node name="TowerPlace4" parent="." index="7" instance=ExtResource( 7 )]
-
-position = Vector2( 89.6668, 126.454 )
-
-[node name="TowerPlace5" parent="." index="8" instance=ExtResource( 7 )]
-
-position = Vector2( 88.3064, 520.963 )
-
-[node name="TowerPlace6" parent="." index="9" instance=ExtResource( 7 )]
-
-position = Vector2( 93.7479, 330.51 )
+position = Vector2( 147.586, 313.634 )
 
 

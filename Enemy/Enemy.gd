@@ -10,7 +10,7 @@ export (int) var damage
 export (int) var goldValue = 5
 
 var StatusEffekte = []
-
+var tags
 
 var velocity = Vector2()
 var alive = true
@@ -20,7 +20,7 @@ func _ready():
 		
 func spawn(_position):
 		position = _position
-var tags
+
 
 func control(delta):
 	var changed_speed = speed
@@ -54,10 +54,9 @@ func get_velocity():
 	return velocity
 	
 func add_Status(_status):
-	_status._init()
 	if _status.has_tag(_status.e_tags.dontStack):
 		for x in StatusEffekte:
-			if typeof(x) == typeof(_status):
+			if x.name.is_subsequence_of(_status.name):
 				StatusEffekte.erase(x)
 		
 	add_child(_status)

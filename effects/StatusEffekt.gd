@@ -14,6 +14,9 @@ func _ready():
 	$Duration.wait_time = duration
 	$Duration.start()
 
+func add_tag(_tag):
+	tags.append(_tag)
+
 func get_tags():
 	return tags
 	

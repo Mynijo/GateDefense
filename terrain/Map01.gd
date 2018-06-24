@@ -7,6 +7,6 @@ func _ready():
 			x.set_player($Player)
 
 func _on_Tower_shoot(bullet, _position, _direction):
-    var b = bullet.instance()
+    var b = bullet
     add_child(b)
     b.start(_position, _direction)

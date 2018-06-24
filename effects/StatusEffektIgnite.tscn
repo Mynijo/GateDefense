@@ -8,7 +8,7 @@
 script = ExtResource( 2 )
 damage = 10
 igniteTickRate = 0.25
-speedInc = 1.25
+speedInc = 1.0
 
 [node name="IgniteTicker" type="Timer" parent="." index="1"]
 

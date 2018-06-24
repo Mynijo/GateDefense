@@ -1,44 +1,35 @@
 extends Node2D
 export (PackedScene) var tower
 export (PackedScene) var player
+export (PackedScene) var bullet
 
 var placed = false
-var BulletList = []
 var bulletIndex = 0
 var accTower
 
+var runes = []
+
 func _ready():
-	BulletList.append(load("res://Bullet/BulletPhy.tscn"))
-	BulletList.append(load("res://Bullet/BulletFire.tscn"))
-	BulletList.append(load("res://Bullet/BulletSchrotPatrone.tscn"))
-	BulletList.append(load("res://Bullet/BulletBouncingBall.tscn"))
-	BulletList.append(load("res://Bullet/BulletFreez.tscn"))
-	BulletList.append(load("res://Bullet/BulletArrow.tscn"))
-	BulletList.append(load("res://Bullet/BulletSlowBomb.tscn"))
-	BulletList.append(load("res://Bullet/BulletFireBomb.tscn"))
-	BulletList.append(load("res://Bullet/BulletBigStone.tscn"))
+	bullet = load("res://Bullet/Bullet.tscn")
+	runes.append(load("res://Rune/RuneChain.tscn"))
+	runes.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
+	runes.append(load("res://Rune/RuneAddSlow.tscn"))
+	runes.append(load("res://Rune/RuneAddIgnite.tscn"))
+	
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if !placed:
-			if event.button_index == BUTTON_LEFT and event.pressed:
-				if player.money -50 < 10:
-					return
-				player.add_money(-50)
-				var t = tower.instance()
-				add_child(t)
-				t.spawn(position.normalized())
-				accTower = t
-				placed = true
-				accTower.setBullet(BulletList[0])
-		else:
-			cycleBullet(accTower)
-		
-func cycleBullet(_tower):
-	bulletIndex += 1
-	if bulletIndex >= BulletList.size():
-		bulletIndex = 0
-	_tower.setBullet(BulletList[bulletIndex])
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			if player.money -50 < 10:
+				return
+			player.add_money(-50)
+			accTower = tower.instance()
+			accTower.set_Runes(runes)
+			accTower.set_Bullet(bullet)
+			add_child(accTower)
+			accTower.spawn(position.normalized())
+			placed = true
 
+		
 func set_player(_player):
 	player = _player

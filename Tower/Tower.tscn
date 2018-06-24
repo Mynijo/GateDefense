@@ -1,11 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Tower/Tower.gd" type="Script" id=1]
-
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=2]
 
 [node name="Tower" type="KinematicBody2D" index="0"]
 
@@ -15,13 +11,17 @@ collision_mask = 2
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pickable", "Visibility", "collision" ]
-Bullet = null
-gun_cooldown = 2.0
+gun_cooldown = 10.0
 cost = 50
 turret_speed = 100.0
-detect_radius = 800
+detect_radius = 500
 
 [node name="Body" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 131.75, 1226.82, 55.75, 42.5 )
+_sections_unfolded = [ "Region" ]
 
 [node name="GunCooldown" type="Timer" parent="." index="1"]
 
@@ -45,7 +45,9 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectRadius" index="0"]
 
-shape = SubResource( 1 )
+position = Vector2( 0.592804, 0.944496 )
+scale = Vector2( 0.953601, 0.951571 )
+disabled = true
 
 [connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
 

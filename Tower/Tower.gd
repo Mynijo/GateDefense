@@ -1,12 +1,16 @@
 extends KinematicBody2D
 
-export (PackedScene) var Bullet
+
 
 export (float) var gun_cooldown = 2
 export (int) var cost = 50
 
 export (float) var turret_speed = 1.0
-export (int) var detect_radius = 800
+export (int) var detect_radius
+
+var runesScreen = []
+var runes = []
+var Bullet
 
 signal shoot
 
@@ -14,10 +18,12 @@ var target = []
 
 var can_shoot = true
 
-func _ready():
+func _ready():	
+	myInit()
 	
+func myInit():
+	$GunCooldown.wait_time = gun_cooldown
 	var circle = CircleShape2D.new()
-	$GunCooldown.wait_time = gun_cooldown * Bullet.instance().gunCooldownMultiplier
 	$DetectRadius/CollisionShape2D.shape = circle
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
 
@@ -27,7 +33,7 @@ func control(delta):
 func _process(delta):
 	if target.size() != 0:
 		var distance = (target.front().global_position - position).length()
-		var _time = (distance / Bullet.instance().get_speed())
+		var _time = (distance / (Bullet.instance().get_speed() * 2))
 		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
 		
 		if predicted_position.x < global_position.x:
@@ -47,12 +53,8 @@ func spawn(_position):
 	self.connect("shoot", self.get_parent().get_parent(), "_on_Tower_shoot")
 
 
-func setBullet(_Bullet):
+func set_Bullet(_Bullet):
 	Bullet = _Bullet
-	var temp = Bullet.instance().gunCooldownMultiplier
-	var temp2 = gun_cooldown * temp
-	$GunCooldown.wait_time = temp2
-	$GunCooldown.start()
 
 
 func _on_DetectRadius_body_entered(body):
@@ -66,8 +68,32 @@ func shoot():
 		$GunCooldown.start()
 		can_shoot = false
 		var dir = Vector2(1, 0).rotated($Body.global_rotation)
-		emit_signal('shoot', Bullet, $Body.global_position, dir)
+		var b = Bullet.instance()
+		if runesScreen:
+			b.set_Runes(runesScreen)
+		emit_signal('shoot', b, $Body.global_position, dir)
 		
 
 func _on_GunCooldown_timeout():
 	can_shoot = true
+
+	
+func get_detect_radius():
+	return detect_radius
+	
+func change_detect_radius(_detect_radius):
+	detect_radius = _detect_radius
+	var circle = CircleShape2D.new()
+	$DetectRadius/CollisionShape2D.shape = circle
+	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
+		
+func set_Runes(_runes):
+	runesScreen = _runes
+	for r in _runes:
+		runes.append(r.instance())
+	initRunes()
+	
+func initRunes():
+	for r in runes:
+		r._init()
+		r.effect(self)

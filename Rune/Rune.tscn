@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="Rune" type="Node" index="0"]
+
+[node name="Stone" type="Sprite" parent="." index="0"]
+
+

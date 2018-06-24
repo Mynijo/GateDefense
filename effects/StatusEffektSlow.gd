@@ -6,8 +6,7 @@ func _ready():
 	_init()
 
 func _init():
-	tags.append(e_tags.speed)
-	tags.append(e_tags.dontStack)
+	tags.append(e_tags.speed)	
 
 func effekt(value, tag):
 	if tag == e_tags.speed:
