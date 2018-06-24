@@ -13,7 +13,7 @@ radius = 39.6376
 
 script = ExtResource( 2 )
 speed = 400
-damage = 50
+damage = 100
 lifetime = 5.0
 gunCooldownMultiplier = 3.0
 
