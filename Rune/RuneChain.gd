@@ -41,6 +41,10 @@ func enemyWasHit(body):
 func chain():
 	chain_counter += 1
 	
+	if chain_counter >= chain:
+		bullet_Explose()
+		return
+	
 	var closestTaget = null
 	var newOne = true
 	
@@ -68,9 +72,13 @@ func chain():
 		bullet.set_rotation(dir.angle())
 		bullet.set_velocity(dir * bullet.get_speed())
 	else:
-		if bullet.has_method('set_exploseAfterHit'):
-			bullet.set_exploseAfterHit(true)
+		bullet_Explose()
 		
+func bullet_Explose():
+	if bullet.has_method('set_exploseAfterHit'):
+			bullet.set_exploseAfterHit(true)
+
+	
 func find_targets():
 	target.clear()
 	var temp = detectRadius.get_overlapping_bodies()

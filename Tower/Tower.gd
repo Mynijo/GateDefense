@@ -71,7 +71,15 @@ func shoot():
 		var b = Bullet.instance()
 		if runesScreen:
 			b.set_Runes(runesScreen)
-		emit_signal('shoot', b, $Body.global_position, dir)
+		emit_shoot('shoot', b, $Body.global_position, dir)
+		
+		for r in runes:
+			var temp = r.get_tags()
+			if r.has_tag(r.e_runeTag.shoot):
+				r.shoot('shoot', b, $Body.global_position, dir)
+		
+func emit_shoot(_sig, _bullet, _pos, _dir):
+	emit_signal(_sig, _bullet, _pos, _dir)
 		
 
 func _on_GunCooldown_timeout():
