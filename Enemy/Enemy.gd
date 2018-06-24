@@ -56,7 +56,6 @@ func get_velocity():
 func add_Status(_status):	
 	add_child(_status)
 	StatusEffekte.append(_status)
-	
-	
+
 func remove_Status(_status):
 	StatusEffekte.erase(_status)

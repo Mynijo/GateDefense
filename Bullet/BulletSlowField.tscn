@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Bullet/Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Bullet/BulletSlowField.gd" type="Script" id=2]
+[ext_resource path="res://effects/StatusEffektSlow.tscn" type="PackedScene" id=3]
+[ext_resource path="res://media/sheet_tanks.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 106.296
+
+[node name="BulletSlowField" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+speed = 1
+damage = 1
+lifetime = 5.0
+freez = ExtResource( 3 )
+
+[node name="Sprite" parent="." index="0"]
+
+modulate = Color( 1, 1, 1, 0.294118 )
+self_modulate = Color( 1, 1, 1, 0.784314 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 210.947, 225.559, 107.28, 97.5 )
+_sections_unfolded = [ "Region", "Transform", "Visibility" ]
+
+[node name="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 1 )
+
+[connection signal="body_exited" from="." to="." method="_on_BulletSlowField_body_exited"]
+
+

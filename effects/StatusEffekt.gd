@@ -25,6 +25,10 @@ func effekt(value, tag):
 	pass
 
 func _on_Duration_timeout():
+	delteYou()
+	
+func delteYou():
 	if get_parent().has_method('remove_Status'):
 		get_parent().remove_Status(self)
 	queue_free()
+	
