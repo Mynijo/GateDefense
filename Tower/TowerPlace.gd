@@ -16,7 +16,7 @@ func _ready():
 	runes.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
 	#runes.append(load("res://Rune/RuneAddSlow.tscn"))
 	#runes.append(load("res://Rune/RuneAddIgnite.tscn"))
-	#runes.append(load("res://Rune/RuneScatterShot.tscn"))
+	runes.append(load("res://Rune/RuneScatterShot.tscn"))
 	#runes.append(load("res://Rune/RuneIncrasedAps.tscn"))
 	runes.append(load("res://Rune/RuneBoomerang.tscn"))
 

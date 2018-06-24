@@ -68,9 +68,7 @@ func shoot():
 		$GunCooldown.start()
 		can_shoot = false
 		var dir = Vector2(1, 0).rotated($Body.global_rotation)
-		var b = Bullet.instance()
-		if runesScreen:
-			b.set_Runes(runesScreen)
+		var b = Bullet.instance()		
 		emit_shoot('shoot', b, $Body.global_position, dir)
 		
 		for r in runes:
@@ -79,6 +77,8 @@ func shoot():
 				r.shoot('shoot', b, $Body.global_position, dir)
 		
 func emit_shoot(_sig, _bullet, _pos, _dir):
+	if runesScreen:
+			_bullet.set_Runes(runesScreen)
 	emit_signal(_sig, _bullet, _pos, _dir)
 		
 
