@@ -58,7 +58,7 @@ func add_Status(_status):
 	if _status.has_tag(_status.e_tags.dontStack):
 		for x in StatusEffekte:
 			if x.has_node(_status.get_path()):
-				return
+				StatusEffekte.erase(x)
 		
 	add_child(_status)
 	StatusEffekte.append(_status)
