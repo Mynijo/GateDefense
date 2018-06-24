@@ -5,8 +5,6 @@
 [ext_resource path="res://effects/StatusEffektSlow.tscn" type="PackedScene" id=3]
 [ext_resource path="res://media/sheet_tanks.png" type="Texture" id=4]
 
-
-
 [sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -19,6 +17,7 @@ script = ExtResource( 2 )
 speed = 500
 damage = 40
 lifetime = 5.0
+gunCooldownMultiplier = 1
 freez = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
@@ -27,7 +26,7 @@ scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 133.125, 148.395, 33.75, 19.375 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Region", "Transform" ]
 
 [node name="Lifetime" parent="." index="1"]
 

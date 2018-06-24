@@ -53,7 +53,13 @@ func _physics_process(delta):
 func get_velocity():
 	return velocity
 	
-func add_Status(_status):	
+func add_Status(_status):
+	_status._init()
+	if _status.has_tag(_status.e_tags.dontStack):
+		for x in StatusEffekte:
+			if x.has_node(_status.get_path()):
+				return
+		
 	add_child(_status)
 	StatusEffekte.append(_status)
 

@@ -2,7 +2,8 @@ extends Node
 
 enum e_tags{
 	speed,
-	health
+	health,
+	dontStack
 }
 
 export (e_tags) var tags = []
