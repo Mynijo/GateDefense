@@ -17,6 +17,7 @@ func _ready():
 	runes.append(load("res://Rune/RuneAddIgnite.tscn"))
 	runes.append(load("res://Rune/RuneScatterShot.tscn"))
 	runes.append(load("res://Rune/RuneIncrasedAps.tscn"))
+	runes.append(load("res://Rune/RunePierce.tscn"))
 	
 
 func _on_Area2D_input_event(viewport, event, shape_idx):

@@ -1,4 +1,4 @@
-extends "res://Rune/Rune.gd"
+extends "res://Rune/RuneEffect.gd"
 
 export (float) var incrase
 

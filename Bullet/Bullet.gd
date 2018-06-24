@@ -9,7 +9,7 @@ var runes = []
 var runesScreen = []
 var status = []
 
-var exploseAfterHit = true
+var exploseAfterHit = []
 
 func start(_position, _direction):
 	position = _position
@@ -39,10 +39,9 @@ func _on_Bullet_body_entered(body):
 		if r.has_tag(r.e_runeTag.enemyWasHit):
 			r.enemyWasHit(body)
 		
-	if exploseAfterHit:
+	if !exploseAfterHit:
 		explode()
 	
-
 func _on_Lifetime_timeout():
 	explode()
 
@@ -52,8 +51,11 @@ func set_rotation(_rotation):
 func set_velocity(_vel):
 	velocity = _vel
 
-func set_exploseAfterHit(_flag):
-	exploseAfterHit = _flag
+func set_exploseAfterHit(_who, _flag):
+	if _flag:
+		exploseAfterHit.erase(_who)
+	else:
+		exploseAfterHit.append(_who)
 	
 func add_Status(_status):
 	status.append(_status)	

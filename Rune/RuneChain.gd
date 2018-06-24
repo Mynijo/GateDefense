@@ -1,4 +1,4 @@
-extends "res://Rune/Rune.gd"
+extends "res://Rune/RuneEffect.gd"
 
 export (int) var chain
 export (int) var detect_radius = 400
@@ -32,7 +32,7 @@ func effect(_obj):
 		_obj.add_child(detectRadius)
 		
 	if _obj.has_method('set_exploseAfterHit'):
-		_obj.set_exploseAfterHit(false)
+		_obj.set_exploseAfterHit(self, false)
 		
 func enemyWasHit(body):
 	targetHits.append(body)
@@ -76,7 +76,7 @@ func chain():
 		
 func bullet_Explose():
 	if bullet.has_method('set_exploseAfterHit'):
-			bullet.set_exploseAfterHit(true)
+			bullet.set_exploseAfterHit(self, true)
 
 	
 func find_targets():

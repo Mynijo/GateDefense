@@ -1,4 +1,4 @@
-extends "res://Rune/Rune.gd"
+extends "res://Rune/RuneEffect.gd"
 
 var bullet
 export (float) var scatter
