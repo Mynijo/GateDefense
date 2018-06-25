@@ -3,7 +3,6 @@ export (PackedScene) var tower
 export (PackedScene) var player
 export (PackedScene) var bullet
 
-var placed = false
 var bulletIndex = 0
 var accTower
 
@@ -25,15 +24,15 @@ func _ready():
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == BUTTON_LEFT and event.pressed:
-			if player.money -50 < 10:
-				return
-			player.add_money(-50)
-			accTower = tower.instance()
-			accTower.set_RunesScreen(runesScreen)
-			accTower.Bullet = bullet
-			add_child(accTower)
-			accTower.spawn(position.normalized())
-			placed = true
+			if !accTower:
+				if player.money -50 < 10:
+					return
+				player.add_money(-50)
+				accTower = tower.instance()
+				accTower.set_RunesScreen(runesScreen)
+				accTower.Bullet = bullet
+				add_child(accTower)
+				accTower.spawn(position.normalized())
 
 		
 func set_player(_player):

@@ -11,6 +11,9 @@
 [node name="Map01" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -39,6 +42,7 @@ __meta__ = {
 [node name="EnemySpawner" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 1311.24, 337.623 )
+wave = 200
 enemy02 = ExtResource( 4 )
 
 [node name="Gate" parent="." index="2" instance=ExtResource( 5 )]
@@ -59,7 +63,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 collision_layer = 13
-collision_mask = 4
+collision_mask = 13
 audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Collision" ]

@@ -3,17 +3,18 @@
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://ui/UnitDisplay.tscn" type="PackedScene" id=2]
 
-[node name="Enemy" type="KinematicBody2D" index="0"]
+[node name="Enemy" type="KinematicBody2D"]
 
 input_pickable = false
-collision_layer = 4
-collision_mask = 4
+collision_layer = 5
+collision_mask = 5
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 speed = null
 health = null
 damage = null
+goldValue = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
