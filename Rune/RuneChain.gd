@@ -78,8 +78,8 @@ func chain():
 		var predicted_position = closestTaget.global_position + (closestTaget.get_velocity() * _time)
 		
 		var dir = (predicted_position - bullet.global_position).normalized()
-		bullet.set_rotation(dir.angle())
-		bullet.set_velocity(dir * bullet.get_speed())
+		bullet.rotation = dir.angle()
+		bullet.velocity = dir * bullet.get_speed()
 	else:
 		bullet_Explose()
 		

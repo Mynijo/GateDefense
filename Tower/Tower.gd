@@ -27,24 +27,13 @@ func _ready():
 	myInit()
 	
 func myInit():
-	$GunCooldown.wait_time = gun_cooldown
-	$DetectRadius/CollisionShape2D.shape.radius = detect_radius
-		
+	$GunCooldown.wait_time = get_gun_cooldown()
+	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
 
 func control(delta):
         pass
 		
-func _process(delta):
-	gun_cooldown_effected = gun_cooldown
-	detect_radius_effected = detect_radius
-	for r in runes:
-		r.effect(self)
-	if $GunCooldown.wait_time != gun_cooldown_effected:
-		$GunCooldown.wait_time = gun_cooldown_effected
-	if $DetectRadius/CollisionShape2D.shape.radius != detect_radius_effected:	
-		$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
-	
-	
+func _process(delta):	
 	if target.size() != 0:
 		var distance = (target.front().global_position - position).length()
 		var _time = (distance / (Bullet.instance().get_speed() * 2))
@@ -64,9 +53,6 @@ func _process(delta):
 func spawn(_position):
 	position = _position
 	self.connect("shoot", self.get_parent().get_parent(), "_on_Tower_shoot")
-
-func set_Bullet(_Bullet):
-	Bullet = _Bullet
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)
@@ -96,27 +82,28 @@ func emit_shoot(_sig, _bullet, _pos, _dir):
 			bullet_r.append(r)
 		_bullet.set_Runes(bullet_r)
 	emit_signal(_sig, _bullet, _pos, _dir)
-		
-func get_pos():
-	return position
-	
-func get_global_pos():
-	return global_position
 	
 func _on_GunCooldown_timeout():
 	can_shoot = true
 	
 func get_gun_cooldown():
+	if gun_cooldown_effected:
+		return gun_cooldown_effected
 	return gun_cooldown
 	
 func effect_gun_cooldown(_gun_cooldown):
 	gun_cooldown_effected = _gun_cooldown
+	$GunCooldown.wait_time = gun_cooldown_effected
+	$GunCooldown.start()
 	
 func get_detect_radius():
+	if detect_radius_effected:
+		return detect_radius_effected
 	return detect_radius
 	
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
+	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
 	
 func set_Runes(_runes):
 	for r in _runes:

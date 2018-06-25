@@ -1,6 +1,7 @@
 extends Area2D
 
 export (int) var speed
+var speed_effected
 export (int) var damage
 export (float) var lifetime
 var lifetime_effected
@@ -17,10 +18,8 @@ var explose = []
 func start(_position, _direction):
 	position = _position
 	rotation = _direction.angle()
-	if !lifetime_effected:
-		lifetime_effected = lifetime
-	$Lifetime.wait_time = lifetime_effected
-	velocity = _direction * speed
+	$Lifetime.wait_time = get_lifetime()
+	velocity = _direction * get_speed()
 	$Lifetime.start()
 
 func _process(delta):
@@ -35,8 +34,6 @@ func explode():
 	if !explose:
 		queue_free()
 
-func get_speed():
-	return speed
 	
 func _on_Bullet_body_entered(body):
 	if body.has_method('add_Status'):
@@ -55,18 +52,6 @@ func _on_Bullet_body_entered(body):
 	
 func _on_Lifetime_timeout():
 	explode()
-
-func get_rotation():
-	return rotation
-
-func set_rotation(_rotation):
-	rotation = _rotation
-	
-func get_velocity():
-	return velocity
-	
-func set_velocity(_vel):
-	velocity = _vel
 
 func set_exploseAfterHit(_who, _flag):
 	if _flag:
@@ -95,7 +80,14 @@ func set_RunesScreen(_runesScreen):
 	initRunes()
 
 func get_lifetime():
+	if lifetime_effected:
+		return lifetime_effected
 	return lifetime
+
+func get_speed():
+	if speed_effected:
+	 return speed_effected
+	return speed
 
 func effect_lifetime(_lifetime):
 	lifetime_effected = _lifetime

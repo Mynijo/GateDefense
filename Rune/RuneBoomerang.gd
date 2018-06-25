@@ -24,7 +24,7 @@ func explode():
 				bullet.set_exploseAfterHit(self, false)
 				
 			var dir = (tower.global_position - bullet.global_position).normalized()
-			bullet.set_rotation(dir.angle())
-			bullet.set_velocity(dir * bullet.get_speed())
+			bullet.rotation = dir.angle()
+			bullet.velocity = dir * bullet.get_speed()
 		else:
 			bullet.set_explose(self, true)

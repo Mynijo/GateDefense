@@ -28,7 +28,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			player.add_money(-50)
 			accTower = tower.instance()
 			accTower.set_RunesScreen(runesScreen)
-			accTower.set_Bullet(bullet)
+			accTower.Bullet = bullet
 			add_child(accTower)
 			accTower.spawn(position.normalized())
 			placed = true
