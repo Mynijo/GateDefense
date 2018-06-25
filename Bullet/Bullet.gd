@@ -2,9 +2,12 @@ extends Area2D
 
 export (int) var speed
 var speed_effected
-export (int) var damage
+export (float) var damage
+var damage_effected
 export (float) var lifetime
 var lifetime_effected
+export (float) var critChance
+var critChance_effected
 
 
 var velocity = Vector2()
@@ -40,10 +43,9 @@ func _on_Bullet_body_entered(body):
 		for s in status:
 			body.add_Status(s.duplicate(DUPLICATE_USE_INSTANCING))		
 	if body.has_method('take_damage'):
-	    body.take_damage(damage)
+	    body.take_damage(calcDmg())
 	
 	for r in runes:
-		var temp = r.get_tags()
 		if r.has_tag(r.e_runeTag.enemyWasHit):
 			r.enemyWasHit(body)
 		
@@ -52,6 +54,18 @@ func _on_Bullet_body_entered(body):
 	
 func _on_Lifetime_timeout():
 	explode()
+
+func calcDmg():
+	var dmg = get_damage()
+	if rand_range(0, 100) < get_critChance():
+		dmg *= 2
+		for r in runes:
+			if r.has_tag(r.e_runeTag.enemyWasHit):
+				r.enemyWasHit(body)
+	return dmg		
+
+func add_Status(_status):
+	status.append(_status)	
 
 func set_exploseAfterHit(_who, _flag):
 	if _flag:
@@ -65,9 +79,6 @@ func set_explose(_who, _flag):
 	else:
 		explose.append(_who)
 	
-func add_Status(_status):
-	status.append(_status)	
-
 func set_Runes(_runes):
 	for r in _runes:
 		runes.append(r)
@@ -88,6 +99,22 @@ func get_speed():
 	if speed_effected:
 	 return speed_effected
 	return speed
+
+func get_damage():
+	if damage_effected:
+		return damage_effected
+	return damage
+
+func get_critChance():
+	if critChance_effected:
+		return critChance_effected
+	return critChance
+	
+func effect_critChance(_critChance):
+	critChance_effected = _critChance
+
+func effect_damage(_damage):
+	damage_effected = _damage
 
 func effect_lifetime(_lifetime):
 	lifetime_effected = _lifetime

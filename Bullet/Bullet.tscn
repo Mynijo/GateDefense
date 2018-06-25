@@ -22,8 +22,9 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 speed = 500
-damage = 10
+damage = null
 lifetime = 5.0
+critChance = 5.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
