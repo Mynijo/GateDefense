@@ -48,7 +48,7 @@ func _process(delta):
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
 		if target_dir.dot(current_dir) > 0.9999:
-			shoot()
+			tryToShoot()
 			
 func spawn(_position):
 	position = _position
@@ -60,18 +60,21 @@ func _on_DetectRadius_body_entered(body):
 func _on_DetectRadius_body_exited(body):
 	target.erase(body)
 
-func shoot():
+func tryToShoot():
 	if can_shoot:
-		$GunCooldown.start()
-		can_shoot = false
-		var dir = Vector2(1, 0).rotated($Body.global_rotation)
-		var b = Bullet.instance()		
-		emit_shoot('shoot', b, $Body.global_position, dir)
+		shoot()
 		
-		for r in runes:
-			var temp = r.get_tags()
-			if r.has_tag(r.e_runeTag.shoot):
-				r.shoot('shoot', b, $Body.global_position, dir)
+func shoot():	
+	$GunCooldown.start()
+	can_shoot = false
+	var dir = Vector2(1, 0).rotated($Body.global_rotation)
+	var b = Bullet.instance()		
+	emit_shoot('shoot', b, $Body.global_position, dir)
+	
+	for r in runes:
+		var temp = r.get_tags()
+		if r.has_tag(r.e_runeTag.shoot):
+			r.shoot('shoot', b, $Body.global_position, dir)
 		
 func emit_shoot(_sig, _bullet, _pos, _dir):
 	if runesScreen:

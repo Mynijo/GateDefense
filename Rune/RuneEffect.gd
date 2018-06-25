@@ -4,8 +4,7 @@ enum e_runeTag{
 	enemyWasHit,
 	shoot,
 	explode,
-	aps,
-	detect_radius
+	enemyWasCrit
 }
 
 var bullet

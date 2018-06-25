@@ -17,8 +17,10 @@ func _ready():
 	runesScreen.append(load("res://Rune/RuneAddSlow.tscn"))
 	runesScreen.append(load("res://Rune/RuneAddIgnite.tscn"))
 	runesScreen.append(load("res://Rune/RuneScatterShot.tscn"))
-	runesScreen.append(load("res://Rune/RuneIncrasedAps.tscn"))
+	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
+	runesScreen.append(load("res://Rune/RuneIncreasedCritChance.tscn"))
 	runesScreen.append(load("res://Rune/RuneBoomerang.tscn"))
+	runesScreen.append(load("res://Rune/RuneShootOnCrit.tscn"))
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:

@@ -36,14 +36,13 @@ func explode():
 			
 	if !explose:
 		queue_free()
-
 	
 func _on_Bullet_body_entered(body):
 	if body.has_method('add_Status'):
 		for s in status:
 			body.add_Status(s.duplicate(DUPLICATE_USE_INSTANCING))		
 	if body.has_method('take_damage'):
-	    body.take_damage(calcDmg())
+	    body.take_damage(calcDmg(body))
 	
 	for r in runes:
 		if r.has_tag(r.e_runeTag.enemyWasHit):
@@ -55,13 +54,13 @@ func _on_Bullet_body_entered(body):
 func _on_Lifetime_timeout():
 	explode()
 
-func calcDmg():
+func calcDmg(body):
 	var dmg = get_damage()
 	if rand_range(0, 100) < get_critChance():
 		dmg *= 2
 		for r in runes:
-			if r.has_tag(r.e_runeTag.enemyWasHit):
-				r.enemyWasHit(body)
+			if r.has_tag(r.e_runeTag.enemyWasCrit):
+				r.enemyWasCrit(body)
 	return dmg		
 
 func add_Status(_status):
