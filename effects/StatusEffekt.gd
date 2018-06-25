@@ -3,7 +3,9 @@ extends Node
 enum e_tags{
 	speed,
 	health,
-	dontStack
+	dontStack,
+	castOnDeath,
+	needBody
 }
 
 export (e_tags) var tags = []
@@ -35,4 +37,11 @@ func delteYou():
 	if get_parent().has_method('remove_Status'):
 		get_parent().remove_Status(self)
 	queue_free()
-	
+
+func refresh(_obj):
+	set_duration(_obj.duration)
+
+func set_duration(_duration):
+	duration = _duration
+	$Duration.wait_time = duration
+	$Duration.start()

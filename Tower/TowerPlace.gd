@@ -10,16 +10,20 @@ var runesScreen = []
 
 func _ready():
 	bullet = load("res://Bullet/Bullet.tscn")
-	runesScreen.append(load("res://Rune/RunePierce.tscn"))
-	runesScreen.append(load("res://Rune/RuneChain.tscn"))
+	#runesScreen.append(load("res://Rune/RunePierce.tscn"))
+	#runesScreen.append(load("res://Rune/RuneChain.tscn"))
 	runesScreen.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
-	runesScreen.append(load("res://Rune/RuneAddSlow.tscn"))
-	runesScreen.append(load("res://Rune/RuneAddIgnite.tscn"))
-	runesScreen.append(load("res://Rune/RuneScatterShot.tscn"))
+	#runesScreen.append(load("res://Rune/RuneAddSlow.tscn"))
+	#runesScreen.append(load("res://Rune/RuneAddIgnite.tscn"))
+	#runesScreen.append(load("res://Rune/RuneScatterShot.tscn"))
 	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
-	runesScreen.append(load("res://Rune/RuneIncreasedCritChance.tscn"))
-	runesScreen.append(load("res://Rune/RuneBoomerang.tscn"))
-	runesScreen.append(load("res://Rune/RuneShootOnCrit.tscn"))
+	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
+	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
+	#runesScreen.append(load("res://Rune/RuneIncreasedCritChance.tscn"))
+	#runesScreen.append(load("res://Rune/RuneBoomerang.tscn"))
+	#runesScreen.append(load("res://Rune/RuneShootOnCrit.tscn"))
+	#runesScreen.append(load("res://Rune/RuneIncreasedDamage.tscn"))
+	runesScreen.append(load("res://Rune/RuneAddShock.tscn"))
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:

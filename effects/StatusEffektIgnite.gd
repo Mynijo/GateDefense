@@ -28,8 +28,11 @@ func effekt(value, tag):
 		
 	return value
 	
-func get_tags():
-	return tags 
+func refresh(_obj):	
+	if _obj.damage * _obj.igniteTickRate  >= damage * igniteTickRate:
+		damage = _obj.damage
+		igniteTickRate = _obj.igniteTickRate
+		set_duration(_obj.duration)
 
 func _on_IgniteTicker_timeout():
 	ready = true

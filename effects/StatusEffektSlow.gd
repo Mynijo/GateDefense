@@ -12,5 +12,8 @@ func effekt(value, tag):
 	if tag == e_tags.speed:
 		return value * SlowRate
 	return value
-func get_tags():
-	return tags 
+	
+func refresh(_obj):	
+	if _obj.SlowRate >= SlowRate:
+		SlowRate = _obj.SlowRate
+		set_duration(_obj.duration)
