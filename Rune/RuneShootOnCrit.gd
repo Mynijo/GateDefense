@@ -4,11 +4,11 @@ func _ready():
 	_init()
 
 func _init():
-	tags.append(e_runeTag.enemyWasCrit)
+	tags.append(e_rune_tag.enemy_was_crit)
 	
 func effect(obj):
 	get_tags()
 	
-func enemyWasCrit(body):
+func enemy_was_crit(body):
 	if tower:
 		tower.shoot()

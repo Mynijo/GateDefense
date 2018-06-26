@@ -7,7 +7,7 @@ func _ready():
 	_init()
 	
 func _init():
-	tags.append(e_runeTag.explode)
+	tags.append(e_rune_tag.explode)
 
 func effect(_obj):
 	sort_Obj(_obj)
@@ -20,8 +20,8 @@ func explode():
 	if bullet:
 		if !bounced:
 			bounced = true
-			if bullet.has_method('set_exploseAfterHit'):
-				bullet.set_exploseAfterHit(self, false)
+			if bullet.has_method('set_explose_after_hit'):
+				bullet.set_explose_after_hit(self, false)
 				
 			var dir = (tower.global_position - bullet.global_position).normalized()
 			bullet.rotation = dir.angle()

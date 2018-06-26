@@ -1,6 +1,6 @@
 extends Node2D
 
-export (int) var StartIntervall = 10
+export (int) var start_intervall = 10
 export (int) var wave = 1
 
 export (PackedScene) var enemy
@@ -16,7 +16,7 @@ func _ready():
 
 func _on_SpawnTimer_timeout():
 	
-	var mobToSpawn = enemy
+	var mob_to_spawn = enemy
 	
 	if wave % 10 == 0 and mobs_counter > 0:
 		return
@@ -24,18 +24,18 @@ func _on_SpawnTimer_timeout():
 	player.wave_changed(int(wave/10) + 1)
 	for i in range(int(wave/10)+1):
 		if int(wave/10)+1 >= 2 and i <= 2:
-			mobToSpawn = enemy02
+			mob_to_spawn = enemy02
 		else:
-			mobToSpawn = enemy
+			mob_to_spawn = enemy
 		++mobs_counter
-		var e = mobToSpawn.instance()
+		var e = mob_to_spawn.instance()
 		add_child(e)		
 		var pos = Vector2()
 		pos.x = ((randi() % 100 )+ 1) + position.normalized().x	
 		pos.y = ((randi() % 640 )+ 1) -320	
 		e.spawn(pos)		
 	
-	$SpawnTimer.wait_time = StartIntervall - (wave % StartIntervall)
+	$SpawnTimer.wait_time = start_intervall - (wave % start_intervall)
 	$SpawnTimer.start()
 	wave += 1
 	

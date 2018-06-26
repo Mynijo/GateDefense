@@ -4,16 +4,16 @@ export (int) var chain
 export (int) var detect_radius = 400
 
 var chain_counter = 0
-var targetHits = []
+var target_hits = []
 var target = []
-var detectRadius
+var detect_radius_shape
 var first = false
 	
 func _ready():
 	_init()
 
 func _init():
-	tags.append(e_runeTag.enemyWasHit)
+	tags.append(e_rune_tag.enemy_was_hit)
 
 	
 func effect(_obj):
@@ -24,24 +24,24 @@ func effect(_obj):
 	
 	if bullet and !first:
 		first = true
-		generate_detectRadius()
-		if bullet.has_method('set_exploseAfterHit'):
-			bullet.set_exploseAfterHit(self, false)
+		generate_detect_radius()
+		if bullet.has_method('set_explose_after_hit'):
+			bullet.set_explose_after_hit(self, false)
 		
-func generate_detectRadius():
-	detectRadius = Area2D.new()
-	detectRadius.set_collision_mask_bit(2, true)
-	detectRadius.name = "DetectRadius"
+func generate_detect_radius():
+	detect_radius_shape = Area2D.new()
+	detect_radius_shape.set_collision_mask_bit(2, true)
+	detect_radius_shape.name = "detect_radius"
 	var c = CollisionShape2D.new()
 	c.name = "CollisionShape2D"
-	detectRadius.add_child(c)
+	detect_radius_shape.add_child(c)
 	var circle = CircleShape2D.new()
 	c.shape = circle
 	c.shape.radius = detect_radius
-	bullet.add_child(detectRadius)
+	bullet.add_child(detect_radius_shape)
 		
-func enemyWasHit(body):
-	targetHits.append(body)
+func enemy_was_hit(body):
+	target_hits.append(body)
 	effect(null)
 	chain()
 	
@@ -61,7 +61,7 @@ func chain():
 	
 	for x in target:
 		newOne = true
-		for y in targetHits:
+		for y in target_hits:
 			if x == y:
 				newOne = false
 				pass
@@ -84,14 +84,14 @@ func chain():
 		bullet_Explose()
 		
 func bullet_Explose():
-	if bullet.has_method('set_exploseAfterHit'):
-			bullet.set_exploseAfterHit(self, true)
+	if bullet.has_method('set_explose_after_hit'):
+			bullet.set_explose_after_hit(self, true)
 
 	
 func find_targets():
 	target.clear()
-	var temp = detectRadius.get_overlapping_bodies()
+	var temp = detect_radius_shape.get_overlapping_bodies()
 	for t in temp:
-		if !targetHits.has(t):
+		if !target_hits.has(t):
 			target.append(t)
 	

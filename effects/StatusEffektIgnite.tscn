@@ -3,12 +3,12 @@
 [ext_resource path="res://effects/StatusEffekt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://effects/StatusEffektIgnite.gd" type="Script" id=2]
 
-[node name="StatusEffektIgnite" index="0" instance=ExtResource( 1 )]
+[node name="StatusEffektIgnite" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 damage = 10
-igniteTickRate = 0.25
-speedInc = 1.0
+ignite_tick_rate = 0.5
+speed_inc = 1.0
 
 [node name="IgniteTicker" type="Timer" parent="." index="1"]
 

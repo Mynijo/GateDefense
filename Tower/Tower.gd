@@ -13,7 +13,7 @@ export (int) var cost = 50
 export (float) var turret_speed = 1.0
 
 
-var runesScreen = []
+var runes_screen = []
 var runes = []
 var Bullet
 
@@ -73,17 +73,17 @@ func shoot():
 	
 	for r in runes:
 		var temp = r.get_tags()
-		if r.has_tag(r.e_runeTag.shoot):
+		if r.has_tag(r.e_rune_tag.shoot):
 			r.shoot('shoot', b, $Body.global_position, dir)
 		
 func emit_shoot(_sig, _bullet, _pos, _dir):
-	if runesScreen:
+	if runes_screen:
 		var bullet_r = []
-		for rs in runesScreen:
+		for rs in runes_screen:
 			var r = rs.instance()
 			r.sort_Obj(self)
 			bullet_r.append(r)
-		_bullet.set_Runes(bullet_r)
+		_bullet.set_runes(bullet_r)
 	emit_signal(_sig, _bullet, _pos, _dir)
 	
 func _on_GunCooldown_timeout():
@@ -108,18 +108,18 @@ func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
 	
-func set_Runes(_runes):
+func set_runes(_runes):
 	for r in _runes:
 		runes.append(r)
-	initRunes()
+	init_runes()
 
-func set_RunesScreen(_runesScreen):
-	runesScreen = _runesScreen
-	for r in _runesScreen:
+func set_runes_screen(_runes_screen):
+	runes_screen = _runes_screen
+	for r in _runes_screen:
 		runes.append(r.instance())
-	initRunes()
+	init_runes()
 
-func initRunes():
+func init_runes():
 	for r in runes:
 		r._init()
 		r.effect(self)

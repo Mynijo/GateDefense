@@ -6,24 +6,24 @@ export (PackedScene) var bullet
 var bulletIndex = 0
 var accTower
 
-var runesScreen = []
+var runes_screen = []
 
 func _ready():
 	bullet = load("res://Bullet/Bullet.tscn")
-	#runesScreen.append(load("res://Rune/RunePierce.tscn"))
-	#runesScreen.append(load("res://Rune/RuneChain.tscn"))
-	runesScreen.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
-	#runesScreen.append(load("res://Rune/RuneAddSlow.tscn"))
-	#runesScreen.append(load("res://Rune/RuneAddIgnite.tscn"))
-	#runesScreen.append(load("res://Rune/RuneScatterShot.tscn"))
-	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
-	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
-	runesScreen.append(load("res://Rune/RuneIncreasedAps.tscn"))
-	#runesScreen.append(load("res://Rune/RuneIncreasedCritChance.tscn"))
-	#runesScreen.append(load("res://Rune/RuneBoomerang.tscn"))
-	#runesScreen.append(load("res://Rune/RuneShootOnCrit.tscn"))
-	#runesScreen.append(load("res://Rune/RuneIncreasedDamage.tscn"))
-	runesScreen.append(load("res://Rune/RuneAddShock.tscn"))
+	runes_screen.append(load("res://Rune/RunePierce.tscn"))
+	runes_screen.append(load("res://Rune/RuneChain.tscn"))
+	runes_screen.append(load("res://Rune/RuneIncreaseTurretDetectRadius.tscn"))
+	runes_screen.append(load("res://Rune/RuneAddSlow.tscn"))
+	runes_screen.append(load("res://Rune/RuneAddIgnite.tscn"))
+	runes_screen.append(load("res://Rune/RuneScatterShot.tscn"))
+	runes_screen.append(load("res://Rune/RuneIncreasedAps.tscn"))
+	runes_screen.append(load("res://Rune/RuneIncreasedAps.tscn"))
+	runes_screen.append(load("res://Rune/RuneIncreasedAps.tscn"))
+	runes_screen.append(load("res://Rune/RuneIncreasedCritChance.tscn"))
+	runes_screen.append(load("res://Rune/RuneBoomerang.tscn"))
+	runes_screen.append(load("res://Rune/RuneShootOnCrit.tscn"))
+	runes_screen.append(load("res://Rune/RuneIncreasedDamage.tscn"))
+	#runes_screen.append(load("res://Rune/RuneAddShock.tscn"))
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
@@ -33,7 +33,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 					return
 				player.add_money(-50)
 				accTower = tower.instance()
-				accTower.set_RunesScreen(runesScreen)
+				accTower.set_runes_screen(runes_screen)
 				accTower.Bullet = bullet
 				add_child(accTower)
 				accTower.spawn(position.normalized())

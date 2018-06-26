@@ -7,10 +7,10 @@ signal dead
 export (int) var speed
 export (int) var health
 export (int) var damage
-export (int) var goldValue = 5
+export (int) var gold_value = 5
 
 
-var StatusEffekte = []
+var status_effekte = []
 var tags
 var dead = false
 
@@ -27,7 +27,7 @@ func spawn(_position):
 func control(delta):
 	
 	var changed_speed = speed
-	for x in StatusEffekte:
+	for x in status_effekte:
 		if x.has_tag(x.e_tags.speed):
 			changed_speed = x.effekt(changed_speed, x.e_tags.speed)
 		if x.has_tag(x.e_tags.health):
@@ -44,10 +44,10 @@ func take_damage(damage):
 		die()
 		
 func die():
-	for x in StatusEffekte:
-		if x.has_tag(x.e_tags.castOnDeath):
-			x.castOnDeath(self)
-	get_parent().player.add_money(goldValue)
+	for x in status_effekte:
+		if x.has_tag(x.e_tags.cast_on_death):
+			x.cast_on_death(self)
+	get_parent().player.add_money(gold_value)
 	dead()
 		
 func dead():
@@ -66,16 +66,16 @@ func get_velocity():
 	return velocity
 	
 func add_Status(_status):
-	var olnyRefresh = false
-	if _status.has_tag(_status.e_tags.dontStack):
-		for x in StatusEffekte:
+	var olny_Refresh = false
+	if _status.has_tag(_status.e_tags.dont_stack):
+		for x in status_effekte:
 			if x.name.is_subsequence_of(_status.name):
 				x.refresh(_status) 
-				olnyRefresh = true
+				olny_Refresh = true
 	
-	if !olnyRefresh:
+	if !olny_Refresh:
 		add_child(_status)
-		StatusEffekte.append(_status)
+		status_effekte.append(_status)
 
 func remove_Status(_status):
-	StatusEffekte.erase(_status)
+	status_effekte.erase(_status)

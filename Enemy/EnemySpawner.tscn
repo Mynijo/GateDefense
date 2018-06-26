@@ -1,17 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Enemy/EnemySpawner.gd" type="Script" id=1]
 [ext_resource path="res://Enemy/EnemyBlue.tscn" type="PackedScene" id=2]
-[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/EnemyTank.tscn" type="PackedScene" id=3]
+[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=4]
 
-[node name="EnemySpawner" type="Node2D" index="0"]
+[node name="EnemySpawner" type="Node2D"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
-StartIntervall = 5
+start_intervall = 10
 wave = 1
 enemy = ExtResource( 2 )
-enemy02 = null
+enemy02 = ExtResource( 3 )
 player = null
 mobs_counter = 0
 
@@ -24,7 +25,7 @@ autostart = false
 
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 region_enabled = true
 region_rect = Rect2( 448.213, 1217.06, 63, 61.25 )
 _sections_unfolded = [ "Region" ]

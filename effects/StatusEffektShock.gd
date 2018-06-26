@@ -15,10 +15,10 @@ func _ready():
 
 
 func _init():
-	tags.append(e_tags.castOnDeath)
+	tags.append(e_tags.cast_on_death)
 	tags.append(e_tags.health)
-	tags.append(e_tags.dontStack)
-	tags.append(e_tags.needBody)
+	tags.append(e_tags.dont_stack)
+	tags.append(e_tags.need_body)
 
 	
 
@@ -29,8 +29,8 @@ func effekt(value, tag):
 			return value - iniDamage
 	return value
 		
-func castOnDeath(body):
-	generate_detectRadius(body)	
+func cast_on_death(body):
+	generate_detect_radius(body)	
 	var temp = find_targets()
 	for t in temp:
 		if t.has_method('add_Status'):
@@ -38,7 +38,7 @@ func castOnDeath(body):
 			s._init()
 			t.add_Status(s)
 	
-func generate_detectRadius(body):
+func generate_detect_radius(body):
 	if shockRadius:
 		return
 	shockRadius = Area2D.new()

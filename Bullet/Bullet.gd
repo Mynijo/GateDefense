@@ -6,16 +6,16 @@ export (float) var damage
 var damage_effected
 export (float) var lifetime
 var lifetime_effected
-export (float) var critChance
-var critChance_effected
+export (float) var crit_chance
+var crit_chance_effected
 
 
 var velocity = Vector2()
 var runes = []
-var runesScreen = []
+var runes_screen = []
 var status = []
 
-var exploseAfterHit = []
+var explose_after_hit = []
 var explose = []
 
 func start(_position, _direction):
@@ -31,7 +31,7 @@ func _process(delta):
 func explode():
 	for r in runes:
 		var temp = r.get_tags()
-		if r.has_tag(r.e_runeTag.explode):
+		if r.has_tag(r.e_rune_tag.explode):
 			r.explode()
 			
 	if !explose:
@@ -45,10 +45,10 @@ func _on_Bullet_body_entered(body):
 	    body.take_damage(calcDmg(body))
 	
 	for r in runes:
-		if r.has_tag(r.e_runeTag.enemyWasHit):
-			r.enemyWasHit(body)
+		if r.has_tag(r.e_rune_tag.enemy_was_hit):
+			r.enemy_was_hit(body)
 		
-	if !exploseAfterHit:
+	if !explose_after_hit:
 		explode()
 	
 func _on_Lifetime_timeout():
@@ -56,21 +56,21 @@ func _on_Lifetime_timeout():
 
 func calcDmg(body):
 	var dmg = get_damage()
-	if rand_range(0, 100) < get_critChance():
+	if rand_range(0, 100) < get_crit_chance():
 		dmg *= 2
 		for r in runes:
-			if r.has_tag(r.e_runeTag.enemyWasCrit):
-				r.enemyWasCrit(body)
+			if r.has_tag(r.e_rune_tag.enemy_was_crit):
+				r.enemy_was_crit(body)
 	return dmg		
 
 func add_Status(_status):
 	status.append(_status)	
 
-func set_exploseAfterHit(_who, _flag):
+func set_explose_after_hit(_who, _flag):
 	if _flag:
-		exploseAfterHit.erase(_who)
+		explose_after_hit.erase(_who)
 	else:
-		exploseAfterHit.append(_who)
+		explose_after_hit.append(_who)
 		
 func set_explose(_who, _flag):
 	if _flag:
@@ -78,16 +78,16 @@ func set_explose(_who, _flag):
 	else:
 		explose.append(_who)
 	
-func set_Runes(_runes):
+func set_runes(_runes):
 	for r in _runes:
 		runes.append(r)
-	initRunes()
+	init_runes()
 	
-func set_RunesScreen(_runesScreen):
-	runesScreen = _runesScreen
-	for r in _runesScreen:
+func set_runes_screen(_runes_screen):
+	runes_screen = _runes_screen
+	for r in _runes_screen:
 		runes.append(r.instance())
-	initRunes()
+	init_runes()
 
 func get_lifetime():
 	if lifetime_effected:
@@ -104,13 +104,13 @@ func get_damage():
 		return damage_effected
 	return damage
 
-func get_critChance():
-	if critChance_effected:
-		return critChance_effected
-	return critChance
+func get_crit_chance():
+	if crit_chance_effected:
+		return crit_chance_effected
+	return crit_chance
 	
-func effect_critChance(_critChance):
-	critChance_effected = _critChance
+func effect_crit_chance(_crit_chance):
+	crit_chance_effected = _crit_chance
 
 func effect_damage(_damage):
 	damage_effected = _damage
@@ -121,7 +121,7 @@ func effect_lifetime(_lifetime):
 func is_Bullet():
 	return true
 
-func initRunes():
+func init_runes():
 	for r in runes:
 		r._init()
 		r.effect(self)

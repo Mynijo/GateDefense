@@ -3,9 +3,9 @@ extends Node
 enum e_tags{
 	speed,
 	health,
-	dontStack,
-	castOnDeath,
-	needBody
+	dont_stack,
+	cast_on_death,
+	need_body
 }
 
 export (e_tags) var tags = []

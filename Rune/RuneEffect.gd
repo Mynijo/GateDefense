@@ -1,16 +1,16 @@
 extends Node
 
-enum e_runeTag{
-	enemyWasHit,
+enum e_rune_tag{
+	enemy_was_hit,
 	shoot,
 	explode,
-	enemyWasCrit
+	enemy_was_crit
 }
 
 var bullet
 var tower
 
-export (e_runeTag) var tags = []
+export (e_rune_tag) var tags = []
 
 func effect(obj):
 	pass

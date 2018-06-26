@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://terrain/Map01.gd" type="Script" id=1]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://Enemy/EnemySpawner.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Enemy/EnemyTank.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player/Gate.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Tower/TowerPlace.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Player/Gate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Tower/TowerPlace.tscn" type="PackedScene" id=6]
 
 [node name="Map01" type="Node2D" index="0"]
 
@@ -42,15 +41,15 @@ __meta__ = {
 [node name="EnemySpawner" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 1311.24, 337.623 )
-enemy02 = ExtResource( 4 )
+wave = 100
 
-[node name="Gate" parent="." index="2" instance=ExtResource( 5 )]
+[node name="Gate" parent="." index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 0.541534, -0.865265 )
 
-[node name="Player" parent="." index="3" instance=ExtResource( 6 )]
+[node name="Player" parent="." index="3" instance=ExtResource( 5 )]
 
-[node name="TowerPlace" parent="." index="4" instance=ExtResource( 7 )]
+[node name="TowerPlace" parent="." index="4" instance=ExtResource( 6 )]
 
 position = Vector2( 147.586, 313.634 )
 

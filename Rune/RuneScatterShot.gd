@@ -7,7 +7,7 @@ func _ready():
 	_init()
 
 func _init():
-	tags.append(e_runeTag.shoot)
+	tags.append(e_rune_tag.shoot)
 
 func effect(_obj):
 	sort_Obj(_obj)
