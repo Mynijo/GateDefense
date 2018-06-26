@@ -20,7 +20,7 @@ func _ready():
 	runes_screen.append(load("res://Rune/RuneIncreasedAps.tscn"))
 	#runes_screen.append(load("res://Rune/RuneIncreasedAps.tscn"))
 	#runes_screen.append(load("res://Rune/RuneIncreasedCritChance.tscn"))
-	#runes_screen.append(load("res://Rune/RuneBoomerang.tscn"))
+	runes_screen.append(load("res://Rune/RuneBoomerang.tscn"))
 	#runes_screen.append(load("res://Rune/RuneShootOnCrit.tscn"))
 	#runes_screen.append(load("res://Rune/RuneIncreasedDamage.tscn"))
 	runes_screen.append(load("res://Rune/RuneAddShock.tscn"))

@@ -1,7 +1,7 @@
 extends "res://Rune/RuneEffect.gd"
 
 export (int) var chain
-export (int) var detect_radius = 400
+export (int) var detect_distance
 
 var chain_counter = 0
 var target_hits = []
@@ -24,22 +24,9 @@ func effect(_obj):
 	
 	if bullet and !first:
 		first = true
-		generate_detect_radius()
 		if bullet.has_method('set_explose_after_hit'):
 			bullet.set_explose_after_hit(self, false)
-		
-func generate_detect_radius():
-	detect_radius_shape = Area2D.new()
-	detect_radius_shape.set_collision_mask_bit(2, true)
-	detect_radius_shape.name = "detect_radius"
-	var c = CollisionShape2D.new()
-	c.name = "CollisionShape2D"
-	detect_radius_shape.add_child(c)
-	var circle = CircleShape2D.new()
-	c.shape = circle
-	c.shape.radius = detect_radius
-	bullet.add_child(detect_radius_shape)
-		
+
 func enemy_was_hit(body):
 	target_hits.append(body)
 	effect(null)
@@ -90,8 +77,8 @@ func bullet_Explose():
 	
 func find_targets():
 	target.clear()
-	var temp = detect_radius_shape.get_overlapping_bodies()
-	for t in temp:
-		if !target_hits.has(t):
-			target.append(t)
-	
+	var enemys = bullet.get_tree().get_nodes_in_group("enemys")
+	for e in enemys:
+		if !target_hits.has(e):
+			if  bullet.global_position.distance_to(e.global_position) <= detect_distance:
+				target.append(e)

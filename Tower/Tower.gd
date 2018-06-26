@@ -36,7 +36,7 @@ func control(delta):
 func _process(delta):	
 	if target.size() != 0:
 		var distance = (target.front().global_position - global_position).length()
-		var _time = (distance / (Bullet.instance().get_speed() * 2))
+		var _time = (distance / (Bullet.instance().get_speed()))
 		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
 		
 		if predicted_position.x < global_position.x:
