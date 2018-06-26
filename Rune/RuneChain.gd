@@ -69,11 +69,11 @@ func chain():
 			if closestTaget == null:
 				closestTaget = x
 			else:
-				if (x.global_position - bullet.position).length() < (closestTaget.global_position - bullet.position).length():
+				if (x.global_position - bullet.global_position).length() < (closestTaget.global_position - bullet.global_position).length():
 					closestTaget = x
 	
 	if closestTaget:
-		var distance = (closestTaget.global_position - bullet.position).length()
+		var distance = (closestTaget.global_position - bullet.global_position).length()
 		var _time = (distance / bullet.get_speed())
 		var predicted_position = closestTaget.global_position + (closestTaget.get_velocity() * _time)
 		

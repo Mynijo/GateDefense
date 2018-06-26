@@ -9,6 +9,6 @@ script = ExtResource( 2 )
 duration = 2.0
 iniDamage = 10.0
 explodeDamage = 50.0
-explodeRadius = 2000.0
+explodeRadius = 100.0
 
 

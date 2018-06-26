@@ -7,7 +7,6 @@ export (PackedScene) var enemy
 export (PackedScene) var enemy02
 export (PackedScene) var player
 
-export (int) var mobs_counter = 0
 
 func _ready():
 	$SpawnTimer.wait_time = 1
@@ -18,8 +17,6 @@ func _on_SpawnTimer_timeout():
 	
 	var mob_to_spawn = enemy
 	
-	if wave % 10 == 0 and mobs_counter > 0:
-		return
 		
 	player.wave_changed(int(wave/10) + 1)
 	for i in range(int(wave/10)+1):
@@ -29,6 +26,7 @@ func _on_SpawnTimer_timeout():
 			mob_to_spawn = enemy
 		++mobs_counter
 		var e = mob_to_spawn.instance()
+		e.add_to_group('enemys')
 		add_child(e)		
 		var pos = Vector2()
 		pos.x = ((randi() % 100 )+ 1) + position.normalized().x	

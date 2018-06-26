@@ -71,59 +71,53 @@ func set_explose_after_hit(_who, _flag):
 		explose_after_hit.erase(_who)
 	else:
 		explose_after_hit.append(_who)
-		
 func set_explose(_who, _flag):
 	if _flag:
 		explose.erase(_who)
 	else:
 		explose.append(_who)
-	
+
 func set_runes(_runes):
 	for r in _runes:
 		runes.append(r)
 	init_runes()
-	
 func set_runes_screen(_runes_screen):
 	runes_screen = _runes_screen
 	for r in _runes_screen:
 		runes.append(r.instance())
 	init_runes()
+func init_runes():
+	for r in runes:
+		r._init()
+		r.effect(self)
 
 func get_lifetime():
 	if lifetime_effected:
 		return lifetime_effected
 	return lifetime
+func effect_lifetime(_lifetime):
+	lifetime_effected = _lifetime
 
 func get_speed():
 	if speed_effected:
 	 return speed_effected
 	return speed
 
+
 func get_damage():
 	if damage_effected:
 		return damage_effected
 	return damage
+func effect_damage(_damage):
+	damage_effected = _damage
 
 func get_crit_chance():
 	if crit_chance_effected:
 		return crit_chance_effected
 	return crit_chance
-	
 func effect_crit_chance(_crit_chance):
 	crit_chance_effected = _crit_chance
-
-func effect_damage(_damage):
-	damage_effected = _damage
-
-func effect_lifetime(_lifetime):
-	lifetime_effected = _lifetime
 
 func is_Bullet():
 	return true
 
-func init_runes():
-	for r in runes:
-		r._init()
-		r.effect(self)
-		
-		

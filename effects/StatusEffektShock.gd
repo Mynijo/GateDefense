@@ -1,13 +1,12 @@
 extends "res://effects/StatusEffekt.gd"
 
-var ready = true
+
 
 export (float) var iniDamage
 export (float) var explodeDamage
 export (float) var explodeRadius
 
 var body
-var shockRadius
 var first = true
 
 func _ready():
@@ -18,44 +17,36 @@ func _init():
 	tags.append(e_tags.cast_on_death)
 	tags.append(e_tags.health)
 	tags.append(e_tags.dont_stack)
-	tags.append(e_tags.need_body)
-
-	
+	tags.append(e_tags.need_body)	
 
 func effekt(value, tag):
 	if tag == e_tags.health:
-		if first:
-			first = false
-			return value - iniDamage
+		tags.erase(e_tags.health)
+		return value - iniDamage
 	return value
 		
-func cast_on_death(body):
-	generate_detect_radius(body)	
-	var temp = find_targets()
+func cast_on_death(_body):
+	var temp = find_targets(_body)
 	for t in temp:
 		if t.has_method('add_Status'):
-			var s = self.duplicate()
-			s._init()
+			var s = self.duplicate(DUPLICATE_USE_INSTANCING)
+			s.iniDamage = explodeDamage
 			t.add_Status(s)
-	
-func generate_detect_radius(body):
-	if shockRadius:
-		return
-	shockRadius = Area2D.new()
-	shockRadius.set_collision_mask_bit(2, true)
-	shockRadius.name = "ShockRadius"
-	var c = CollisionShape2D.new()
-	c.name = "CollisionShape2D"
-	shockRadius.add_child(c)
-	var circle = CircleShape2D.new()
-	c.shape = circle
-	c.shape.radius = explodeRadius
-	body.add_child(shockRadius)
 
 	
-func find_targets():
-	return shockRadius.get_overlapping_bodies()
+func find_targets(_body):
+	var enemys = get_tree().get_nodes_in_group("enemys")
+	var targets = []
+	for e in enemys:
+		if e != _body:
+			var temp = _body.position.distance_to(e.position)
+			if  _body.position.distance_to(e.position) <= explodeRadius:
+				targets.append(e)
+	return targets
 
-
-func _on_IgniteTicker_timeout():
-	ready = true
+	
+func set_duration(_duration):
+	duration = _duration
+	tags.append(e_tags.health)
+	$Duration.wait_time = duration
+	$Duration.start()

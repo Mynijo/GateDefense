@@ -51,7 +51,6 @@ func die():
 	dead()
 		
 func dead():
-	get_parent().mobs_counter -= 1
 	dead = true
 	queue_free()
 	
