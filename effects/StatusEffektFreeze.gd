@@ -16,7 +16,7 @@ func _init():
 func effekt(value, tag):
 	if first_time:
 		first_time = false
-		var temp = $Sprite
+		get_parent().get_node("Sprite").modulate.r = 0
 		#$Sprite.modulate.r = 0
 		
 	if tag == e_tags.speed:
