@@ -11,7 +11,7 @@ var detect_radius_effected
 export (int) var cost = 50
 
 export (float) var turret_speed = 1.0
-
+var rune_slots
 
 var runes_screen = []
 var runes = []
@@ -24,7 +24,12 @@ var target = []
 var can_shoot = true
 
 func _ready():	
+	var rune_slots = load("res://Rune/RuneSlots.tscn").instance() 
+	add_child(rune_slots)
 	myInit()
+
+func runes_changed():
+	pass
 	
 func myInit():
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -80,9 +85,8 @@ func emit_shoot(_sig, _bullet, _pos, _dir):
 	if runes_screen:
 		var bullet_r = []
 		for rs in runes_screen:
-			var r = rs.instance()
-			r.sort_Obj(self)
-			bullet_r.append(r)
+			rs.sort_Obj(self)
+			bullet_r.append(rs)
 		_bullet.set_runes(bullet_r)
 	emit_signal(_sig, _bullet, _pos, _dir)
 	
@@ -116,13 +120,19 @@ func set_runes(_runes):
 func set_runes_screen(_runes_screen):
 	runes_screen = _runes_screen
 	for r in _runes_screen:
-		runes.append(r.instance())
-	init_runes()
+		r.effect(self)
+		runes.append(r)
 
 func init_runes():
 	for r in runes:
-		r._init()
+		#r._init()
 		r.effect(self)
 
 func is_Tower():
 	return true
+
+func _on_Tower_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_LEFT: 
+		get_child(4).show()
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_RIGHT:
+		get_child(4).hide() 

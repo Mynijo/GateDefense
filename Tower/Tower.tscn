@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Tower/Tower.gd" type="Script" id=1]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=2]
@@ -8,11 +8,16 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 30, 21.2798 )
+
 [node name="Tower" type="KinematicBody2D" index="0"]
 
-input_pickable = false
-collision_layer = 2
-collision_mask = 2
+input_pickable = true
+collision_layer = 16
+collision_mask = 0
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pickable", "Visibility", "collision" ]
@@ -54,6 +59,13 @@ position = Vector2( 0.592804, 0.944496 )
 scale = Vector2( 0.953601, 0.951571 )
 shape = SubResource( 1 )
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
+
+position = Vector2( -0.69931, -0.874126 )
+shape = SubResource( 2 )
+
+[connection signal="input_event" from="." to="." method="_on_Tower_input_event"]
 
 [connection signal="timeout" from="GunCooldown" to="." method="_on_GunCooldown_timeout"]
 

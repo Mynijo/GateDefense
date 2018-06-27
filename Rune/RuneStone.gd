@@ -1,5 +1,7 @@
 extends TextureRect
 
+export (PackedScene) var rune
+
 func get_drag_data(position):
 	var preview = self.duplicate()
 	set_drag_preview(preview)

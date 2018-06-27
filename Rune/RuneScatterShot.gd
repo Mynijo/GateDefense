@@ -4,10 +4,9 @@ extends "res://Rune/RuneEffect.gd"
 export (float) var scatter
 
 func _ready():
-	_init()
-
+	pass
 func _init():
-	tags.append(e_rune_tag.shoot)
+	add_tag(e_rune_tag.shoot)
 
 func effect(_obj):
 	sort_Obj(_obj)

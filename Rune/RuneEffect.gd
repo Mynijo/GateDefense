@@ -9,9 +9,10 @@ enum e_rune_tag{
 
 var bullet
 var tower
+var tags = []
 
-export (e_rune_tag) var tags = []
-
+func _init():
+	pass
 func effect(obj):
 	pass
 	
@@ -22,7 +23,8 @@ func has_tag(_tag):
 	if tags == null:
 		return false
 	return tags.has(_tag)
-	
+func add_tag(_tag):
+	tags.append(_tag)
 func sort_Obj(_obj):
 	if _obj:
 		if !tower or true:
