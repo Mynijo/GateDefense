@@ -9,6 +9,6 @@
 script = ExtResource( 2 )
 StatusEffektFreeze = ExtResource( 3 )
 SlowRate = 0.5
-freez_chance = 100
+freez_chance = 100.0
 
 

@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://effects/StatusEffekt.tscn" type="PackedScene" id=1]
 [ext_resource path="res://effects/StatusEffektFreeze.gd" type="Script" id=2]
 [ext_resource path="res://Bullet/Bullet.tscn" type="PackedScene" id=3]
+[ext_resource path="res://media/sheet_tanks.png" type="Texture" id=4]
 
 [node name="StatusEffektFreeze" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 StatusEffektSlow = null
 bullet = ExtResource( 3 )
+
+[node name="Ice" type="Sprite" parent="." index="1"]
+
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 132, 148.397, 34.5, 19.3109 )
+_sections_unfolded = [ "Region", "Transform" ]
 
 

@@ -2,10 +2,10 @@ extends "res://effects/StatusEffekt.gd"
 
 export (PackedScene) var StatusEffektFreeze
 
-export (float) var SlowRate = 0.5
+export (float) var SlowRate
 
 var first_time = true
-export (float) var freez_chance = 100
+export (float) var freez_chance
 
 func _ready():
 	_init()

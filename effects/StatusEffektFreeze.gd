@@ -37,6 +37,8 @@ func shoot():
 		b = bullet.instance()
 		runnes.clear()
 		runnes.append(StatusEffektSlow.instance())
+		b.get_node("Sprite").texture = $Ice.texture
+		b.get_node("Sprite").region_rect  = $Ice.region_rect
 		b.set_runes(runnes)
 		b.effect_lifetime(0.4) 
 		b.effect_speed(b.get_speed()/2)
