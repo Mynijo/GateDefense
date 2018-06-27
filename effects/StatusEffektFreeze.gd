@@ -10,7 +10,8 @@ signal shoot
 
 func _init():
 	tags.append(e_tags.speed)
-	tags.append(e_tags.cast_on_death)	
+	tags.append(e_tags.cast_on_death)
+	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
 	
 func effekt(value, tag):
 	if first_time:
@@ -29,13 +30,14 @@ func shoot():
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
 	var b 
 	var dir
-	#var runnes = []
+	var runnes = []
 	
 	for x in range(0,6):
 		dir = Vector2(1, 0).rotated(x)
 		b = bullet.instance()
-		#runnes.clear()
-		#runnes.append(StatusEffektSlow.instance())
-		#b.set_runes(runnes)
-		b.effect_lifetime(1) 
+		runnes.clear()
+		runnes.append(StatusEffektSlow.instance())
+		b.set_runes(runnes)
+		b.effect_lifetime(0.4) 
+		b.effect_speed(b.get_speed()/2)
 		emit_signal('shoot', b, get_parent().global_position, dir)

@@ -102,7 +102,8 @@ func get_speed():
 	if speed_effected:
 	 return speed_effected
 	return speed
-
+func effect_speed(_speed):
+	speed_effected = _speed
 
 func get_damage():
 	if damage_effected:
