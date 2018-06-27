@@ -4,11 +4,9 @@
 [ext_resource path="res://Rune/RuneAddSlow.gd" type="Script" id=2]
 [ext_resource path="res://effects/StatusEffektSlow.tscn" type="PackedScene" id=3]
 
-
 [node name="RuneAddSlow" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-tags = null
 status = ExtResource( 3 )
 
 

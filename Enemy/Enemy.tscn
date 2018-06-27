@@ -14,7 +14,7 @@ _sections_unfolded = [ "Collision" ]
 speed = null
 health = null
 damage = null
-goldValue = 5
+gold_value = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

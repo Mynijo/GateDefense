@@ -23,16 +23,15 @@ func effekt(value, tag):
 	if tag == e_tags.health:
 		tags.erase(e_tags.health)
 		return value - iniDamage
+	if tag == e_tags.cast_on_death:
+		for t in find_targets(get_parent()):
+			if t.has_method('add_Status'):
+				var s = self.duplicate(DUPLICATE_USE_INSTANCING)
+				s.iniDamage = explodeDamage
+				t.add_Status(s)
+		
 	return value
 		
-func cast_on_death(_body):
-	var temp = find_targets(_body)
-	for t in temp:
-		if t.has_method('add_Status'):
-			var s = self.duplicate(DUPLICATE_USE_INSTANCING)
-			s.iniDamage = explodeDamage
-			t.add_Status(s)
-
 	
 func find_targets(_body):
 	var enemys = get_tree().get_nodes_in_group("enemys")

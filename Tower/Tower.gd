@@ -1,18 +1,14 @@
 extends KinematicBody2D
 
-
-
 export (float) var gun_cooldown
 var gun_cooldown_effected
 export (int) var detect_radius
 var detect_radius_effected
 
-
 export (int) var cost = 50
-
 export (float) var turret_speed = 1.0
-var rune_slots
 
+var rune_slots
 var runes = []
 var Bullet
 
@@ -54,7 +50,7 @@ func _process(delta):
 			
 func spawn(_position):
 	position = _position
-	self.connect("shoot", self.get_parent().get_parent(), "_on_Tower_shoot")
+	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
 
 func _on_DetectRadius_body_entered(body):
 	target.append(body)
