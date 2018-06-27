@@ -13,7 +13,6 @@ export (int) var cost = 50
 export (float) var turret_speed = 1.0
 var rune_slots
 
-var runes_screen = []
 var runes = []
 var Bullet
 
@@ -75,16 +74,17 @@ func shoot():
 	emit_shoot('shoot', b, $Body.global_position, dir)
 	
 	for r in runes:
-		var temp = r.get_tags()
 		if r.has_tag(r.e_rune_tag.shoot):
 			r.shoot('shoot', b, $Body.global_position, dir)
 		
 func emit_shoot(_sig, _bullet, _pos, _dir):
-	if runes_screen:
+	if runes:
 		var bullet_r = []
-		for rs in runes_screen:
-			rs.sort_Obj(self)
-			bullet_r.append(rs)
+		var new_rune
+		for r in runes:
+			new_rune = r.duplicate(DUPLICATE_USE_INSTANCING)
+			new_rune.sort_Obj(self)
+			bullet_r.append(new_rune)
 		_bullet.set_runes(bullet_r)
 	emit_signal(_sig, _bullet, _pos, _dir)
 	
