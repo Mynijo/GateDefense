@@ -6,14 +6,11 @@
 [ext_resource path="res://Player/Gate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Tower/TowerPlace.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Rune/Inventory.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=7]
 
 [node name="Map01" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -42,7 +39,6 @@ __meta__ = {
 [node name="EnemySpawner" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 1311.24, 337.623 )
-wave = 100
 
 [node name="Gate" parent="." index="2" instance=ExtResource( 4 )]
 
@@ -52,7 +48,7 @@ position = Vector2( 0.541534, -0.865265 )
 
 [node name="TowerPlace" parent="." index="4" instance=ExtResource( 6 )]
 
-position = Vector2( 147.586, 313.634 )
+position = Vector2( 145.586, 374.634 )
 
 [node name="MapBoarder" type="Area2D" parent="." index="5"]
 
@@ -93,6 +89,9 @@ size_flags_vertical = 3
 stretch = true
 stretch_shrink = 1
 _sections_unfolded = [ "Mouse", "Size Flags" ]
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Inventory" parent="ViewportContainer" index="0" instance=ExtResource( 7 )]
 
@@ -104,6 +103,10 @@ margin_left = -640.0
 margin_top = -60.0
 margin_right = 640.0
 margin_bottom = -60.0
+
+[node name="TowerPlace2" parent="." index="7" instance=ExtResource( 6 )]
+
+position = Vector2( 143.645, 232.042 )
 
 [connection signal="area_entered" from="MapBoarder" to="." method="_on_MapBoarder_area_entered"]
 

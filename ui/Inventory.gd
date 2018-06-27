@@ -1,4 +1,4 @@
-extends "res://Rune/RuneSlots.gd"
+extends "res://ui/RuneSlots.gd"
 
 func _ready():
 	pass

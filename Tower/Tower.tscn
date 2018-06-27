@@ -1,14 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Tower/Tower.gd" type="Script" id=1]
 [ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 10.0
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 30, 21.2798 )
@@ -21,7 +16,7 @@ collision_mask = 0
 collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision", "Material", "Pickable", "Visibility", "collision" ]
-gun_cooldown = 10.0
+gun_cooldown = 1.0
 detect_radius = 500
 cost = 50
 turret_speed = 100.0
@@ -57,13 +52,12 @@ _sections_unfolded = [ "Collision" ]
 
 position = Vector2( 0.592804, 0.944496 )
 scale = Vector2( 0.953601, 0.951571 )
-shape = SubResource( 1 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="3"]
 
 position = Vector2( -0.69931, -0.874126 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [connection signal="input_event" from="." to="." method="_on_Tower_input_event"]
 

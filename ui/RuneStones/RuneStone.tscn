@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Rune/RuneStone.gd" type="Script" id=1]
+[ext_resource path="res://ui/RuneStones/RuneStone.gd" type="Script" id=1]
 
 [node name="RuneStone" type="TextureRect" index="0"]
 
@@ -19,5 +19,6 @@ size_flags_vertical = 1
 stretch_mode = 0
 script = ExtResource( 1 )
 _sections_unfolded = [ "Mouse", "Size Flags" ]
+rune = null
 
 
