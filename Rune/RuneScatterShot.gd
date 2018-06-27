@@ -12,6 +12,7 @@ func effect(_obj):
 	sort_Obj(_obj)
 	
 func shoot(_sig, _bullet, _pos, _dir):
-	tower.emit_shoot(_sig, _bullet.duplicate(DUPLICATE_USE_INSTANCING), _pos, _dir.rotated(-scatter))
-	tower.emit_shoot(_sig, _bullet.duplicate(DUPLICATE_USE_INSTANCING), _pos, _dir.rotated(scatter))
+	var temp_scatter = rand_range(0.1,scatter)
+	tower.emit_shoot(_sig, _bullet.duplicate(DUPLICATE_USE_INSTANCING), _pos, _dir.rotated(-temp_scatter))
+	tower.emit_shoot(_sig, _bullet.duplicate(DUPLICATE_USE_INSTANCING), _pos, _dir.rotated(temp_scatter))
 	

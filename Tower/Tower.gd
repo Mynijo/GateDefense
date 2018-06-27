@@ -24,12 +24,12 @@ var target = []
 var can_shoot = true
 
 func _ready():	
-	var rune_slots = load("res://Rune/RuneSlots.tscn").instance() 
+	rune_slots = load("res://Rune/RuneSlots.tscn").instance() 
 	add_child(rune_slots)
 	myInit()
 
-func runes_changed():
-	pass
+func runes_changed():	
+	apply_runes(rune_slots.get_runes())
 	
 func myInit():
 	$GunCooldown.wait_time = get_gun_cooldown()
@@ -111,22 +111,19 @@ func get_detect_radius():
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
-	
-func set_runes(_runes):
+
+
+func apply_runes(_runes):
+	reset_tower()
 	for r in _runes:
-		runes.append(r)
-	init_runes()
-
-func set_runes_screen(_runes_screen):
-	runes_screen = _runes_screen
-	for r in _runes_screen:
 		r.effect(self)
 		runes.append(r)
 
-func init_runes():
-	for r in runes:
-		#r._init()
-		r.effect(self)
+func reset_tower():
+	runes.clear()
+	effect_gun_cooldown(gun_cooldown)
+	effect_detect_radius(detect_radius)
+
 
 func is_Tower():
 	return true
