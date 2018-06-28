@@ -32,10 +32,9 @@ func explode():
 	for r in runes:
 		var temp = r.get_tags()
 		if r.has_tag(r.e_rune_tag.explode):
-			r.explode()
-			
-	if !explose:
-		queue_free()
+			if !r.effect(self, r.e_rune_tag.explode):
+				return
+	queue_free()
 	
 func _on_Bullet_body_entered(body):
 	if body.has_method('add_Status'):
@@ -44,12 +43,12 @@ func _on_Bullet_body_entered(body):
 	if body.has_method('take_damage'):
 	    body.take_damage(calcDmg(body))
 	
+	var result 
 	for r in runes:
-		if r.has_tag(r.e_rune_tag.enemy_was_hit):
-			r.enemy_was_hit(body)
-		
-	if !explose_after_hit:
-		explode()
+		if r.has_tag(r.e_rune_tag.enemy_was_hit):			
+			if !r.effect(body, r.e_rune_tag.enemy_was_hit): # continue?
+				return
+	explode()
 	
 func _on_Lifetime_timeout():
 	explode()
@@ -71,25 +70,30 @@ func set_explose_after_hit(_who, _flag):
 		explose_after_hit.erase(_who)
 	else:
 		explose_after_hit.append(_who)
+
 func set_explose(_who, _flag):
 	if _flag:
 		explose.erase(_who)
 	else:
 		explose.append(_who)
 
-func set_runes(_runes):
+func set_runes(_runes, _tower):
+	var rune
 	for r in _runes:
-		runes.append(r)
+		rune = r.duplicate(DUPLICATE_USE_INSTANCING)
+		add_child(rune)
+		rune._init()
+		if rune.has_tag(rune.e_rune_tag.init_tower):
+			rune.effect(_tower, rune.e_rune_tag.init_tower)
+		runes.append(rune)
 	init_runes()
-func set_runes_screen(_runes_screen):
-	runes_screen = _runes_screen
-	for r in _runes_screen:
-		runes.append(r.instance())
-	init_runes()
+
 func init_runes():
-	for r in runes:
-		r._init()
-		r.effect(self)
+	for r in runes:		
+		if r.has_tag(r.e_rune_tag.init_bullet):
+			r.effect(self, r.e_rune_tag.init_bullet)
+		if r.has_tag(r.e_rune_tag.effect_bullet):
+			r.effect(self, r.e_rune_tag.effect_bullet)
 
 func get_lifetime():
 	if lifetime_effected:

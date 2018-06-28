@@ -15,6 +15,10 @@ export (float) var duration = 10
 func _ready():
 	$Duration.wait_time = duration
 	$Duration.start()
+	_init()
+
+func _init():
+	pass
 
 func add_tag(_tag):
 	tags.append(_tag)

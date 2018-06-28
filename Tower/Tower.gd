@@ -24,12 +24,6 @@ func _ready():
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
 	$DetectRadius/CollisionShape2D.shape.radius = get_detect_radius()
-
-func runes_changed():	
-	apply_runes(rune_slots.get_runes())
-	
-func control(delta):
-        pass
 		
 func _process(delta):	
 	if target.size() != 0:
@@ -46,7 +40,8 @@ func _process(delta):
 		$Body.global_rotation = current_dir.linear_interpolate(target_dir, turret_speed * delta).angle()
 		
 		if target_dir.dot(current_dir) > 0.9999:
-			tryToShoot()
+			if can_shoot:
+				shoot()
 			
 func spawn(_position):
 	position = _position
@@ -57,33 +52,19 @@ func _on_DetectRadius_body_entered(body):
 
 func _on_DetectRadius_body_exited(body):
 	target.erase(body)
-
-func tryToShoot():
-	if can_shoot:
-		shoot()
 		
 func shoot():	
 	$GunCooldown.start()
 	can_shoot = false
-	var dir = Vector2(1, 0).rotated($Body.global_rotation)
 	var b = Bullet.instance()		
-	emit_shoot('shoot', b, $Body.global_position, dir)
+	if runes:		
+		b.set_runes(runes, self)
+	emit_signal('shoot', b, global_position, Vector2(1, 0).rotated($Body.global_rotation))
 	
 	for r in runes:
 		if r.has_tag(r.e_rune_tag.shoot):
-			r.shoot('shoot', b, $Body.global_position, dir)
-		
-func emit_shoot(_sig, _bullet, _pos, _dir):
-	if runes:
-		var bullet_r = []
-		var new_rune
-		for r in runes:
-			new_rune = r.duplicate(DUPLICATE_USE_INSTANCING)
-			new_rune.sort_Obj(self)
-			bullet_r.append(new_rune)
-		_bullet.set_runes(bullet_r)
-	emit_signal(_sig, _bullet, _pos, _dir)
-	
+			r.effect(self,r.e_rune_tag.shoot)
+
 func _on_GunCooldown_timeout():
 	can_shoot = true
 	
@@ -105,14 +86,24 @@ func get_detect_radius():
 func effect_detect_radius(_detect_radius):
 	detect_radius_effected = _detect_radius
 	$DetectRadius/CollisionShape2D.shape.radius = detect_radius_effected
-
+	
+func runes_changed():	
+	apply_runes(rune_slots.get_runes())
+	
 func apply_runes(_runes):
 	reset_tower()
 	for r in _runes:
-		r.effect(self)
+		add_child(r)
+		r._init()
+		if r.has_tag(r.e_rune_tag.init_tower):
+			r.effect(self, r.e_rune_tag.init_tower)
+		if r.has_tag(r.e_rune_tag.effect_tower):
+			r.effect(self, r.e_rune_tag.effect_tower)
 		runes.append(r)
 
 func reset_tower():
+	for r in runes:
+		remove_child(r)
 	runes.clear()
 	effect_gun_cooldown(gun_cooldown)
 	effect_detect_radius(detect_radius)

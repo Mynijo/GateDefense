@@ -8,38 +8,30 @@ var target_hits = []
 var target = []
 var detect_radius_shape
 var first = false
-	
-func _ready():
-	_init()
+
 
 func _init():
 	tags.append(e_rune_tag.enemy_was_hit)
+	tags.append(e_rune_tag.effect_bullet)
+	tags.append(e_rune_tag.init_bullet)
+	
+func effect(_obj, _tag):
+	if _tag == e_rune_tag.init_bullet:
+		sort_Obj(_obj)
+	if _tag == e_rune_tag.enemy_was_hit:
+		target_hits.append(_obj)
+		return chain()
 
-	
-func effect(_obj):
-	sort_Obj(_obj)
-	
-	if _obj == tower:
-		return
-	
-	if bullet and !first:
-		first = true
-		if bullet.has_method('set_explose_after_hit'):
-			bullet.set_explose_after_hit(self, false)
-
-func enemy_was_hit(body):
-	target_hits.append(body)
-	effect(null)
-	chain()
 	
 func chain():
-	#if !bullet:
-		#return
+	var continue_ = false
+	
 	chain_counter += 1
 	
+	
 	if chain_counter >= chain:
-		bullet_Explose()
-		return
+		continue_ = true
+		return continue_
 	
 	var closestTaget = null
 	var newOne = true
@@ -68,11 +60,11 @@ func chain():
 		bullet.rotation = dir.angle()
 		bullet.velocity = dir * bullet.get_speed()
 	else:
-		bullet_Explose()
-		
-func bullet_Explose():
-	if bullet.has_method('set_explose_after_hit'):
-			bullet.set_explose_after_hit(self, true)
+		continue_ = true
+		return continue_
+	
+	continue_ = false
+	return continue_
 
 	
 func find_targets():

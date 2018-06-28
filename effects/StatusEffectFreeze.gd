@@ -1,10 +1,8 @@
-extends "res://effects/StatusEffekt.gd"
+extends "res://effects/StatusEffect.gd"
 
 export (PackedScene) var StatusEffektSlow
 export (PackedScene) var bullet
 var first_time = true
-func _ready():
-	_init()
 
 signal shoot
 
@@ -39,7 +37,7 @@ func shoot():
 		runnes.append(StatusEffektSlow.instance())
 		b.get_node("Sprite").texture = $Ice.texture
 		b.get_node("Sprite").region_rect  = $Ice.region_rect
-		b.set_runes(runnes)
+		b.set_runes(runnes, null)
 		b.effect_lifetime(0.4) 
 		b.effect_speed(b.get_speed()/2)
 		emit_signal('shoot', b, get_parent().global_position, dir)

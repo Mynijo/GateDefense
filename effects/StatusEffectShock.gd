@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffekt.gd"
+extends "res://effects/StatusEffect.gd"
 
 
 
@@ -8,10 +8,6 @@ export (float) var explodeRadius
 
 var body
 var first = true
-
-func _ready():
-	_init()
-
 
 func _init():
 	tags.append(e_tags.cast_on_death)

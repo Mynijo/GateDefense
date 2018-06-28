@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffekt.gd"
+extends "res://effects/StatusEffect.gd"
 
 export (PackedScene) var StatusEffektFreeze
 
@@ -7,12 +7,8 @@ export (float) var SlowRate
 var first_time = true
 export (float) var freez_chance
 
-func _ready():
-	_init()
-
 func _init():
 	tags.append(e_tags.speed)	
-	
 
 func effekt(value, tag):
 	if tag == e_tags.speed:

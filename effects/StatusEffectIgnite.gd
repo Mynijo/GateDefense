@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffekt.gd"
+extends "res://effects/StatusEffect.gd"
 
 export (int) var damage
 export (float) var ignite_tick_rate
