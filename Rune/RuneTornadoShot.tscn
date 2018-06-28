@@ -8,7 +8,7 @@
 
 script = ExtResource( 2 )
 tick_rate = 2.0
-aoe_range = 150
+aoe_range = 50.0
 status = ExtResource( 3 )
 
 [node name="Ticker" type="Timer" parent="." index="0"]

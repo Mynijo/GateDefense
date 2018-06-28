@@ -7,12 +7,12 @@
 [node name="StatusEffektPush" index="0" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
-duration = 0.25
-push_rate = 200.0
+duration = 0.1
+push_rate = 100.0
 status = ExtResource( 3 )
 
 [node name="Duration" parent="." index="0"]
 
-wait_time = 0.5
+wait_time = 0.1
 
 
