@@ -8,7 +8,8 @@ enum e_rune_tag{
 	effect_tower,
 	effect_bullet,
 	init_bullet,
-	init_tower
+	init_tower,
+	whlie_flying
 }
 
 var bullet

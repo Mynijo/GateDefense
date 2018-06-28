@@ -26,6 +26,10 @@ func start(_position, _direction):
 	$Lifetime.start()
 
 func _process(delta):
+	for r in runes:
+		if r.has_tag(r.e_rune_tag.whlie_flying):			
+			if !r.effect(self, r.e_rune_tag.whlie_flying):
+				return
 	position += velocity * delta
 
 func explode():

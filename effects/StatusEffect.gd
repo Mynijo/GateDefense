@@ -5,12 +5,12 @@ enum e_tags{
 	health,
 	dont_stack,
 	cast_on_death,
-	need_body
+	need_body,
+	direction
 }
 
 export (e_tags) var tags = []
-export (float) var duration = 10
-
+export (float) var duration
 	
 func _ready():
 	$Duration.wait_time = duration

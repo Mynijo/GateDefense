@@ -25,15 +25,18 @@ func spawn(_position):
 
 
 func control(delta):
-	
+	var direction = Vector2(1, 0)
 	var changed_speed = speed
 	for x in status_effecte:
 		if x.has_tag(x.e_tags.speed):
 			changed_speed = x.effekt(changed_speed, x.e_tags.speed)
 		if x.has_tag(x.e_tags.health):
 			take_damage(-x.effekt(0, x.e_tags.health))
+		if x.has_tag(x.e_tags.direction):
+			direction = x.effekt(direction, x.e_tags.direction)
 			
-	velocity = Vector2(changed_speed * delta * -100, 0)
+			
+	velocity = direction * changed_speed * delta * -100
 	
 func take_damage(damage):
 	if dead:

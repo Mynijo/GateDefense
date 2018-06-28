@@ -20,7 +20,7 @@ func effekt(value, tag):
 			for x in effects:
 				if x.name.is_subsequence_of(self.name):
 					counter += 1
-			if rand_range(0,100) <= (freez_chance + counter*5):
+			if rand_range(0,100) <= (freez_chance + counter*5) and freez_chance > 0:
 				parent.add_Status(StatusEffektFreeze.instance())
 				for x in effects:
 					if x.name.is_subsequence_of(self.name):

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Rune/RuneEffect.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Rune/RuneTornadoShot.gd" type="Script" id=2]
+[ext_resource path="res://effects/StatusEffektPush.tscn" type="PackedScene" id=3]
+
+[node name="RuneTornadoShot" index="0" instance=ExtResource( 1 )]
+
+script = ExtResource( 2 )
+tick_rate = 2.0
+aoe_range = 150
+status = ExtResource( 3 )
+
+[node name="Ticker" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="Ticker" to="." method="_on_Ticker_timeout"]
+
+
