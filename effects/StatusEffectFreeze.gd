@@ -32,7 +32,7 @@ func effekt(value, tag):
 		
 		
 func _on_Duration_timeout():
-	delteYou()
+	.delteYou()
 	
 func shoot():
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")

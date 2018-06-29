@@ -13,7 +13,6 @@ var crit_chance_effected
 var velocity = Vector2()
 var runes = []
 var runes_screen = []
-var status = []
 
 var explose_after_hit = []
 var explose = []
@@ -47,9 +46,6 @@ func explode():
 	queue_free()
 	
 func _on_Bullet_body_entered(body):
-	if body.has_method('add_Status'):
-		for s in status:
-			body.add_Status(s.duplicate(DUPLICATE_USE_INSTANCING))		
 	if body.has_method('take_damage'):
 	    body.take_damage(calcDmg(body))
 	
@@ -72,8 +68,6 @@ func calcDmg(body):
 				r.enemy_was_crit(body)
 	return dmg		
 
-func add_Status(_status):
-	status.append(_status)	
 
 func set_explose_after_hit(_who, _flag):
 	if _flag:
@@ -98,6 +92,8 @@ func set_runes(_runes, _tower, dup = true):
 			runes.append(rune)
 	else:
 		runes = _runes
+		for r in runes:
+			add_child(r)
 	init_runes()
 
 func init_runes():
