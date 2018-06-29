@@ -1,15 +1,5 @@
 extends Node
 
-enum e_tags{
-	speed,
-	health,
-	dont_stack,
-	cast_on_death,
-	need_body,
-	direction
-}
-
-export (e_tags) var tags = []
 export (float) var duration
 	
 func _ready():
@@ -20,16 +10,6 @@ func _ready():
 func _init():
 	pass
 
-func add_tag(_tag):
-	tags.append(_tag)
-
-func get_tags():
-	return tags
-	
-func has_tag(_tag):
-	if tags == null:
-		return false
-	return tags.has(_tag)
 	
 func effekt(value, tag):
 	pass
@@ -49,3 +29,15 @@ func set_duration(_duration):
 	duration = _duration
 	$Duration.wait_time = duration
 	$Duration.start()
+	
+func remove_tag(_tag):
+	$Tags.remove_tag(_tag)
+
+func add_tag(_tag):
+	$Tags.add_tag(_tag)
+
+func get_tags():
+	return $Tags.get_tags()
+	
+func has_tag(_tag):
+	return $Tags.has_tag(_tag)

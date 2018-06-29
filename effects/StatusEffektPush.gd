@@ -6,14 +6,14 @@ export (PackedScene) var status
 var dir
 
 func _init():
-	tags.append(e_tags.speed)	
-	tags.append(e_tags.direction)
+	$Tags.add_tag($Tags.e_tags.speed)	
+	$Tags.add_tag($Tags.e_tags.direction)
 	
 	
 func effekt(value, tag):
-	if tag == e_tags.speed:
+	if tag == $Tags.e_tags.speed:
 		return push_rate
-	if tag == e_tags.direction:
+	if tag == $Tags.e_tags.direction:
 		return dir
 	return value
 	

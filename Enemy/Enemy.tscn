@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://ui/UnitDisplay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=3]
 
 [node name="Enemy" type="KinematicBody2D" index="0"]
 
@@ -21,6 +22,8 @@ gold_value = 5
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 [node name="UnitDisplay" parent="." index="2" instance=ExtResource( 2 )]
+
+[node name="Tags" parent="." index="3" instance=ExtResource( 3 )]
 
 [connection signal="health_changed" from="." to="UnitDisplay" method="update_healthbar"]
 

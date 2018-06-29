@@ -14,22 +14,18 @@ enum e_rune_tag{
 
 var bullet
 var tower
-var tags = []
-
 	
 func effect(_obj, _tag):
 	pass
 	
 func get_tags():
-	return tags
+	return $Tags.get_tags()
 	
 func has_tag(_tag):
-	if !tags:
-		return false
-	return tags.has(_tag)
+	return $Tags.has_tag(_tag)
 	
 func add_tag(_tag):
-	tags.append(_tag)
+	return $Tags.add_tag(_tag)
 	
 func sort_Obj(_obj):
 	if _obj:

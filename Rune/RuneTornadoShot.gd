@@ -11,18 +11,18 @@ var target = []
 var ready = false
 
 func _init():
-	tags.append(e_rune_tag.whlie_flying)
-	tags.append(e_rune_tag.effect_bullet)
-	tags.append(e_rune_tag.init_bullet)
+	$Tags.add_tag($Tags.e_rune_tag.whlie_flying)
+	$Tags.add_tag($Tags.e_rune_tag.effect_bullet)
+	$Tags.add_tag($Tags.e_rune_tag.init_bullet)
 	
 	
 	
 func effect(_obj, _tag):
-	if _tag == e_rune_tag.init_bullet:
+	if _tag == $Tags.e_rune_tag.init_bullet:
 		sort_Obj(_obj)
 		$Ticker.wait_time = tick_rate
 		$Ticker.start()
-	if _tag == e_rune_tag.whlie_flying:
+	if _tag == $Tags.e_rune_tag.whlie_flying:
 		if ready:
 			$Ticker.start()
 			find_targets()
@@ -31,7 +31,7 @@ func effect(_obj, _tag):
 					var s = status.instance()
 					s._init()
 					s.dir = (bullet.global_position - t.global_position).normalized()
-					s.add_tag(s.e_tags.dont_stack)
+					s.add_tag($Tags.e_tags.dont_stack)
 					t.add_Status(s)
 	return true
 		

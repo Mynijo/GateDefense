@@ -6,23 +6,29 @@ var first_time = true
 
 signal shoot
 
+var old_red = 0
+
 func _init():
-	tags.append(e_tags.speed)
-	tags.append(e_tags.cast_on_death)
+	$Tags.add_tag($Tags.e_tags.speed)
+	$Tags.add_tag($Tags.e_tags.cast_on_death)
 	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
 	
 func effekt(value, tag):
 	if first_time:
 		first_time = false
+		old_red = get_parent().get_node("Sprite").modulate.r
 		get_parent().get_node("Sprite").modulate.r = 0
 		#$Sprite.modulate.r = 0
 		
-	if tag == e_tags.speed:
+	if tag == $Tags.e_tags.speed:
 		return 0
-	if tag == e_tags.cast_on_death:
+	if tag == $Tags.e_tags.cast_on_death:		
 		shoot()
 	return value
 		
+func _on_Duration_timeout():
+	get_parent().get_node("Sprite").modulate.r = old_red
+	delteYou()
 	
 func shoot():
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")

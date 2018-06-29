@@ -28,28 +28,30 @@ func control(delta):
 	var direction = Vector2(1, 0)
 	var changed_speed = speed
 	for x in status_effecte:
-		if x.has_tag(x.e_tags.speed):
-			changed_speed = x.effekt(changed_speed, x.e_tags.speed)
-		if x.has_tag(x.e_tags.health):
-			take_damage(-x.effekt(0, x.e_tags.health))
-		if x.has_tag(x.e_tags.direction):
-			direction = x.effekt(direction, x.e_tags.direction)
-			
-			
+		if x.has_tag($Tags.e_tags.speed):
+			changed_speed = x.effekt(changed_speed, $Tags.e_tags.speed)
+		if x.has_tag($Tags.e_tags.health):
+			take_damage(-x.effekt(0, $Tags.e_tags.health))
+		if x.has_tag($Tags.e_tags.direction):
+			direction = x.effekt(direction, $Tags.e_tags.direction)
 	velocity = direction * changed_speed * delta * -100
 	
+	for x in status_effecte:
+		if x.has_tag($Tags.e_tags.animation):
+			x.effekt(self, $Tags.e_tags.animation)
+	if health <= 0:
+		die()
+		
 func take_damage(damage):
 	if dead:
 		return	
 	health -= damage
-	emit_signal('health_changed',health)
-	if health <= 0:
-		die()
+	emit_signal('health_changed',health)	
 		
 func die():
 	for x in status_effecte:
-		if x.has_tag(x.e_tags.cast_on_death):
-			x.effekt(0,x.e_tags.cast_on_death)
+		if x.has_tag($Tags.e_tags.cast_on_death):
+			x.effekt(0,$Tags.e_tags.cast_on_death)
 	get_parent().player.add_money(gold_value)
 	dead()
 		
@@ -68,7 +70,7 @@ func get_velocity():
 	
 func add_Status(_status):
 	var olny_Refresh = false
-	if _status.has_tag(_status.e_tags.dont_stack):
+	if _status.has_tag($Tags.e_tags.dont_stack):
 		for x in status_effecte:
 			if x.name.is_subsequence_of(_status.name):
 				x.refresh(_status) 
