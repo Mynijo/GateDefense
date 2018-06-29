@@ -114,6 +114,6 @@ func is_Tower():
 
 func _on_Tower_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_LEFT: 
-		get_child(4).show()
+		get_child(5).show()
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_RIGHT:
-		get_child(4).hide() 
+		get_child(5).hide() 

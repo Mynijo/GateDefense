@@ -11,7 +11,7 @@ func _init():
 	$Tags.add_tag($Tags.e_effect.speed)
 	$Tags.add_tag($Tags.e_effect.cast_on_death)
 	$Tags.add_tag($Tags.e_effect.animation)
-	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
+	
 	
 func effekt(value, tag):
 	if first_time:
@@ -35,6 +35,7 @@ func _on_Duration_timeout():
 	
 func shoot():
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
+	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
 	var b 
 	var dir
 	var runnes = []
