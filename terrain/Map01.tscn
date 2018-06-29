@@ -51,8 +51,13 @@ position = Vector2( 0.541534, -0.865265 )
 
 position = Vector2( 145.586, 374.634 )
 
-[node name="MapBoarder" type="StaticBody2D" parent="." index="5"]
+[node name="TowerPlace2" parent="." index="5" instance=ExtResource( 6 )]
 
+position = Vector2( 143.645, 232.042 )
+
+[node name="MapBoarder" type="StaticBody2D" parent="." index="6"]
+
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 13
@@ -67,7 +72,7 @@ _sections_unfolded = [ "Collision" ]
 build_mode = 0
 polygon = PoolVector2Array( -0.352493, -71.4067, 0.123161, -1.59761, 1396.02, 0.0671844, 1396.21, 639.943, -1.70459, 640.098, 0.880859, -72.777, -107.074, -72.6557, -105.084, 761.035, 1496.71, 761.698, 1498.04, -73.6178 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="." index="6"]
+[node name="ViewportContainer" type="ViewportContainer" parent="." index="7"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -83,7 +88,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 stretch = true
 stretch_shrink = 1
-_sections_unfolded = [ "Mouse", "Size Flags" ]
+_sections_unfolded = [ "Mouse", "Rect", "Size Flags", "Visibility" ]
 __meta__ = {
 "_edit_group_": true
 }
@@ -98,9 +103,5 @@ margin_left = -640.0
 margin_top = -60.0
 margin_right = 640.0
 margin_bottom = -60.0
-
-[node name="TowerPlace2" parent="." index="7" instance=ExtResource( 6 )]
-
-position = Vector2( 143.645, 232.042 )
 
 

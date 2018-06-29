@@ -3,7 +3,7 @@ extends Panel
 signal slot_changed
 
 func _ready():
-	connect('slot_changed',get_parent().get_parent().get_parent(),'_on_RuneSlot_slot_changed')
+	connect('slot_changed',get_parent(),'_on_RuneSlot_slot_changed')
 	
 func can_drop_data(position, data):	
 	return true

@@ -1,20 +1,28 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Enemy/EnemySpawner.gd" type="Script" id=1]
-[ext_resource path="res://Enemy/EnemyBlue.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Enemy/EnemyTank.tscn" type="PackedScene" id=3]
-[ext_resource path="res://media/towerDefense_tilesheet.png" type="Texture" id=4]
+[ext_resource path="res://media/towerDefense_tilesheet180.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/EnemySpawner.gd" type="Script" id=2]
+[ext_resource path="res://Enemy/EnemyBlue.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy/EnemyTank.tscn" type="PackedScene" id=4]
 
-[node name="EnemySpawner" type="Node2D"]
+[sub_resource type="AtlasTexture" id=1]
 
-script = ExtResource( 1 )
+flags = 0
+atlas = ExtResource( 1 )
+region = Rect2( 320, 448, 64, 64 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[node name="EnemySpawner" type="Sprite" index="0"]
+
+texture = SubResource( 1 )
+script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
 start_intervall = 10
 wave = 1
-enemy = ExtResource( 2 )
-enemy02 = ExtResource( 3 )
+enemy = ExtResource( 3 )
+enemy02 = ExtResource( 4 )
 player = null
-mobs_counter = 0
 
 [node name="SpawnTimer" type="Timer" parent="." index="0"]
 
@@ -22,13 +30,6 @@ process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
-
-[node name="Sprite" type="Sprite" parent="." index="1"]
-
-texture = ExtResource( 4 )
-region_enabled = true
-region_rect = Rect2( 448.213, 1217.06, 63, 61.25 )
-_sections_unfolded = [ "Region" ]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
 

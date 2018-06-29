@@ -12,7 +12,7 @@ func _on_RuneSlot_slot_changed():
 	
 func get_runes():
 	var runes = [] 
-	for slot in $VBoxContainer/HBoxContainer.get_children():
+	for slot in get_children():
 		for stone in slot.get_children():
 			runes.push_back(stone.rune.instance())
 	return runes
