@@ -11,6 +11,7 @@ func _init():
 	$Tags.add_tag($Tags.e_effect.speed)
 	$Tags.add_tag($Tags.e_effect.cast_on_death)
 	$Tags.add_tag($Tags.e_effect.animation)
+	$Tags.add_tag($Tags.e_effect.dont_stack)
 	
 	
 func effekt(value, tag):

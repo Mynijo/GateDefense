@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://ui/RuneStones/RuneStone.tscn" type="PackedScene" id=1]
+[ext_resource path="res://media/runeBlack_tileOutline_sheet.png" type="Texture" id=2]
+[ext_resource path="res://Rune/RuneAddCharme.tscn" type="PackedScene" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+
+flags = 0
+atlas = ExtResource( 2 )
+region = Rect2( 54, 179.899, 54, 60.625 )
+margin = Rect2( 0, 0, 0, 0 )
+filter_clip = false
+
+[node name="RuneStone" index="0" instance=ExtResource( 1 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
+texture = SubResource( 1 )
+_sections_unfolded = [ "Anchor", "Focus", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "Visibility" ]
+rune = ExtResource( 3 )
+
+
