@@ -8,11 +8,11 @@ var first_time = true
 export (float) var freez_chance
 
 func _init():
-	$Tags.add_tag($Tags.e_tags.speed)
-	$Tags.add_tag($Tags.e_tags.animation)
+	$Tags.add_tag($Tags.e_effect.speed)
+	$Tags.add_tag($Tags.e_effect.animation)
 
 func effekt(value, tag):
-	if tag == $Tags.e_tags.speed:
+	if tag == $Tags.e_effect.speed:
 		if first_time:
 			first_time = false
 			var counter = 0
@@ -27,8 +27,8 @@ func effekt(value, tag):
 					if x.name.is_subsequence_of(self.name):
 						parent.remove_Status(x)
 		return value * SlowRate
-		
-	if tag == $Tags.e_tags.animation:
+	var temp =  $Tags.get_tags()
+	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position
 		$Animation.show()
 		$Animation.play("slow")

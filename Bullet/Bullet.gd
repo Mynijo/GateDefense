@@ -27,16 +27,22 @@ func start(_position, _direction):
 
 func _process(delta):
 	for r in runes:
-		if r.has_tag($Tags.e_rune_tag.whlie_flying):			
-			if !r.effect(self, $Tags.e_rune_tag.whlie_flying):
-				return
+		if r.has_tag($Tags.e_rune.fly_animation):			
+			r.effect(self, $Tags.e_rune.fly_animation)
+			
 	position += velocity * delta
+	
+	for r in runes:
+		if r.has_tag($Tags.e_rune.whlie_flying):			
+			if !r.effect(self, $Tags.e_rune.whlie_flying):
+				return
+	
 
 func explode():
 	for r in runes:
 		var temp = r.get_tags()
-		if r.has_tag($Tags.e_rune_tag.explode):
-			if !r.effect(self, $Tags.e_rune_tag.explode):
+		if r.has_tag($Tags.e_rune.explode):
+			if !r.effect(self, $Tags.e_rune.explode):
 				return
 	queue_free()
 	
@@ -49,8 +55,8 @@ func _on_Bullet_body_entered(body):
 	
 	var result 
 	for r in runes:
-		if r.has_tag($Tags.e_rune_tag.enemy_was_hit):			
-			if !r.effect(body, $Tags.e_rune_tag.enemy_was_hit): # continue?
+		if r.has_tag($Tags.e_rune.enemy_was_hit):			
+			if !r.effect(body, $Tags.e_rune.enemy_was_hit): # continue?
 				return
 	explode()
 	
@@ -62,7 +68,7 @@ func calcDmg(body):
 	if rand_range(0, 100) < get_crit_chance():
 		dmg *= 2
 		for r in runes:
-			if r.has_tag($Tags.e_rune_tag.enemy_was_crit):
+			if r.has_tag($Tags.e_rune.enemy_was_crit):
 				r.enemy_was_crit(body)
 	return dmg		
 
@@ -81,23 +87,25 @@ func set_explose(_who, _flag):
 	else:
 		explose.append(_who)
 
-func set_runes(_runes, _tower):
-	var rune
-	for r in _runes:
-		rune = r.duplicate(DUPLICATE_USE_INSTANCING)
-		add_child(rune)
-		rune._init()
-		if rune.has_tag($Tags.e_rune_tag.init_tower):
-			rune.effect(_tower, $Tags.e_rune_tag.init_tower)
-		runes.append(rune)
+func set_runes(_runes, _tower, dup = true):
+	if dup:
+		var rune
+		for r in _runes:
+			rune = r.duplicate(DUPLICATE_USE_INSTANCING)
+			add_child(rune)
+			if rune.has_tag($Tags.e_rune.init_tower):
+				rune.effect(_tower, $Tags.e_rune.init_tower)
+			runes.append(rune)
+	else:
+		runes = _runes
 	init_runes()
 
 func init_runes():
 	for r in runes:		
-		if r.has_tag($Tags.e_rune_tag.init_bullet):
-			r.effect(self, $Tags.e_rune_tag.init_bullet)
-		if r.has_tag($Tags.e_rune_tag.effect_bullet):
-			r.effect(self, $Tags.e_rune_tag.effect_bullet)
+		if r.has_tag($Tags.e_rune.init_bullet):
+			r.effect(self, $Tags.e_rune.init_bullet)
+		if r.has_tag($Tags.e_rune.effect_bullet):
+			r.effect(self, $Tags.e_rune.effect_bullet)
 
 func get_lifetime():
 	if lifetime_effected:

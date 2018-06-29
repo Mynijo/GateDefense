@@ -22,7 +22,7 @@ script = ExtResource( 2 )
 duration = 5.0
 StatusEffektFreeze = ExtResource( 3 )
 SlowRate = 0.5
-freez_chance = 5.0
+freez_chance = 100.0
 
 [node name="Animation" type="AnimatedSprite" parent="." index="1"]
 

@@ -1,6 +1,6 @@
 extends Node
 
-enum e_rune_tag{
+enum e_rune{
 	enemy_was_hit,
 	shoot,
 	explode,
@@ -9,11 +9,12 @@ enum e_rune_tag{
 	effect_bullet,
 	init_bullet,
 	init_tower,
-	whlie_flying
+	whlie_flying,
+	fly_animation
 }
 
-enum e_tags{
-	speed,
+enum e_effect{
+	speed = 100,
 	health,
 	dont_stack,
 	cast_on_death,

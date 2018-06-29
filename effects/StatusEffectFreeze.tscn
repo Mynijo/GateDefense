@@ -3,7 +3,7 @@
 [ext_resource path="res://effects/StatusEffect.tscn" type="PackedScene" id=1]
 [ext_resource path="res://effects/StatusEffectFreeze.gd" type="Script" id=2]
 [ext_resource path="res://Bullet/Bullet.tscn" type="PackedScene" id=3]
-[ext_resource path="res://media/sheet_tanks.png" type="Texture" id=4]
+[ext_resource path="res://media/effects/SnowBullet.png" type="Texture" id=4]
 [ext_resource path="res://media/effects/freeze_effect.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -26,12 +26,12 @@ bullet = ExtResource( 3 )
 
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
-region_enabled = true
 region_rect = Rect2( 132, 148.397, 34.5, 19.3109 )
 _sections_unfolded = [ "Region", "Transform" ]
 
 [node name="Animation" type="AnimatedSprite" parent="." index="3"]
 
+visible = false
 modulate = Color( 1, 1, 1, 0.392157 )
 scale = Vector2( 1.2, 1.2 )
 frames = SubResource( 1 )

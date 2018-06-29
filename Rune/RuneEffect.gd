@@ -1,17 +1,5 @@
 extends Node
 
-enum e_rune_tag{
-	enemy_was_hit,
-	shoot,
-	explode,
-	enemy_was_crit,
-	effect_tower,
-	effect_bullet,
-	init_bullet,
-	init_tower,
-	whlie_flying
-}
-
 var bullet
 var tower
 	
@@ -26,6 +14,9 @@ func has_tag(_tag):
 	
 func add_tag(_tag):
 	return $Tags.add_tag(_tag)
+	
+func remove_tag(_tag):
+	return $Tags.remove_tag(_tag)
 	
 func sort_Obj(_obj):
 	if _obj:

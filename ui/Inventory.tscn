@@ -1,16 +1,21 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/RuneSlots.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/Inventory.gd" type="Script" id=2]
-[ext_resource path="res://ui/RuneStones/RuneStoneCold.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/RuneStones/RuneStoneBoomerang.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ui/RuneStones/RuneStoneChain.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ui/RuneStones/RuneStoneIncreaseTurretDetectRadius.tscn" type="PackedScene" id=5]
-[ext_resource path="res://ui/RuneStones/RuneStoneShootOnCrit.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/RuneStones/RuneStoneScatterShot.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/RuneStones/RuneStoneCold.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ui/RuneStones/RuneStoneFire.tscn" type="PackedScene" id=6]
+[ext_resource path="res://ui/RuneStones/RuneStoneIncreasedAps.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/RuneStones/RuneStoneIncreasedCritChance.tscn" type="PackedScene" id=8]
 [ext_resource path="res://ui/RuneSlot.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ui/RuneStones/RuneStoneFire.tscn" type="PackedScene" id=10]
-[ext_resource path="res://ui/RuneStones/RuneStoneIncreasedAps.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/RuneStones/RuneStoneIncreasedDamage.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ui/RuneStones/RuneStoneIncreaseTurretDetectRadius.tscn" type="PackedScene" id=11]
+[ext_resource path="res://ui/RuneStones/RuneStonePierce.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ui/RuneStones/RuneStoneScatterShot.tscn" type="PackedScene" id=13]
+[ext_resource path="res://ui/RuneStones/RuneStoneShock.tscn" type="PackedScene" id=14]
+[ext_resource path="res://ui/RuneStones/RuneStoneShootOnCrit.tscn" type="PackedScene" id=15]
+[ext_resource path="res://ui/RuneStones/RuneStoneTornadoShot.tscn" type="PackedScene" id=16]
 
 [node name="RuneSlots" index="0" instance=ExtResource( 1 )]
 
@@ -24,17 +29,61 @@ margin_right = 230.0
 margin_bottom = 0.0
 script = ExtResource( 2 )
 
-[node name="RuneStone" parent="RuneSlot2" index="0" instance=ExtResource( 3 )]
+[node name="RuneSlot" parent="." index="0"]
 
-[node name="RuneStone" parent="RuneSlot" index="0" instance=ExtResource( 4 )]
+margin_left = 0.0
+margin_right = 54.0
 
-[node name="RuneStone" parent="RuneSlot4" index="0" instance=ExtResource( 5 )]
+[node name="RuneStone" parent="RuneSlot" index="0" instance=ExtResource( 3 )]
 
-[node name="RuneStone" parent="RuneSlot6" index="0" instance=ExtResource( 6 )]
+margin_right = 54.0
+margin_bottom = 60.0
+
+[node name="RuneSlot2" parent="." index="1"]
+
+margin_left = 58.0
+margin_right = 112.0
+
+[node name="RuneStone" parent="RuneSlot2" index="0" instance=ExtResource( 4 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
+
+[node name="RuneSlot3" parent="." index="2"]
+
+margin_left = 116.0
+margin_right = 170.0
+
+[node name="RuneStone" parent="RuneSlot3" index="0" instance=ExtResource( 5 )]
+
+margin_right = 54.0
+margin_bottom = 59.0
+
+[node name="RuneSlot4" parent="." index="3"]
+
+margin_left = 174.0
+margin_right = 228.0
+
+[node name="RuneStone" parent="RuneSlot4" index="0" instance=ExtResource( 6 )]
+
+margin_left = 1.0
+margin_right = 55.0
+margin_bottom = 60.0
 
 [node name="RuneStone" parent="RuneSlot5" index="0" instance=ExtResource( 7 )]
 
-[node name="RuneStone" parent="RuneSlot3" index="0" instance=ExtResource( 8 )]
+margin_right = 54.0
+margin_bottom = 60.0
+
+[node name="RuneSlot6" parent="." index="5"]
+
+margin_left = 290.0
+margin_right = 344.0
+
+[node name="RuneStone" parent="RuneSlot6" index="0" instance=ExtResource( 8 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
 
 [node name="RuneSlot7" parent="." index="6" instance=ExtResource( 9 )]
 
@@ -49,5 +98,55 @@ margin_left = 406.0
 margin_right = 460.0
 
 [node name="RuneStone" parent="RuneSlot8" index="0" instance=ExtResource( 11 )]
+
+[node name="RuneSlot9" parent="." index="8" instance=ExtResource( 9 )]
+
+margin_left = 464.0
+margin_right = 518.0
+
+[node name="RuneStone" parent="RuneSlot9" index="0" instance=ExtResource( 12 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
+
+[node name="RuneSlot10" parent="." index="9" instance=ExtResource( 9 )]
+
+margin_left = 522.0
+margin_right = 576.0
+
+[node name="RuneStone" parent="RuneSlot10" index="0" instance=ExtResource( 13 )]
+
+margin_right = 53.0
+margin_bottom = 60.0
+
+[node name="RuneSlot11" parent="." index="10" instance=ExtResource( 9 )]
+
+margin_left = 580.0
+margin_right = 634.0
+
+[node name="RuneStone" parent="RuneSlot11" index="0" instance=ExtResource( 14 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
+
+[node name="RuneSlot12" parent="." index="11" instance=ExtResource( 9 )]
+
+margin_left = 638.0
+margin_right = 692.0
+
+[node name="RuneStone" parent="RuneSlot12" index="0" instance=ExtResource( 15 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
+
+[node name="RuneSlot13" parent="." index="12" instance=ExtResource( 9 )]
+
+margin_left = 696.0
+margin_right = 750.0
+
+[node name="RuneStone" parent="RuneSlot13" index="0" instance=ExtResource( 16 )]
+
+margin_right = 54.0
+margin_bottom = 60.0
 
 

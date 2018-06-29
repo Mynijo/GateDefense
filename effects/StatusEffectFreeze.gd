@@ -8,20 +8,20 @@ signal shoot
 
 
 func _init():
-	$Tags.add_tag($Tags.e_tags.speed)
-	$Tags.add_tag($Tags.e_tags.cast_on_death)
-	$Tags.add_tag($Tags.e_tags.animation)
+	$Tags.add_tag($Tags.e_effect.speed)
+	$Tags.add_tag($Tags.e_effect.cast_on_death)
+	$Tags.add_tag($Tags.e_effect.animation)
 	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
 	
 func effekt(value, tag):
 	if first_time:
 		first_time = false
 		
-	if tag == $Tags.e_tags.speed:
+	if tag == $Tags.e_effect.speed:
 		return 0
-	if tag == $Tags.e_tags.cast_on_death:		
+	if tag == $Tags.e_effect.cast_on_death:		
 		shoot()
-	if tag == $Tags.e_tags.animation:
+	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position
 		$Animation.show()
 		$Animation.play("freeze")
@@ -43,10 +43,12 @@ func shoot():
 		dir = Vector2(1, 0).rotated(x)
 		b = bullet.instance()
 		runnes.clear()
-		runnes.append(StatusEffektSlow.instance())
+		var effect = StatusEffektSlow.instance()
+		effect.remove_tag($Tags.e_rune.fly_animation)
+		runnes.append(effect)
 		b.get_node("Sprite").texture = $Ice.texture
-		b.get_node("Sprite").region_rect  = $Ice.region_rect
-		b.set_runes(runnes, null)
+		b.get_node("Sprite").region_enabled  = false
+		b.set_runes(runnes, null, false)
 		b.effect_lifetime(0.4) 
 		b.effect_speed(b.get_speed()/2)
 		emit_signal('shoot', b, get_parent().global_position, dir)

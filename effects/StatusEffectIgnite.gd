@@ -12,22 +12,22 @@ func _ready():
 	_init()
 
 func _init():
-	$Tags.add_tag($Tags.e_tags.health)
-	$Tags.add_tag($Tags.e_tags.speed)
-	$Tags.add_tag($Tags.e_tags.animation)
+	$Tags.add_tag($Tags.e_effect.health)
+	$Tags.add_tag($Tags.e_effect.speed)
+	$Tags.add_tag($Tags.e_effect.animation)
 	
 
 
 
 func effekt(value, tag):
-	if tag == $Tags.e_tags.health:
+	if tag == $Tags.e_effect.health:
 		if ready:
 			ready = false
 			$IgniteTicker.start()
 			return value - damage
-	if tag == $Tags.e_tags.speed:
+	if tag == $Tags.e_effect.speed:
 		return value * speed_inc
-	if tag == $Tags.e_tags.animation:
+	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position
 		$Animation.show()
 		$Animation.play("burn")

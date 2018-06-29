@@ -5,7 +5,6 @@ export (float) var duration
 func _ready():
 	$Duration.wait_time = duration
 	$Duration.start()
-	_init()
 
 func _init():
 	pass

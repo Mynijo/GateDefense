@@ -63,8 +63,8 @@ func shoot():
 	emit_signal('shoot', b, global_position, Vector2(1, 0).rotated($Body.global_rotation))
 	
 	for r in runes:
-		if r.has_tag(r.e_rune_tag.shoot):
-			r.effect(self,r.e_rune_tag.shoot)
+		if r.has_tag($Tags.e_rune.shoot):
+			r.effect(self,$Tags.e_rune.shoot)
 
 func _on_GunCooldown_timeout():
 	can_shoot = true
@@ -96,10 +96,10 @@ func apply_runes(_runes):
 	for r in _runes:
 		add_child(r)
 		#r._init()
-		if r.has_tag(r.e_rune_tag.init_tower):
-			r.effect(self, r.e_rune_tag.init_tower)
-		if r.has_tag(r.e_rune_tag.effect_tower):
-			r.effect(self, r.e_rune_tag.effect_tower)
+		if r.has_tag($Tags.e_rune.init_tower):
+			r.effect(self, $Tags.e_rune.init_tower)
+		if r.has_tag($Tags.e_rune.effect_tower):
+			r.effect(self, $Tags.e_rune.effect_tower)
 		runes.append(r)
 
 func reset_tower():
