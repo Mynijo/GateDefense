@@ -15,10 +15,11 @@ func effekt(value, tag):
 	if tag == $Tags.e_effect.speed:
 		return value * inc_speed
 	if tag == $Tags.e_effect.direction:
-		if !target:
-			find_target()
+		find_target()
+		if !target:			
 			return value
-		return (enemy.global_position - target.global_position).normalized()
+		else:
+			return (enemy.global_position - target.global_position).normalized()
 	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position + Vector2(20,-50)
 		$Animation.show()
