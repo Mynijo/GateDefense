@@ -6,28 +6,31 @@ var first_time = true
 
 signal shoot
 
-var old_red = 0
 
 func _init():
 	$Tags.add_tag($Tags.e_tags.speed)
 	$Tags.add_tag($Tags.e_tags.cast_on_death)
+	$Tags.add_tag($Tags.e_tags.animation)
 	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
 	
 func effekt(value, tag):
 	if first_time:
 		first_time = false
-		old_red = get_parent().get_node("Sprite").modulate.r
-		get_parent().get_node("Sprite").modulate.r = 0
-		#$Sprite.modulate.r = 0
 		
 	if tag == $Tags.e_tags.speed:
 		return 0
 	if tag == $Tags.e_tags.cast_on_death:		
 		shoot()
+	if tag == $Tags.e_tags.animation:
+		$Animation.global_position = value.global_position
+		$Animation.show()
+		$Animation.play("freeze")
+		return
 	return value
+	
+		
 		
 func _on_Duration_timeout():
-	get_parent().get_node("Sprite").modulate.r = old_red
 	delteYou()
 	
 func shoot():

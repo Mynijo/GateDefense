@@ -94,7 +94,7 @@ func apply_runes(_runes):
 	reset_tower()
 	for r in _runes:
 		add_child(r)
-		r._init()
+		#r._init()
 		if r.has_tag(r.e_rune_tag.init_tower):
 			r.effect(self, r.e_rune_tag.init_tower)
 		if r.has_tag(r.e_rune_tag.effect_tower):
