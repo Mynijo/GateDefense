@@ -2,6 +2,7 @@ extends Node
 
 enum e_rune{
 	enemy_was_hit,
+	enemy_was_dmg,
 	shoot,
 	explode,
 	enemy_was_crit,

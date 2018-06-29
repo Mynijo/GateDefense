@@ -47,7 +47,10 @@ func explode():
 	
 func _on_Bullet_body_entered(body):
 	if body.has_method('take_damage'):
-	    body.take_damage(calcDmg(body))
+		body.take_damage(calcDmg(body))
+		for r in runes:
+			if r.has_tag($Tags.e_rune.enemy_was_dmg):
+				r.effect(body,$Tags.e_rune.enemy_was_dmg)
 	
 	var result 
 	for r in runes:
@@ -59,13 +62,13 @@ func _on_Bullet_body_entered(body):
 func _on_Lifetime_timeout():
 	explode()
 
-func calcDmg(body):
+func calcDmg(_body):
 	var dmg = get_damage()
 	if rand_range(0, 100) < get_crit_chance():
 		dmg *= 2
 		for r in runes:
 			if r.has_tag($Tags.e_rune.enemy_was_crit):
-				r.enemy_was_crit(body)
+				r.effect(_body, $Tags.e_rune.enemy_was_crit)
 	return dmg		
 
 
