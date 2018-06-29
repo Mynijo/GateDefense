@@ -19,7 +19,8 @@ var target = []
 var can_shoot = true
 
 func _ready():	
-	rune_slots = load("res://ui/RuneSlots.tscn").instance() 
+	rune_slots = load("res://ui/RuneSlots.tscn").instance()
+	rune_slots.set_begin(Vector2(-32,32)) 
 	add_child(rune_slots)
 	$GunCooldown.wait_time = get_gun_cooldown()
 	$DetectRadius/CollisionShape2D.shape = CircleShape2D.new()
