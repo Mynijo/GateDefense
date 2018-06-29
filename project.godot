@@ -55,6 +55,10 @@ click=[ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_n
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="bullets"
 
+[network]
+
+limits/debugger_stdout/max_chars_per_second=187802880
+
 [rendering]
 
 quality/2d/use_pixel_snap=true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://terrain/Map01.gd" type="Script" id=1]
 [ext_resource path="res://terrain/terrain_tiles.tres" type="TileSet" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://Player/Gate.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Tower/TowerPlace.tscn" type="PackedScene" id=6]
-[ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/DebugPanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=8]
 
 [node name="Map01" type="Node2D" index="0"]
 
@@ -93,7 +94,14 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Inventory" parent="ViewportContainer" index="0" instance=ExtResource( 7 )]
+[node name="DebugPanel" parent="ViewportContainer" index="0" instance=ExtResource( 7 )]
+
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -71.0
+margin_right = 71.0
+
+[node name="Inventory" parent="ViewportContainer" index="1" instance=ExtResource( 8 )]
 
 anchor_right = 1.0
 margin_right = 0.0

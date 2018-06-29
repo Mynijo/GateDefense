@@ -29,7 +29,6 @@ func effect(_obj, _tag):
 			for t in target:
 				if t.has_method('add_Status'):
 					var s = status.instance()
-					s._init()
 					s.dir = (bullet.global_position - t.global_position).normalized()
 					s.add_tag($Tags.e_effect.dont_stack)
 					t.add_Status(s)

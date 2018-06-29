@@ -9,7 +9,6 @@ var ready = true
 func _ready():
 	$IgniteTicker.wait_time = ignite_tick_rate
 	$IgniteTicker.start()
-	_init()
 
 func _init():
 	$Tags.add_tag($Tags.e_effect.health)

@@ -26,6 +26,7 @@ freez_chance = 100.0
 
 [node name="Animation" type="AnimatedSprite" parent="." index="1"]
 
+visible = false
 frames = SubResource( 1 )
 animation = "slow"
 

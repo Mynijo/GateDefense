@@ -33,7 +33,6 @@ func effekt(value, tag):
 		$Animation.show()
 		$Animation.play("slow")
 		return
-					
 		
 	return value
 	

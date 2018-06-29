@@ -74,6 +74,7 @@ func add_Status(_status):
 		for x in status_effecte:
 			if x.name.is_subsequence_of(_status.name):
 				x.refresh(_status) 
+				_status.queue_free()
 				olny_Refresh = true
 	
 	if !olny_Refresh:
@@ -82,3 +83,5 @@ func add_Status(_status):
 
 func remove_Status(_status):
 	status_effecte.erase(_status)
+	remove_child(_status)
+	_status.queue_free()

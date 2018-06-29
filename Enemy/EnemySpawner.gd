@@ -18,7 +18,7 @@ func _on_SpawnTimer_timeout():
 	var mob_to_spawn = enemy
 	
 		
-	player.wave_changed(int(wave/10) + 1)
+	#player.wave_changed(int(wave/10) + 1)
 	for i in range(int(wave/10)+1):
 		if int(wave/10)+1 >= 2 and i <= 2:
 			mob_to_spawn = enemy02

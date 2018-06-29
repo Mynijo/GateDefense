@@ -29,7 +29,9 @@ func _ready():
 func _process(delta):	
 	if target.size() != 0:
 		var distance = (target.front().global_position - global_position).length()
-		var _time = (distance / (Bullet.instance().get_speed()))
+		var test = Bullet.instance()
+		var _time = (distance / (test.get_speed()))
+		test.free()
 		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
 		
 		if predicted_position.x < global_position.x:
@@ -95,7 +97,6 @@ func apply_runes(_runes):
 	reset_tower()
 	for r in _runes:
 		add_child(r)
-		#r._init()
 		if r.has_tag($Tags.e_rune.init_tower):
 			r.effect(self, $Tags.e_rune.init_tower)
 		if r.has_tag($Tags.e_rune.effect_tower):
@@ -104,6 +105,7 @@ func apply_runes(_runes):
 
 func reset_tower():
 	for r in runes:
+		r.queue_free()
 		remove_child(r)
 	runes.clear()
 	effect_gun_cooldown(gun_cooldown)
