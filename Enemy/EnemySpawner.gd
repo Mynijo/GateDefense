@@ -29,6 +29,7 @@ func _process(delta):
 			var pos = Vector2(0,0)
 			pos.x = global_position.x #+ rand_range(0,100) 
 			pos.y = rand_range(0,640)
+			upgrade_mob(e)
 			e.spawn(pos)
 			wave_progress += 1
 		if wave_progress >= wave * wave_size_multi:
@@ -53,4 +54,5 @@ func set_player(_player):
 	player = _player
 	player.wave_changed(wave)
 	
-	
+func upgrade_mob(_mob):
+	_mob.add_Status((load("res://effects/StatusEffectDropRune.tscn").instance()))
