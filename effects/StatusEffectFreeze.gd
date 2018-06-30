@@ -1,6 +1,6 @@
 extends "res://effects/StatusEffect.gd"
 
-export (PackedScene) var StatusEffektSlow
+
 export (PackedScene) var bullet
 var first_time = true
 
@@ -36,7 +36,7 @@ func _on_Duration_timeout():
 	
 func shoot():
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
-	StatusEffektSlow = load("res://Rune/RuneAddSlow.tscn")
+	var RuneAddSlow = load("res://Rune/RuneAddSlow.tscn")
 	var b 
 	var dir
 	var runnes = []
@@ -45,12 +45,11 @@ func shoot():
 		dir = Vector2(1, 0).rotated(x)
 		b = bullet.instance()
 		runnes.clear()
-		var effect = StatusEffektSlow.instance()
-		effect.remove_tag($Tags.e_rune.fly_animation)
-		runnes.append(effect)
+		runnes.append( RuneAddSlow.instance())
 		b.get_node("Sprite").texture = $Ice.texture
 		b.get_node("Sprite").region_enabled  = false
-		b.set_runes(runnes, null, false)
+		b.set_runes(runnes, null)
+		#b.runes[0].remove_tag($Tags.e_rune.fly_animation)
 		b.effect_lifetime(0.4) 
 		b.effect_speed(b.get_speed()/2)
 		emit_signal('shoot', b, get_parent().global_position, dir)

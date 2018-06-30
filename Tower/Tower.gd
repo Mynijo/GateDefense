@@ -18,6 +18,12 @@ var target = []
 
 var can_shoot = true
 
+
+enum e_rule{
+	closest_first
+}
+
+
 func _ready():	
 	rune_slots = load("res://ui/RuneSlots.tscn").instance()
 	rune_slots.set_begin(Vector2(-32,32)) 
@@ -28,6 +34,7 @@ func _ready():
 		
 func _process(delta):	
 	if target.size() != 0:
+		order_by(e_rule.closest_first)
 		var distance = (target.front().global_position - global_position).length()
 		var test = Bullet.instance()
 		var _time = (distance / (test.get_speed()))
@@ -50,8 +57,26 @@ func spawn(_position):
 	position = _position
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")
 
+
+func order_by(order_by):
+	if target.size() <= 0:
+		return
+	if order_by == e_rule.closest_first:
+		var closest = null
+		for t in target:
+			if !closest:
+				closest = t
+			else:
+				if t.global_position.x < closest.global_position.x:
+					closest = t
+		if closest != target.front():
+			target.erase(closest)
+			target.push_front(closest)
+
+
 func _on_DetectRadius_body_entered(body):
 	target.append(body)
+	
 
 func _on_DetectRadius_body_exited(body):
 	target.erase(body)

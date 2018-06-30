@@ -84,19 +84,14 @@ func set_explose(_who, _flag):
 	else:
 		explose.append(_who)
 
-func set_runes(_runes, _tower, dup = true):
-	if dup:
-		var rune
-		for r in _runes:
-			rune = r.duplicate(DUPLICATE_USE_INSTANCING)
-			add_child(rune)
-			if rune.has_tag($Tags.e_rune.init_tower):
-				rune.effect(_tower, $Tags.e_rune.init_tower)
-			runes.append(rune)
-	else:
-		runes = _runes
-		for r in runes:
-			add_child(r)
+func set_runes(_runes, _tower):
+	var rune
+	for r in _runes:
+		rune = r.duplicate(DUPLICATE_USE_INSTANCING)
+		add_child(rune)
+		if rune.has_tag($Tags.e_rune.init_tower):
+			rune.effect(_tower, $Tags.e_rune.init_tower)
+		runes.append(rune)
 	init_runes()
 
 func init_runes():
