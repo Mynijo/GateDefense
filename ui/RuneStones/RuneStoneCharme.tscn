@@ -16,8 +16,9 @@ filter_clip = false
 
 margin_right = 54.0
 margin_bottom = 60.0
+hint_tooltip = "Charme"
 texture = SubResource( 1 )
-_sections_unfolded = [ "Anchor", "Focus", "Hint", "Margin", "Mouse", "Rect", "Size Flags", "Theme", "Visibility" ]
+_sections_unfolded = [ "Focus", "Hint", "Mouse", "Size Flags", "Theme", "Visibility" ]
 rune = ExtResource( 3 )
 
 

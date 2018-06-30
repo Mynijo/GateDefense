@@ -14,7 +14,9 @@ filter_clip = false
 
 [node name="RuneStoneBurst" index="0" instance=ExtResource( 1 )]
 
+hint_tooltip = "Burst"
 texture = SubResource( 1 )
+_sections_unfolded = [ "Hint", "Mouse", "Size Flags" ]
 rune = ExtResource( 3 )
 
 
