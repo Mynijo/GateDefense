@@ -52,7 +52,10 @@ func _process(delta):
 		if target_dir.dot(current_dir) > 0.9999:
 			if can_shoot:
 				shoot()
-			
+	else:
+		var current_dir = Vector2(1, 0).rotated($Body.global_rotation)
+		$Body.global_rotation = current_dir.linear_interpolate(Vector2(1,0), turret_speed * delta).angle()
+		
 func spawn(_position):
 	position = _position
 	self.connect("shoot", self.get_tree().get_current_scene(), "_on_Tower_shoot")

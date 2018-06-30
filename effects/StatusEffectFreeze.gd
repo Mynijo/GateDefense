@@ -49,7 +49,9 @@ func shoot():
 		b.get_node("Sprite").texture = $Ice.texture
 		b.get_node("Sprite").region_enabled  = false
 		b.set_runes(runnes, null)
-		#b.runes[0].remove_tag($Tags.e_rune.fly_animation)
+		b.runes[0].remove_tag($Tags.e_rune.fly_animation)
 		b.effect_lifetime(0.4) 
 		b.effect_speed(b.get_speed()/2)
 		emit_signal('shoot', b, get_parent().global_position, dir)
+		for r in runnes:
+			r.queue_free()
