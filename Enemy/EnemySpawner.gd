@@ -29,7 +29,7 @@ func _process(delta):
 			var pos = Vector2(0,0)
 			pos.x = global_position.x #+ rand_range(0,100) 
 			pos.y = rand_range(0,640)
-			upgrade_mob(e)
+			#upgrade_mob(e)
 			e.spawn(pos)
 			wave_progress += 1
 		if wave_progress >= wave * wave_size_multi:

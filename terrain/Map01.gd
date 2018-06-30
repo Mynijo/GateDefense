@@ -6,10 +6,10 @@ func _ready():
 		if x.has_method('set_player'):
 			x.set_player($Player)
 
-func _on_Tower_shoot(bullet, _position, _direction):
+func _on_Tower_shoot(bullet, _position, _direction, _tower):
     var b = bullet
     add_child(b)
-    b.start(_position, _direction)
+    b.start(_position, _direction, _tower)
 
 func _on_spawn_rune(rune, _position):
 	add_child(rune)

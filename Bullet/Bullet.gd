@@ -17,12 +17,15 @@ var runes_screen = []
 var explose_after_hit = []
 var explose = []
 
-func start(_position, _direction):
+var tower
+
+func start(_position, _direction, _tower):
 	position = _position
 	rotation = _direction.angle()
 	$Lifetime.wait_time = get_lifetime()
 	velocity = _direction * get_speed()
 	$Lifetime.start()
+	tower = _tower
 
 func _process(delta):
 	for r in runes:
@@ -53,6 +56,7 @@ func _on_Bullet_body_entered(body):
 				r.effect(body,$Tags.e_rune.enemy_was_dmg)
 	
 	var result 
+	body.last_tower_hit = tower
 	for r in runes:
 		if r.has_tag($Tags.e_rune.enemy_was_hit):			
 			if !r.effect(body, $Tags.e_rune.enemy_was_hit): # continue?

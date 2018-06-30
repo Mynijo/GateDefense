@@ -6,10 +6,11 @@ signal dead
 
 export (int) var speed
 export (int) var health
+export (int) var experience
 export (int) var damage
 export (int) var gold_value = 5
 
-
+var last_tower_hit = null
 var status_effecte = []
 var tags
 var dead = false
@@ -53,6 +54,7 @@ func die():
 		if x.has_tag($Tags.e_effect.cast_on_death):
 			x.effekt(0,$Tags.e_effect.cast_on_death)
 	get_parent().player.add_money(gold_value)
+	last_tower_hit.add_exp(experience)
 	dead()
 		
 func dead():

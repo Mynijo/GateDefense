@@ -16,6 +16,8 @@ signal shoot
 
 var target = []
 
+var experience = 0
+
 var can_shoot = true
 
 
@@ -90,7 +92,7 @@ func shoot():
 	var b = Bullet.instance()		
 	if runes:		
 		b.set_runes(runes, self)
-	emit_signal('shoot', b, global_position, Vector2(1, 0).rotated($Body.global_rotation))
+	emit_signal('shoot', b, global_position, Vector2(1, 0).rotated($Body.global_rotation), self)
 	
 	for r in runes:
 		if r.has_tag($Tags.e_rune.shoot):
@@ -147,3 +149,6 @@ func _on_Tower_input_event(viewport, event, shape_idx):
 		get_child(5).show()
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_RIGHT:
 		get_child(5).hide() 
+
+func add_exp(_exp):
+	experience += _exp
