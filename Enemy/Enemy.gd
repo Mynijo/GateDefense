@@ -21,7 +21,7 @@ func _ready():
 		pass
 		
 func spawn(_position):
-		position = _position
+		global_position = _position
 
 
 func control(delta):

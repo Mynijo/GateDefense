@@ -21,4 +21,6 @@ func take_damage(damage):
 		
 func wave_changed(_wave):
 	$Wave.text = "Wave:" + String(_wave)
-	
+
+func wave_status(_status):
+	$WaveEnd.text = _status

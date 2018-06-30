@@ -12,3 +12,7 @@ func _on_PrintStray_pressed():
 
 func _on_PrintTree_pressed():
 	get_tree().get_root().print_tree_pretty()
+
+
+func _on_NextWave_pressed():
+	get_parent().get_parent().get_node("EnemySpawner").next_wave()

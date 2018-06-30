@@ -9,7 +9,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 142.0
+margin_right = 232.0
 margin_bottom = 21.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -71,8 +71,34 @@ flat = false
 align = 1
 _sections_unfolded = [ "Theme" ]
 
+[node name="NextWave" type="Button" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 127.0
+margin_right = 204.0
+margin_bottom = 21.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "NextWave"
+flat = false
+align = 1
+
 [connection signal="pressed" from="PrintStray" to="." method="_on_PrintStray_pressed"]
 
 [connection signal="pressed" from="PrintTree" to="." method="_on_PrintTree_pressed"]
+
+[connection signal="pressed" from="NextWave" to="." method="_on_NextWave_pressed"]
 
 
