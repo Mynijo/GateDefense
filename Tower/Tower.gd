@@ -10,7 +10,7 @@ export (float) var turret_speed = 1.0
 
 var rune_slots
 var runes = []
-var Bullet
+var Attack
 
 signal shoot
 
@@ -38,7 +38,7 @@ func _process(delta):
 	if target.size() != 0:
 		order_by(e_rule.closest_first)
 		var distance = (target.front().global_position - global_position).length()
-		var test = Bullet.instance()
+		var test = Attack.instance()
 		var _time = (distance / (test.get_speed()))
 		test.free()
 		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
@@ -89,7 +89,7 @@ func _on_DetectRadius_body_exited(body):
 func shoot():	
 	$GunCooldown.start()
 	can_shoot = false
-	var b = Bullet.instance()		
+	var b = Attack.instance()		
 	if runes:		
 		b.set_runes(runes, self)
 	emit_signal('shoot', b, global_position, Vector2(1, 0).rotated($Body.global_rotation), self)

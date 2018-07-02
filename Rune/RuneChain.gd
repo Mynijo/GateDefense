@@ -12,11 +12,11 @@ var first = false
 
 func _init():
 	$Tags.add_tag($Tags.e_rune.enemy_was_hit)
-	$Tags.add_tag($Tags.e_rune.effect_bullet)
-	$Tags.add_tag($Tags.e_rune.init_bullet)
+	$Tags.add_tag($Tags.e_rune.effect_attack)
+	$Tags.add_tag($Tags.e_rune.init_attack)
 	
 func effect(_obj, _tag):
-	if _tag == $Tags.e_rune.init_bullet:
+	if _tag == $Tags.e_rune.init_attack:
 		sort_Obj(_obj)
 	if _tag == $Tags.e_rune.enemy_was_hit:
 		target_hits.append(_obj)
@@ -48,17 +48,17 @@ func chain():
 			if closestTaget == null:
 				closestTaget = x
 			else:
-				if (x.global_position - bullet.global_position).length() < (closestTaget.global_position - bullet.global_position).length():
+				if (x.global_position - attack.global_position).length() < (closestTaget.global_position - attack.global_position).length():
 					closestTaget = x
 	
 	if closestTaget:
-		var distance = (closestTaget.global_position - bullet.global_position).length()
-		var _time = (distance / bullet.get_speed())
+		var distance = (closestTaget.global_position - attack.global_position).length()
+		var _time = (distance / attack.get_speed())
 		var predicted_position = closestTaget.global_position + (closestTaget.get_velocity() * _time)
 		
-		var dir = (predicted_position - bullet.global_position).normalized()
-		bullet.rotation = dir.angle()
-		bullet.velocity = dir * bullet.get_speed()
+		var dir = (predicted_position - attack.global_position).normalized()
+		attack.rotation = dir.angle()
+		attack.velocity = dir * attack.get_speed()
 	else:
 		continue_ = true
 		return continue_
@@ -69,8 +69,8 @@ func chain():
 	
 func find_targets():
 	target.clear()
-	var enemys = bullet.get_tree().get_nodes_in_group("enemys")
+	var enemys = attack.get_tree().get_nodes_in_group("enemys")
 	for e in enemys:
 		if !target_hits.has(e):
-			if  bullet.global_position.distance_to(e.global_position) <= detect_distance:
+			if  attack.global_position.distance_to(e.global_position) <= detect_distance:
 				target.append(e)

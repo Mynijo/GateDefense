@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Attack/StationaryAttack.gd" type="Script" id=1]
+[ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=2]
+
+[node name="StationaryAttack" type="Area2D" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+speed = null
+damage = null
+lifetime = null
+crit_chance = null
+
+[node name="Lifetime" type="Timer" parent="." index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="Tags" parent="." index="1" instance=ExtResource( 2 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+[node name="Sprite" type="Sprite" parent="." index="3"]
+
+

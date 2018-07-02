@@ -12,31 +12,25 @@ var crit_chance_effected
 
 var velocity = Vector2()
 var runes = []
-var runes_screen = []
-
-var explose_after_hit = []
-var explose = []
 
 var tower
 
-func start(_position, _direction, _tower):
+func spwan(_position, _tower):
 	position = _position
-	rotation = _direction.angle()
 	$Lifetime.wait_time = get_lifetime()
-	velocity = _direction * get_speed()
 	$Lifetime.start()
 	tower = _tower
 
 func _process(delta):
 	for r in runes:
-		if r.has_tag($Tags.e_rune.fly_animation):			
-			r.effect(self, $Tags.e_rune.fly_animation)
+		if r.has_tag($Tags.e_rune.process_animation):			
+			r.effect(self, $Tags.e_rune.process_animation)
 			
 	position += velocity * delta
 	
 	for r in runes:
-		if r.has_tag($Tags.e_rune.whlie_flying):			
-			if !r.effect(self, $Tags.e_rune.whlie_flying):
+		if r.has_tag($Tags.e_rune.whlie_processing):			
+			if !r.effect(self, $Tags.e_rune.whlie_processing):
 				return
 	
 
@@ -48,7 +42,7 @@ func explode():
 				return
 	queue_free()
 	
-func _on_Bullet_body_entered(body):
+func _on_Attack_body_entered(body):
 	if body.has_method('take_damage'):
 		body.take_damage(calcDmg(body))
 		for r in runes:
@@ -76,18 +70,6 @@ func calcDmg(_body):
 	return dmg		
 
 
-func set_explose_after_hit(_who, _flag):
-	if _flag:
-		explose_after_hit.erase(_who)
-	else:
-		explose_after_hit.append(_who)
-
-func set_explose(_who, _flag):
-	if _flag:
-		explose.erase(_who)
-	else:
-		explose.append(_who)
-
 func set_runes(_runes, _tower):
 	var rune
 	for r in _runes:
@@ -100,10 +82,10 @@ func set_runes(_runes, _tower):
 
 func init_runes():
 	for r in runes:		
-		if r.has_tag($Tags.e_rune.init_bullet):
-			r.effect(self, $Tags.e_rune.init_bullet)
-		if r.has_tag($Tags.e_rune.effect_bullet):
-			r.effect(self, $Tags.e_rune.effect_bullet)
+		if r.has_tag($Tags.e_rune.init_attack):
+			r.effect(self, $Tags.e_rune.init_attack)
+		if r.has_tag($Tags.e_rune.effect_attack):
+			r.effect(self, $Tags.e_rune.effect_attack)
 
 func get_lifetime():
 	if lifetime_effected:
@@ -133,6 +115,6 @@ func get_crit_chance():
 func effect_crit_chance(_crit_chance):
 	crit_chance_effected = _crit_chance
 
-func is_Bullet():
+func is_Attack():
 	return true
 

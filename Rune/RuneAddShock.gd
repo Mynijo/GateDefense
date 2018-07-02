@@ -3,8 +3,8 @@ extends "res://Rune/RuneEffect.gd"
 export (PackedScene) var status
 
 func _init():
-	$Tags.add_tag($Tags.e_rune.effect_bullet)
-	$Tags.add_tag($Tags.e_rune.init_bullet)
+	$Tags.add_tag($Tags.e_rune.effect_attack)
+	$Tags.add_tag($Tags.e_rune.init_attack)
 	$Tags.add_tag($Tags.e_rune.enemy_was_dmg)
 
 func effect(_obj, _tag):

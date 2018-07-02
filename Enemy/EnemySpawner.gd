@@ -27,7 +27,7 @@ func _process(delta):
 			e.add_to_group('enemys')
 			add_child(e)
 			var pos = Vector2(0,0)
-			pos.x = global_position.x #+ rand_range(0,100) 
+			pos.x = global_position.x + rand_range(0,100) 
 			pos.y = rand_range(0,640)
 			#upgrade_mob(e)
 			e.spawn(pos)

@@ -54,7 +54,8 @@ func die():
 		if x.has_tag($Tags.e_effect.cast_on_death):
 			x.effekt(0,$Tags.e_effect.cast_on_death)
 	get_parent().player.add_money(gold_value)
-	last_tower_hit.add_exp(experience)
+	if last_tower_hit:
+		last_tower_hit.add_exp(experience)
 	dead()
 		
 func dead():

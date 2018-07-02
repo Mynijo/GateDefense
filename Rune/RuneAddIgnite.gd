@@ -3,9 +3,9 @@ extends "res://Rune/RuneEffect.gd"
 export (PackedScene) var status
 
 func _init():
-	$Tags.add_tag($Tags.e_rune.effect_bullet)
-	$Tags.add_tag($Tags.e_rune.init_bullet)
-	$Tags.add_tag($Tags.e_rune.fly_animation)
+	$Tags.add_tag($Tags.e_rune.effect_attack)
+	$Tags.add_tag($Tags.e_rune.init_attack)
+	$Tags.add_tag($Tags.e_rune.process_animation)
 	$Tags.add_tag($Tags.e_rune.enemy_was_dmg)
 
 func effect(_obj, _tag):
@@ -14,7 +14,7 @@ func effect(_obj, _tag):
 			var s = status.instance()
 			s.add_tag($Tags.e_effect.dont_stack)
 			_obj.add_Status(s)
-	if _tag == $Tags.e_rune.fly_animation:
+	if _tag == $Tags.e_rune.process_animation:
 		$Animation.global_position = _obj.global_position
 		$Animation.show()
-		$Animation.play("bullet_on_fire")
+		$Animation.play("attack_on_fire")

@@ -1,7 +1,7 @@
 extends "res://effects/StatusEffect.gd"
 
 
-export (PackedScene) var bullet
+export (PackedScene) var attack
 var first_time = true
 
 signal shoot
@@ -43,15 +43,15 @@ func shoot():
 	
 	for x in range(0,6):
 		dir = Vector2(1, 0).rotated(x)
-		b = bullet.instance()
+		b = attack.instance()
 		runnes.clear()
 		runnes.append( RuneAddSlow.instance())
 		b.get_node("Sprite").texture = $Ice.texture
 		b.get_node("Sprite").region_enabled  = false
 		b.set_runes(runnes, null)
-		b.runes[0].remove_tag($Tags.e_rune.fly_animation)
+		b.runes[0].remove_tag($Tags.e_rune.process_animation)
 		b.effect_lifetime(0.4) 
 		b.effect_speed(b.get_speed()/2)
-		emit_signal('shoot', b, get_parent().global_position, dir)
+		emit_signal('shoot', b, get_parent().global_position, dir,get_parent().last_tower_hit)
 		for r in runnes:
 			r.queue_free()

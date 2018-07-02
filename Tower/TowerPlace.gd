@@ -1,9 +1,9 @@
 extends Node2D
 export (PackedScene) var tower
 export (PackedScene) var player
-export (PackedScene) var bullet = preload("res://Bullet/Bullet.tscn")
+export (PackedScene) var attack = preload("res://Attack/Projectile.tscn")
 
-var bulletIndex = 0
+var attackIndex = 0
 var accTower
 
 var runes_screen = []
@@ -18,7 +18,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 					return
 				player.add_money(-50)
 				accTower = tower.instance()
-				accTower.Bullet = bullet
+				accTower.Attack = attack
 				add_child(accTower)
 				accTower.spawn(position.normalized())
 

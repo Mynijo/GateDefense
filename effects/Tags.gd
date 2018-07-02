@@ -7,11 +7,11 @@ enum e_rune{
 	explode,
 	enemy_was_crit,
 	effect_tower,
-	effect_bullet,
-	init_bullet,
+	effect_attack,
+	init_attack,
 	init_tower,
-	whlie_flying,
-	fly_animation
+	whlie_processing,
+	process_animation
 }
 
 enum e_effect{

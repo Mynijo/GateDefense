@@ -19,9 +19,9 @@ func effect(_obj, _tag):
 		shoot(_obj, -temp_scatter)
 	
 func shoot(_obj, _scatter):
-	var _bullet = tower.Bullet.instance()	
+	var _attack = tower.Attack.instance()	
 	if tower.runes:
-		_bullet.set_runes(tower.runes, tower)
+		_attack.set_runes(tower.runes, tower)
 	var temp = tower.get_node("Body").rotation + _scatter
-	emit_signal("shoot", _bullet, tower.global_position, Vector2(1, 0).rotated(temp), tower)
+	emit_signal("shoot", _attack, tower.global_position, Vector2(1, 0).rotated(temp), tower)
 	

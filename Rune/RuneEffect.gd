@@ -1,6 +1,6 @@
 extends Node
 
-var bullet
+var attack
 var tower
 	
 func effect(_obj, _tag):
@@ -24,7 +24,7 @@ func sort_Obj(_obj):
 			if _obj.has_method('is_Tower'):
 				tower = _obj
 				return
-		if !bullet:
-			if _obj.has_method('is_Bullet'):
-				bullet = _obj
+		if !attack:
+			if _obj.has_method('is_Attack'):
+				attack = _obj
 				return
