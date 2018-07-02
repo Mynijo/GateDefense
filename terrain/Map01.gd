@@ -14,6 +14,10 @@ func _on_Tower_shoot(attack, _position, _direction, _tower):
 func _on_spawn_rune(rune, _position):
 	add_child(rune)
 	rune.rect_position = _position
+	
+func _on_spawn_attack(_attack, _position,_tower):
+	add_child(_attack)
+	_attack.spwan(_position,_tower)
 
 func _on_MapBoarder_area_entered(area):
 	if area.has_method('explode'):

@@ -15,5 +15,5 @@ func _ready():
             ts.create_tile(id)
             ts.tile_set_texture(id, texture)
             ts.tile_set_region(id, region)
-    ResourceSaver.save("res://terrain/terrain_tiles.tres", ts)
+    ResourceSaver.save("res://terrain/lightning_explosion.tres", ts)
 

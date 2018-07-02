@@ -1,6 +1,6 @@
 extends "res://effects/StatusEffect.gd"
 
-
+signal spawn_bomb
 
 export (float) var iniDamage
 export (float) var explodeDamage
@@ -22,17 +22,21 @@ func effekt(value, tag):
 		$Tags.remove_tag($Tags.e_effect.health)
 		return value - iniDamage
 	if tag == $Tags.e_effect.cast_on_death:
-		for t in find_targets(get_parent()):
-			if t.has_method('add_Status'):
-				var s = self.duplicate(DUPLICATE_USE_INSTANCING)
-				s.iniDamage = explodeDamage
-				t.add_Status(s)
+		self.connect("spawn_bomb", self.get_tree().get_current_scene(), "_on_spawn_attack")
+		var RuneAddShock = load("res://Rune/RuneAddShock.tscn").instance()
+		var bomb = load ("res://Attack/StationaryBomb.tscn").instance()
+		bomb.effect_damage(explodeDamage)
+		bomb.set_explode_radius(explodeRadius)
+		bomb.set_runes([RuneAddShock], null)
+		bomb.effect_lifetime(0) 
+		bomb.set_explode_animation_scale( Vector2(3,3))
+		bomb.set_explode_animation_frames($Animation.frames)
+		emit_signal('spawn_bomb', bomb, get_parent().global_position, get_parent().last_tower_hit)
 	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position
 		$Animation.show()
 		$Animation.play("shock")
 		return
-			
 	return value
 		
 	

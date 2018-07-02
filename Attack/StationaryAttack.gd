@@ -17,6 +17,8 @@ var tower
 
 func spwan(_position, _tower):
 	position = _position
+	if !get_lifetime():
+		lifetime_effected = 0.1
 	$Lifetime.wait_time = get_lifetime()
 	$Lifetime.start()
 	tower = _tower
@@ -62,11 +64,6 @@ func _on_Lifetime_timeout():
 
 func calcDmg(_body):
 	var dmg = get_damage()
-	if rand_range(0, 100) < get_crit_chance():
-		dmg *= 2
-		for r in runes:
-			if r.has_tag($Tags.e_rune.enemy_was_crit):
-				r.effect(_body, $Tags.e_rune.enemy_was_crit)
 	return dmg		
 
 
@@ -108,12 +105,6 @@ func get_damage():
 func effect_damage(_damage):
 	damage_effected = _damage
 
-func get_crit_chance():
-	if crit_chance_effected:
-		return crit_chance_effected
-	return crit_chance
-func effect_crit_chance(_crit_chance):
-	crit_chance_effected = _crit_chance
 
 func is_Attack():
 	return true

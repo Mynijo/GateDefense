@@ -31,4 +31,6 @@ autostart = false
 
 [node name="Sprite" type="Sprite" parent="." index="3"]
 
+[connection signal="timeout" from="Lifetime" to="." method="_on_Lifetime_timeout"]
+
 
