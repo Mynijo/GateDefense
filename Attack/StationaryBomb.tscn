@@ -10,7 +10,14 @@ radius = 10.0
 
 [node name="StationaryBomb" index="0" instance=ExtResource( 1 )]
 
+collision_layer = 2
+collision_mask = 4
 script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="Lifetime" parent="." index="0"]
+
+one_shot = true
 
 [node name="CollisionShape2D" parent="." index="2"]
 
