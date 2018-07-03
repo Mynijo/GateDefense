@@ -8,7 +8,8 @@ export (float) var lifetime
 var lifetime_effected
 export (float) var crit_chance
 var crit_chance_effected
-
+export (float) var direction
+var direction_effected
 
 var velocity = Vector2()
 var runes = []
@@ -17,9 +18,10 @@ var tower
 
 func start(_position, _direction, _tower):
 	position = _position
-	rotation = _direction.angle()
+	direction = _direction
+	rotation = get_direction().angle()
 	$Lifetime.wait_time = get_lifetime()
-	velocity = _direction * get_speed()
+	velocity = get_direction() * get_speed()
 	$Lifetime.start()
 	tower = _tower
 
@@ -32,7 +34,7 @@ func _process(delta):
 	
 	for r in runes:
 		if r.has_tag($Tags.e_rune.whlie_processing):			
-			if !r.effect(self, $Tags.e_rune.whlie_processing):
+			if !r.effect(delta, $Tags.e_rune.whlie_processing):
 				return
 	
 
@@ -72,13 +74,13 @@ func calcDmg(_body):
 	return dmg		
 
 
-func set_runes(_runes, _tower):
+func set_runes(_runes, _attack):
 	var rune
 	for r in _runes:
 		rune = r.duplicate(DUPLICATE_USE_INSTANCING)
 		add_child(rune)
 		if rune.has_tag($Tags.e_rune.init_tower):
-			rune.effect(_tower, $Tags.e_rune.init_tower)
+			rune.effect(_attack, $Tags.e_rune.init_tower)
 		runes.append(rune)
 	init_runes()
 
@@ -102,6 +104,16 @@ func get_speed():
 	return speed
 func effect_speed(_speed):
 	speed_effected = _speed
+
+func get_direction():
+	if direction_effected:
+	 return direction_effected
+	return direction
+func effect_direction(_direction):
+	rotation = _direction.angle()
+	direction_effected = _direction
+	velocity = _direction * get_speed()
+
 
 func get_damage():
 	if damage_effected:

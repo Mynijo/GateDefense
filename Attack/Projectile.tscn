@@ -26,6 +26,7 @@ speed = 500
 damage = 25.0
 lifetime = 5.0
 crit_chance = 5.0
+direction = 0.0
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

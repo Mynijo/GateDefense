@@ -16,7 +16,7 @@ filter_clip = false
 
 hint_tooltip = "Boomerang"
 texture = SubResource( 1 )
-_sections_unfolded = [ "Hint", "Mouse", "Size Flags" ]
+_sections_unfolded = [ "Hint", "Mouse", "Rect", "Size Flags" ]
 rune = ExtResource( 3 )
 
 

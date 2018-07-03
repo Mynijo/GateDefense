@@ -16,9 +16,9 @@
 
 animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": true,
+"loop": false,
 "name": "explosion",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
@@ -39,5 +39,6 @@ explodeRadius = 100.0
 
 frames = SubResource( 1 )
 animation = "shock"
+_sections_unfolded = [ "Transform" ]
 
 
