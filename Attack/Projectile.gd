@@ -74,13 +74,13 @@ func calcDmg(_body):
 	return dmg		
 
 
-func set_runes(_runes, _attack):
+func set_runes(_runes, _tower):
 	var rune
 	for r in _runes:
 		rune = r.duplicate(DUPLICATE_USE_INSTANCING)
 		add_child(rune)
 		if rune.has_tag($Tags.e_rune.init_tower):
-			rune.effect(_attack, $Tags.e_rune.init_tower)
+			rune.effect(_tower, $Tags.e_rune.init_tower)
 		runes.append(rune)
 	init_runes()
 

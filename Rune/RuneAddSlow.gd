@@ -9,6 +9,8 @@ func _init():
 	$Tags.add_tag($Tags.e_rune.process_animation)
 
 func effect(_obj, _tag):
+	if _tag == $Tags.e_rune.init_attack:
+		sort_Obj(_obj)
 	if _tag == $Tags.e_rune.enemy_was_dmg:
 		if _obj.has_method('add_Status'):
 			var s = status.instance()

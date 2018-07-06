@@ -38,9 +38,9 @@ func _process(delta):
 	if target.size() != 0:
 		order_by(e_rule.closest_first)
 		var distance = (target.front().global_position - global_position).length()
-		var test = Attack.instance()
-		var _time = (distance / (test.get_speed()))
-		test.free()
+		var attack = Attack.instance()
+		var _time = (distance / (attack.get_speed()))
+		attack.free()
 		var predicted_position = target.front().global_position + (target[0].get_velocity() * _time)
 		
 		if predicted_position.x < global_position.x:
@@ -149,6 +149,7 @@ func _on_Tower_input_event(viewport, event, shape_idx):
 		get_child(5).show()
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == BUTTON_RIGHT:
 		get_child(5).hide() 
+
 
 func add_exp(_exp):
 	experience += _exp

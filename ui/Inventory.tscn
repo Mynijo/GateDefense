@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://ui/RuneSlots.tscn" type="PackedScene" id=1]
 [ext_resource path="res://ui/Inventory.gd" type="Script" id=2]
@@ -18,6 +18,8 @@
 [ext_resource path="res://ui/RuneStones/RuneStoneTornadoShot.tscn" type="PackedScene" id=16]
 [ext_resource path="res://ui/RuneStones/RuneStoneCharme.tscn" type="PackedScene" id=17]
 [ext_resource path="res://ui/RuneStones/RuneStoneBurst.tscn" type="PackedScene" id=18]
+[ext_resource path="res://ui/RuneStones/RuneStoneFollowing.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Rune/RuneFollowing.tscn" type="PackedScene" id=20]
 
 [node name="RuneSlots" index="0" instance=ExtResource( 1 )]
 
@@ -61,6 +63,7 @@ margin_bottom = 60.0
 
 margin_right = 54.0
 margin_bottom = 59.0
+_sections_unfolded = [ "Hint", "Mouse", "Size Flags" ]
 
 [node name="RuneSlot7" parent="." index="6" instance=ExtResource( 9 )]
 
@@ -139,5 +142,14 @@ margin_left = 812.0
 margin_right = 866.0
 
 [node name="RuneStoneBurst" parent="RuneSlot15" index="0" instance=ExtResource( 18 )]
+
+[node name="RuneSlot16" parent="." index="15" instance=ExtResource( 9 )]
+
+margin_left = 870.0
+margin_right = 924.0
+
+[node name="RuneStoneFollowing" parent="RuneSlot16" index="0" instance=ExtResource( 19 )]
+
+rune = ExtResource( 20 )
 
 

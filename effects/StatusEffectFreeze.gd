@@ -47,12 +47,12 @@ func shoot():
 		b = attack.instance()
 		runnes.clear()
 		runnes.append( RuneAddSlow.instance())
-		#runnes.append( RuneWhirl.instance())		
+		runnes.append( RuneWhirl.instance())		
 		b.get_node("Sprite").texture = $Ice.texture
 		b.get_node("Sprite").region_enabled  = false
 		b.set_runes(runnes, b)
 		b.runes[0].remove_tag($Tags.e_rune.process_animation)
-		b.effect_lifetime(1) 
+		b.effect_lifetime(2) 
 		b.effect_speed(b.get_speed()/2)
 		emit_signal('shoot', b, get_parent().global_position, dir,get_parent().last_tower_hit)
 		for r in runnes:
