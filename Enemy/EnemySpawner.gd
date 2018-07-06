@@ -15,15 +15,20 @@ var ready = true
 func _ready():
 	enemys.append(load("res://Enemy/EnemyBlue.tscn"))
 	enemys.append(load("res://Enemy/EnemyTank.tscn"))
+	enemys.append(load("res://Enemy/EnemyShieldBoss.tscn"))
 	$SpawnTimer.wait_time = 1
 	$SpawnTimer.start()
 
 
 func _process(delta):	
 	if !wave_end and ready:
+		if wave_progress >= wave * wave_size_multi:
+			wave_end = true
 		ready = false
 		for i in range(wave * 2):
 			var e = enemys[i%2].instance()
+			if i == 0 and wave_end:
+				e = enemys[2].instance()
 			e.add_to_group('enemys')
 			add_child(e)
 			var pos = Vector2(0,0)
@@ -32,8 +37,7 @@ func _process(delta):
 			#upgrade_mob(e)
 			e.spawn(pos)
 			wave_progress += 1
-		if wave_progress >= wave * wave_size_multi:
-			wave_end = true
+		
 			
 	if wave_end and get_tree().get_nodes_in_group("enemys").size() <= 0:
 		player.wave_status("Wave Done")

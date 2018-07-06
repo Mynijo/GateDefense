@@ -16,7 +16,6 @@ var tags
 var dead = false
 
 var velocity = Vector2()
-var alive = true
 
 func _ready():
 		pass
@@ -63,7 +62,7 @@ func dead():
 	queue_free()
 	
 func _physics_process(delta):
-		if not alive:
+		if dead:
 			return
 		control(delta)
 		move_and_slide(velocity)
