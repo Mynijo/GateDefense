@@ -87,6 +87,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -94,6 +95,7 @@ group = null
 text = "NextWave"
 flat = false
 align = 1
+_sections_unfolded = [ "Theme" ]
 
 [connection signal="pressed" from="PrintStray" to="." method="_on_PrintStray_pressed"]
 

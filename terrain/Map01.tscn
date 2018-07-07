@@ -75,7 +75,6 @@ polygon = PoolVector2Array( -0.352493, -71.4067, 0.123161, -1.59761, 1396.02, 0.
 
 [node name="ViewportContainer" type="ViewportContainer" parent="." index="7"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
