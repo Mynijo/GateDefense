@@ -26,9 +26,11 @@ func _process(delta):
 			wave_end = true
 		ready = false
 		for i in range(wave * 2):
-			var e = enemys[i%2].instance()
+			var e
 			if i == 0 and wave_end:
 				e = enemys[2].instance()
+			else:
+				e = enemys[i%2].instance()
 			e.add_to_group('enemys')
 			add_child(e)
 			var pos = Vector2(0,0)

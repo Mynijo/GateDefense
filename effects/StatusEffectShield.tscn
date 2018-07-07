@@ -48,4 +48,6 @@ modulate = Color( 1, 1, 1, 0.588235 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 
+[connection signal="health_changed" from="." to="UnitDisplay" method="update_healthbar"]
+
 
