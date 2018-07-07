@@ -14,8 +14,6 @@ func _init():
 	$Tags.add_tag($Tags.e_effect.health)
 	$Tags.add_tag($Tags.e_effect.speed)
 	$Tags.add_tag($Tags.e_effect.animation)
-	
-
 
 
 func effekt(value, tag):
@@ -23,15 +21,15 @@ func effekt(value, tag):
 		if ready:
 			ready = false
 			$IgniteTicker.start()
-			return value - damage
+			return damage
+		return 0
 	if tag == $Tags.e_effect.speed:
 		return value * speed_inc
 	if tag == $Tags.e_effect.animation:
 		$Animation.global_position = value.global_position
 		$Animation.show()
 		$Animation.play("burn")
-		return
-		
+		return		
 	return value
 	
 func refresh(_obj):	

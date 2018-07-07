@@ -33,7 +33,7 @@ func control(delta):
 		if x.has_tag($Tags.e_effect.speed):
 			changed_speed = x.effekt(changed_speed, $Tags.e_effect.speed)
 		if x.has_tag($Tags.e_effect.health):
-			take_damage(-x.effekt(0, $Tags.e_effect.health))
+			take_damage(x.effekt(health, $Tags.e_effect.health))
 		if x.has_tag($Tags.e_effect.direction):
 			direction = x.effekt(direction, $Tags.e_effect.direction)
 	velocity = direction * changed_speed * delta * -100
@@ -45,9 +45,9 @@ func control(delta):
 		die()
 		
 func take_damage(damage):
-	if dead:
+	if dead or damage == null:
 		return	
-	health -= damage
+	health = health - damage
 	emit_signal('health_changed',health)	
 		
 func die():
