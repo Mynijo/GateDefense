@@ -16,7 +16,8 @@ func drop_data(position, data):
 	add_child(data)
 	emit_signal('slot_changed')
 func remove_rune(rune):
-	rune.get_parent().emit_signal('slot_changed')
-	rune.get_parent().remove_child(rune)
+	var parent = rune.get_parent()
+	parent.remove_child(rune)
+	parent.emit_signal('slot_changed')
 	#emit_signal('slot_changed')
 	
