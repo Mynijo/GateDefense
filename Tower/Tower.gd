@@ -80,7 +80,10 @@ func order_by(order_by):
 
 
 func _on_DetectRadius_body_entered(body):
-	target.append(body)
+	if body.has_method('is_Enemy'):
+		target.append(body)
+	else:
+		pass
 	
 
 func _on_DetectRadius_body_exited(body):

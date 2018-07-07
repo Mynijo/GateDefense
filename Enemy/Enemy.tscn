@@ -13,10 +13,10 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 speed = null
-health = null
 experience = null
 damage = null
 gold_value = 5
+max_health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

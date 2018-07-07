@@ -5,10 +5,11 @@ signal health_changed
 signal dead
 
 export (int) var speed
-export (int) var health
 export (int) var experience
 export (int) var damage
 export (int) var gold_value = 5
+export (int) var max_health
+var health
 
 var last_tower_hit = null
 var status_effecte = []
@@ -22,6 +23,7 @@ func _ready():
 		
 func spawn(_position):
 		global_position = _position
+		health = max_health
 
 
 func control(delta):
@@ -82,8 +84,14 @@ func add_Status(_status):
 	if !olny_Refresh:
 		add_child(_status)
 		status_effecte.append(_status)
+	
+	if _status.has_tag($Tags.e_effect.init):
+		_status.effekt(self, $Tags.e_effect.init)
 
 func remove_Status(_status):
 	status_effecte.erase(_status)
 	remove_child(_status)
 	_status.queue_free()
+
+func is_Enemy():
+	return true

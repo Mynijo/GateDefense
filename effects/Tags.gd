@@ -19,7 +19,7 @@ enum e_effect{
 	health,
 	dont_stack,
 	cast_on_death,
-	need_body,
+	init,
 	direction,
 	animation
 }

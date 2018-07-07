@@ -3,7 +3,7 @@ extends Node2D
 
 func _ready():
 	var parent = get_parent()
-	$HealthBar.max_value = parent.health
+	$HealthBar.max_value = parent.max_health
 	for node in get_children():
 		node.hide()
 	pass

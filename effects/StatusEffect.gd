@@ -3,7 +3,7 @@ extends Node
 export (float) var duration
 	
 func _ready():
-	if duration != 0:
+	if duration != 0 and duration != null:
 		$Duration.wait_time = duration
 		$Duration.start()
 

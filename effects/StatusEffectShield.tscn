@@ -1,0 +1,51 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://effects/StatusEffectShield.gd" type="Script" id=1]
+[ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ui/UnitDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://media/effects/Shield.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 130.0
+height = 0.0
+
+[node name="StatusEffectShield" type="KinematicBody2D" index="0"]
+
+input_pickable = false
+collision_layer = 4
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision", "Pickable", "Transform" ]
+duration = null
+max_health = 1000
+
+[node name="Tags" parent="." index="0" instance=ExtResource( 2 )]
+
+[node name="Duration" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[node name="UnitDisplay" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 0, -75 )
+scale = Vector2( 1, 1 )
+
+[node name="Shield" type="CollisionShape2D" parent="." index="3"]
+
+modulate = Color( 1, 1, 1, 0.784314 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="Sprite" type="Sprite" parent="." index="4"]
+
+modulate = Color( 1, 1, 1, 0.588235 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+
+

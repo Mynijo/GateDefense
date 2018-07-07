@@ -12,9 +12,9 @@ height = 20.0
 [node name="EnemyTank" index="0" instance=ExtResource( 1 )]
 
 speed = 20
-health = 500
 experience = 7
 damage = 10
+max_health = 500
 
 [node name="CollisionShape2D" parent="." index="0"]
 
