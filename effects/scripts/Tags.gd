@@ -21,7 +21,9 @@ enum e_effect{
 	cast_on_death,
 	init,
 	direction,
-	animation
+	animation,
+	debuff,
+	buff
 }
 
 var tags = []

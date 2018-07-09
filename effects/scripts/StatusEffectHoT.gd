@@ -11,6 +11,7 @@ func _ready():
 
 func _init():
 	$Tags.add_tag($Tags.e_effect.health)
+	$Tags.add_tag($Tags.e_effect.buff)
 
 
 func effekt(value, tag):

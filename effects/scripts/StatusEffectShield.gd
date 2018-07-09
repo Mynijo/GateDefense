@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffect.gd"
+extends "res://effects/scripts/StatusEffect.gd"
 
 signal health_changed
 export (int) var max_health
@@ -6,8 +6,10 @@ var health
 
 func _ready():
 	health = max_health
-
 	
+func _init():
+	$Tags.add_tag($Tags.e_effect.buff)
+		
 func take_damage(damage):
 	if damage == null:
 		return	

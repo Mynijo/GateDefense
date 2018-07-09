@@ -2,6 +2,7 @@ extends "res://Rune/RuneEffect.gd"
 
 func _init():
 	$Tags.add_tag($Tags.e_rune.init_tower)
+	$Tags.add_tag($Tags.e_rune.enemy_was_dmg)
 	$Tags.add_tag($Tags.e_rune.whlie_processing)
 	$Tags.add_tag($Tags.e_rune.init_attack)
 	
@@ -18,6 +19,8 @@ func effect(_obj, _tag):
 			return
 	if _tag == $Tags.e_rune.init_tower:
 		sort_Obj(_obj)
+	if _tag == $Tags.e_rune.enemy_was_dmg:
+		$Tags.remove_tag($Tags.e_rune.whlie_processing)
 	if _tag == $Tags.e_rune.whlie_processing:
 		if !wr_target.get_ref():
 			#$Tags.remove_tag($Tags.e_rune.whlie_processing)

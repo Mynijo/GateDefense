@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffect.gd"
+extends "res://effects/scripts/StatusEffect.gd"
 
 export (float) var push_rate
 export (PackedScene) var status
@@ -8,6 +8,7 @@ var dir
 func _init():
 	$Tags.add_tag($Tags.e_effect.speed)
 	$Tags.add_tag($Tags.e_effect.direction)
+	$Tags.add_tag($Tags.e_effect.debuff)
 	
 	
 func effekt(value, tag):

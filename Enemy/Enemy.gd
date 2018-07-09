@@ -12,7 +12,6 @@ export (int) var max_health
 var health
 
 var last_tower_hit = null
-var status_effecte = []
 var tags
 var dead = false
 
@@ -29,18 +28,18 @@ func spawn(_position):
 func control(delta):
 	var direction = Vector2(1, 0)
 	var changed_speed = speed
-	for x in status_effecte:
-		if x.has_tag($Tags.e_effect.speed):
-			changed_speed = x.effekt(changed_speed, $Tags.e_effect.speed)
-		if x.has_tag($Tags.e_effect.health):
-			take_damage(x.effekt(health, $Tags.e_effect.health))
-		if x.has_tag($Tags.e_effect.direction):
-			direction = x.effekt(direction, $Tags.e_effect.direction)
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.speed):
+		changed_speed = x.effekt(changed_speed, $Tags.e_effect.speed)
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.health):
+		take_damage(x.effekt(health, $Tags.e_effect.health))
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
+		direction = x.effekt(direction, $Tags.e_effect.direction)
+
 	velocity = direction * changed_speed * delta * -100
 	
-	for x in status_effecte:
-		if x.has_tag($Tags.e_effect.animation):
-			x.effekt(self, $Tags.e_effect.animation)
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
+		x.effekt(self, $Tags.e_effect.animation)
+			
 	if health <= 0:
 		die()
 		
@@ -51,9 +50,9 @@ func take_damage(damage):
 	emit_signal('health_changed',health)	
 		
 func die():
-	for x in status_effecte:
-		if x.has_tag($Tags.e_effect.cast_on_death):
-			x.effekt(0,$Tags.e_effect.cast_on_death)
+	for x in $StatusEffects.get_Status_list($Tags.e_effect.cast_on_death):
+			x.effekt(self,$Tags.e_effect.cast_on_death)
+			
 	get_parent().player.add_money(gold_value)
 	if last_tower_hit:
 		last_tower_hit.add_exp(experience)
@@ -72,26 +71,17 @@ func _physics_process(delta):
 func get_velocity():
 	return velocity
 	
-func add_Status(_status):
-	var olny_Refresh = false
-	if _status.has_tag($Tags.e_effect.dont_stack):
-		for x in status_effecte:
-			if x.name.is_subsequence_of(_status.name):
-				x.refresh(_status) 
-				_status.queue_free()
-				olny_Refresh = true
-	
-	if !olny_Refresh:
-		add_child(_status)
-		status_effecte.append(_status)
+func add_Status(_status):	
+	$StatusEffects.add_Status(_status)
 	
 	if _status.has_tag($Tags.e_effect.init):
 		_status.effekt(self, $Tags.e_effect.init)
 
 func remove_Status(_status):
-	status_effecte.erase(_status)
-	remove_child(_status)
-	_status.queue_free()
+	$StatusEffects.remove_Status(_status)
+
+func get_StatusEffects(_tag = null):
+	return  $StatusEffects.get_Status_list(_tag)
 
 func is_Enemy():
 	return true

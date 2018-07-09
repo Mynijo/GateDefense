@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffect.gd"
+extends "res://effects/scripts/StatusEffect.gd"
 
 
 export (PackedScene) var attack
@@ -12,12 +12,14 @@ func _init():
 	$Tags.add_tag($Tags.e_effect.cast_on_death)
 	$Tags.add_tag($Tags.e_effect.animation)
 	$Tags.add_tag($Tags.e_effect.dont_stack)
-	
+	$Tags.add_tag($Tags.e_effect.debuff)	
+	$Tags.add_tag($Tags.e_effect.init)
 	
 func effekt(value, tag):
+	if tag == $Tags.e_effect.init:
+		parent = value
 	if first_time:
-		first_time = false
-		
+		first_time = false		
 	if tag == $Tags.e_effect.speed:
 		return 0
 	if tag == $Tags.e_effect.cast_on_death:		
@@ -54,6 +56,6 @@ func shoot():
 		b.runes[0].remove_tag($Tags.e_rune.process_animation)
 		b.effect_lifetime(2) 
 		b.effect_speed(b.get_speed()/2)
-		emit_signal('shoot', b, get_parent().global_position, dir,get_parent().last_tower_hit)
+		emit_signal('shoot', b, parent.global_position, dir,parent.last_tower_hit)
 		for r in runnes:
 			r.queue_free()

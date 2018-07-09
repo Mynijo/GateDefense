@@ -1,7 +1,8 @@
 extends Node
 
 export (float) var duration
-	
+var parent
+
 func _ready():
 	if duration != 0 and duration != null:
 		$Duration.wait_time = duration

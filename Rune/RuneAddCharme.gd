@@ -1,4 +1,4 @@
-extends "res://Rune/RuneEffect.gd"
+extends "res://effects/scripts/StatusEffect.gd"
 
 export (PackedScene) var status
 
