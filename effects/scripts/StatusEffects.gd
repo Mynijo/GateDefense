@@ -1,8 +1,6 @@
 extends Node
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+var saved_tags = []
 
 func _ready():
 	pass
@@ -40,3 +38,4 @@ func remove_Status(_status):
 		if _status.has_tag($Tags.e_effect.debuff):
 			$Debuffs.remove_child(_status)
 	_status.queue_free()
+	

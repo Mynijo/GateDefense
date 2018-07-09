@@ -5,16 +5,16 @@ export (float) var tick_rate
 
 var ready = true
 
-func _ready():
-	$Ticker.wait_time = tick_rate
-	$Ticker.start()
-
 func _init():
 	$Tags.add_tag($Tags.e_effect.health)
 	$Tags.add_tag($Tags.e_effect.buff)
-
-
+	$Tags.add_tag($Tags.e_effect.init)
+	
+	
 func effekt(value, tag):
+	if tag == $Tags.e_effect.init:
+		$Ticker.wait_time = tick_rate
+		$Ticker.start()
 	if tag == $Tags.e_effect.health:
 		if ready:
 			if  get_parent().health + healValue <= get_parent().max_health:

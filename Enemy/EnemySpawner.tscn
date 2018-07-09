@@ -11,13 +11,12 @@ region = Rect2( 320, 448, 64, 64 )
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = false
 
-[node name="EnemySpawner" type="Sprite" index="0"]
+[node name="EnemySpawner" type="Sprite"]
 
 texture = SubResource( 1 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform" ]
-wave = 0
-wave_size_multi = 5
+wave_counter = 0
 
 [node name="SpawnTimer" type="Timer" parent="." index="0"]
 

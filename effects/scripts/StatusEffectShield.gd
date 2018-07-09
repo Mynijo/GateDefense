@@ -4,13 +4,14 @@ signal health_changed
 export (int) var max_health
 var health
 
-func _ready():
-	health = max_health
-	
 func _init():
 	$Tags.add_tag($Tags.e_effect.buff)
-		
-func take_damage(damage):
+	$Tags.add_tag($Tags.e_effect.init)
+	
+	
+func effekt(value, tag):
+	if tag == $Tags.e_effect.init:
+		health = max_health
 	if damage == null:
 		return	
 	health = health - damage

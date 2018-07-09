@@ -6,18 +6,18 @@ export (float) var speed_inc
 
 var ready = true
 
-func _ready():
-	$IgniteTicker.wait_time = ignite_tick_rate
-	$IgniteTicker.start()
-
 func _init():
 	$Tags.add_tag($Tags.e_effect.health)
 	$Tags.add_tag($Tags.e_effect.speed)
 	$Tags.add_tag($Tags.e_effect.animation)
 	$Tags.add_tag($Tags.e_effect.debuff)
-
-
+	$Tags.add_tag($Tags.e_effect.init)
+	
+	
 func effekt(value, tag):
+	if tag == $Tags.e_effect.init:
+		$IgniteTicker.wait_time = ignite_tick_rate
+		$IgniteTicker.start()
 	if tag == $Tags.e_effect.health:
 		if ready:
 			ready = false
