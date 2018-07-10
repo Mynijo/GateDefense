@@ -6,6 +6,7 @@ var player
 
 var ready = false
 var waves = []
+var first = true
 
 func _ready():
 	load_waves()
@@ -13,7 +14,7 @@ func _ready():
 func load_waves():
 	waves.append(load("res://Enemy/Waves/Lvl01/Wave001.tscn").instance())
 	waves.append(load("res://Enemy/Waves/Lvl01/Wave002.tscn").instance())
-	waves.append(load("res://Enemy/Waves/Lvl01/Wave002.tscn").instance())
+	waves.append(load("res://Enemy/Waves/Lvl01/Wave003.tscn").instance())
 	
 	for w in waves:
 		add_child(w)
@@ -37,9 +38,10 @@ func _on_SpawnTimer_timeout():
 	ready = true
 	
 func next_wave():
-	if wave_counter == 0:
+	if first:
 		player.wave_changed(wave_counter +1)
 		player.wave_status("Wave Runing")
+		first = false
 		ready = true
 		return
 	if waves[wave_counter].counter >= waves[wave_counter].instance_list.size() and get_tree().get_nodes_in_group("enemys").size() <= 0:

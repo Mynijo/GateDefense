@@ -1,4 +1,4 @@
-extends "res://effects/StatusEffect.gd"
+extends "res://effects/scripts/StatusEffect.gd"
 
 export (int) var healValue
 export (float) var tick_rate
@@ -15,9 +15,10 @@ func effekt(value, tag):
 	if tag == $Tags.e_effect.init:
 		$Ticker.wait_time = tick_rate
 		$Ticker.start()
+		parent = value
 	if tag == $Tags.e_effect.health:
 		if ready:
-			if  get_parent().health + healValue <= get_parent().max_health:
+			if  parent.health + healValue <= parent.max_health:
 				ready = false
 				$Ticker.start()
 				$Ticker.wait_time = tick_rate

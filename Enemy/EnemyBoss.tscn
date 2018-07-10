@@ -9,7 +9,7 @@ custom_solver_bias = 0.0
 radius = 10.0
 height = 72.0811
 
-[node name="EnemyShieldBoss" index="0" instance=ExtResource( 1 )]
+[node name="EnemyBoss" index="0" instance=ExtResource( 1 )]
 
 _sections_unfolded = [ "Collision", "Transform" ]
 speed = 25

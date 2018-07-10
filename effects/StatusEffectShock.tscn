@@ -12,7 +12,6 @@
 [ext_resource path="res://media/effects/Shock02.png" type="Texture" id=10]
 [ext_resource path="res://media/effects/Shock03.png" type="Texture" id=11]
 
-
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {

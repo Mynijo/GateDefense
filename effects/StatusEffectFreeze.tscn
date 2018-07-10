@@ -6,9 +6,6 @@
 [ext_resource path="res://media/effects/SnowAttack.png" type="Texture" id=4]
 [ext_resource path="res://media/effects/freeze_effect.png" type="Texture" id=5]
 
-
-
-
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
@@ -22,7 +19,6 @@ animations = [ {
 
 script = ExtResource( 2 )
 duration = 2.0
-StatusEffektSlow = null
 attack = ExtResource( 3 )
 
 [node name="Ice" type="Sprite" parent="." index="1"]
