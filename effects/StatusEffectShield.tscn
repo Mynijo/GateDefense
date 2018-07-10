@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 radius = 65.262
 
-[node name="StatusEffectShield" index="0" instance=ExtResource( 1 )]
+[node name="StatusEffectShield" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 duration = null

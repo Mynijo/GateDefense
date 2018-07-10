@@ -12,7 +12,8 @@ func drop_data(position, data):
 	if(data.get_parent().has_method('remove_rune')):
 		remove_rune(data)
 	else:
-		data.get_parent().remove_child(data)	
+		data.get_parent().remove_child(data)
+	data.rect_position = Vector2(0,0)
 	add_child(data)
 	emit_signal('slot_changed')
 func remove_rune(rune):

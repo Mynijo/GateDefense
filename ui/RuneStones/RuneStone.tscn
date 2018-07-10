@@ -18,7 +18,7 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 stretch_mode = 0
 script = ExtResource( 1 )
-_sections_unfolded = [ "Mouse", "Size Flags" ]
+_sections_unfolded = [ "Mouse", "Rect", "Size Flags" ]
 rune = null
 
 
