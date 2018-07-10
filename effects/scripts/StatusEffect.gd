@@ -14,6 +14,7 @@ func _ready():
 	if duration != 0 and duration != null:
 		$Duration.wait_time = duration
 		$Duration.start()
+	parent = get_parent().get_parent().get_parent()
 	load_condition()
 			
 func _init():
@@ -62,19 +63,19 @@ func load_condition():
 			removed_tags.append(t)
 			$Tags.remove_tag(t)
 	for c in conditions:
-		if c == e_condition.at_life:
-			self.connect("health_changed",get_parent().get_parent().get_parent(), "parent_health_changed")
+		if c[0] == e_condition.at_life:
+			parent.connect("health_changed",self, "parent_health_changed")
 
-func parent_health_changed(_health):
+func parent_health_changed(_health):	
 	var value = (conditions[conditions.find(e_condition.at_life)])[1]
-	if get_parent().get_parent().get_parent() * value <= _health:
-		conditions.erase(e_condition.at_life)
+	if _health <= parent.max_health * value:
+		conditions.erase(conditions[conditions.find(e_condition.at_life)])
 		rewrite_tags()
-		self.disconnect("health_changed",get_parent().get_parent().get_parent(), "parent_health_changed")
+		parent.disconnect("health_changed",self, "parent_health_changed")
 		
 func rewrite_tags():
 	if conditions.empty():
-		for t in $Tags.get_tags():
+		for t in removed_tags:
 			if(t != $Tags.e_effect.init):
 				removed_tags.erase(t)
 				$Tags.add_tag(t)

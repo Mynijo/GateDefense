@@ -14,5 +14,3 @@ func update_healthbar(_value):
 	if _value < $HealthBar.max_value:
 		$HealthBar.show()
 	$HealthBar.value = _value
-
-

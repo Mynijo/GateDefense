@@ -3,7 +3,7 @@
 [ext_resource path="res://Enemy/Waves/Wave.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy/Waves/Lvl01/scripts/Wave003.gd" type="Script" id=2]
 
-[node name="Wave" index="0" instance=ExtResource( 1 )]
+[node name="Wave" instance=ExtResource( 1 )]
 
 script = ExtResource( 2 )
 

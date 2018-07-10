@@ -9,7 +9,7 @@ var counter = 0
 func _ready():
 	pass
 func _init():
-	build_instance_list()
+	pass
 
 func reward():
 	pass
@@ -19,6 +19,8 @@ func build_instance_list():
 	
 
 func get_next_instance():
+	if instance_list.empty():
+		build_instance_list()
 	if counter  >= instance_list.size():
 		return null
 	else:
