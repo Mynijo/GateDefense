@@ -22,3 +22,8 @@ func _on_spawn_attack(_attack, _position,_tower):
 func _on_MapBoarder_area_entered(area):
 	if area.has_method('explode'):
 		area.explode()
+
+func _on_Spawn_Enemy(_Enemy, _pos):
+	_Enemy.add_to_group('enemys')
+	add_child(_Enemy)
+	_Enemy.spawn(_pos)

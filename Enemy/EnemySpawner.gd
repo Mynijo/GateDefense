@@ -1,5 +1,6 @@
 extends Node2D
 
+signal Spawn_Enemy
 
 export (int) var wave_counter = 0
 var player
@@ -9,6 +10,7 @@ var waves = []
 var first = true
 
 func _ready():
+	self.connect("Spawn_Enemy", self.get_tree().get_current_scene(), "_on_Spawn_Enemy")
 	load_waves()
 
 func load_waves():
@@ -29,10 +31,9 @@ func _process(delta):
 			$SpawnTimer.wait_time =instance[1]
 			$SpawnTimer.start()
 			ready = false
-		var e = instance[0]
-		e.add_to_group('enemys')
-		add_child(e)
-		e.spawn(Vector2(global_position.x + rand_range(0,100) ,rand_range(0,640)))
+		var e = instance[0]	
+		var pos = Vector2(global_position.x + rand_range(0,100) ,rand_range(0,640))
+		emit_signal('Spawn_Enemy', e, pos)
 	
 func _on_SpawnTimer_timeout():
 	ready = true

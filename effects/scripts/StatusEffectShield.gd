@@ -26,6 +26,6 @@ func effekt(value, tag):
 		
 		$Shield.global_position = parent.global_position
 		
-func remove_Status(_status):
-	parent.remove_Status(_status)
+func remove_self():
+	parent.remove_Status(self)
 		

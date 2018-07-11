@@ -21,8 +21,8 @@ func _ready():
 		pass
 		
 func spawn(_position):
-		global_position = _position
-		health = max_health
+	global_position = _position
+	health = max_health
 
 
 func control(delta):
