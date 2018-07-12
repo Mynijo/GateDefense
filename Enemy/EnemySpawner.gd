@@ -1,7 +1,5 @@
 extends Node2D
 
-signal Spawn_Enemy
-
 export (int) var wave_counter = 0
 var player
 
@@ -17,7 +15,8 @@ func load_waves():
 	waves.append(load("res://Enemy/Waves/Lvl01/Wave001.tscn").instance())
 	waves.append(load("res://Enemy/Waves/Lvl01/Wave002.tscn").instance())
 	waves.append(load("res://Enemy/Waves/Lvl01/Wave003.tscn").instance())
-	
+	waves.append(load("res://Enemy/Waves/Lvl01/Wave004.tscn").instance())
+		
 	for w in waves:
 		add_child(w)
 		
@@ -33,7 +32,8 @@ func _process(delta):
 			ready = false
 		var e = instance[0]	
 		var pos = Vector2(global_position.x + rand_range(0,100) ,rand_range(0,640))
-		emit_signal('Spawn_Enemy', e, pos)
+		_on_Spawn_Enemy(e, pos)
+		
 	
 func _on_SpawnTimer_timeout():
 	ready = true
@@ -45,7 +45,7 @@ func next_wave():
 		first = false
 		ready = true
 		return
-	if waves[wave_counter].counter >= waves[wave_counter].instance_list.size() and get_tree().get_nodes_in_group("enemys").size() <= 0:
+	if  waves[wave_counter].counter >= waves[wave_counter].instance_list.size() and get_tree().get_nodes_in_group("enemys").size() <= 0:
 		if waves.size() > wave_counter:
 			wave_counter += 1
 			player.wave_changed(wave_counter +1)		
@@ -58,3 +58,8 @@ func next_wave():
 func set_player(_player):
 	player = _player
 	player.wave_changed(wave_counter)
+	
+func _on_Spawn_Enemy(_Enemy, _pos):
+	add_child(_Enemy)
+	_Enemy.add_to_group('enemys')	
+	_Enemy.spawn(_pos)

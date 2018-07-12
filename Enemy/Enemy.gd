@@ -15,6 +15,9 @@ var last_tower_hit = null
 var tags
 var dead = false
 
+var default_ftp = 1
+var default_speed = 0
+
 var velocity = Vector2()
 
 func _ready():
@@ -23,6 +26,9 @@ func _ready():
 func spawn(_position):
 	global_position = _position
 	health = max_health
+	$Animation.play("walk")
+	default_ftp = $Animation.frames.get_animation_speed('walk')
+	default_speed = speed
 
 
 func control(delta):
@@ -33,8 +39,16 @@ func control(delta):
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.health):
 		take_damage(x.effekt(health, $Tags.e_effect.health))
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
-		direction = x.effekt(direction, $Tags.e_effect.direction)
+		direction = x.effekt(direction, $Tags.e_effect.direction)	
 
+	if changed_speed == 0:
+		$Animation.frames.set_animation_speed('walk', 0)
+	else:
+		var fps =  default_ftp * (changed_speed / default_speed)
+		if fps < 1:
+			fps = 1
+		$Animation.frames.set_animation_speed('walk', fps)
+		
 	velocity = direction * changed_speed * delta * -100
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
