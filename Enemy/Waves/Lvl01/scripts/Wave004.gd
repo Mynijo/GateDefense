@@ -1,21 +1,12 @@
 extends "res://Enemy/Waves/Wave.gd"
 
 func build_instance_list():
-	var goblin = load("res://Enemy/Goblin.tscn")
-	var g = goblin.instance()
-	var status = load("res://effects/StatusEffectMiniMe.tscn").instance()
+	var goblin = "res://Enemy/Goblin.tscn"
+	var status = "res://effects/StatusEffectMiniMe.tscn"
 	
-	g.add_Status(status)
-	instance_list.append([g, 1])
-	instance_list.append([goblin.instance(),5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
-	instance_list.append([goblin.instance(), 5])
+	var test = JSON.print([[goblin,null],[[status,null]], 1, null])
+	var test2 = JSON.parse(test)
+
+	instance_list.append(test2.result)
+	
+	

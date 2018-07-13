@@ -16,7 +16,6 @@ func reward():
 	
 func build_instance_list():
 	pass
-	
 
 func get_next_instance():
 	if instance_list.empty():
@@ -25,4 +24,23 @@ func get_next_instance():
 		return null
 	else:
 		counter = counter + 1
-		return instance_list[counter - 1]
+		return get_instance(counter - 1)
+
+func get_instance(counter):
+	if counter  >= instance_list.size():
+		return null
+	var instance = instance_list[counter]
+	#Enemys
+	var enemy = load(instance[0][0]).instance()
+	enemy.load_settings(instance[0][1])
+	#Status
+	var status = null
+	for s in instance[1]:
+		status = load(s[0]).instance()
+		status.load_settings(s[1])
+		enemy.add_Status(status)
+	#delay
+	var delay = instance[2]
+	#pos
+	var pos = instance[3]
+	return [enemy,delay,pos]

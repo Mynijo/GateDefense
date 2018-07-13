@@ -9,7 +9,7 @@
 [ext_resource path="res://ui/DebugPanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/Inventory.tscn" type="PackedScene" id=8]
 
-[node name="Map01" type="Node2D"]
+[node name="Map01" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -40,7 +40,6 @@ __meta__ = {
 [node name="EnemySpawner" parent="." index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 1213.29, 326.74 )
-wave_counter = 3
 
 [node name="Gate" parent="." index="2" instance=ExtResource( 4 )]
 

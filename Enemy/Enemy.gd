@@ -34,11 +34,11 @@ func control(delta):
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
 		direction = x.effekt(direction, $Tags.e_effect.direction)	
 	
-	if 	!$Animation.is_playing():
-		$Animation.play('walk')
-		
-	if speed != changed_speed:
-		$Animation.playback_speed = changed_speed/speed
+	if $Animation.has_animation('walk'):
+		if 	!$Animation.is_playing():
+			$Animation.play('walk')		
+		if speed != changed_speed:
+			$Animation.playback_speed = changed_speed/speed
 		
 	velocity = direction * changed_speed * delta * -100	
 	
@@ -87,6 +87,12 @@ func remove_Status(_status):
 
 func get_StatusEffects(_tag = null):
 	return  $StatusEffects.get_Status_list(_tag)
+
+func load_settings(_settings):
+	if _settings:
+		for s in _settings:
+			set(s[0],[1])
+
 
 func is_Enemy():
 	return true

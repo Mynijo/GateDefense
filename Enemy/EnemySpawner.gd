@@ -15,14 +15,11 @@ func _ready():
 	load_waves()
 
 func load_waves():
-	waves.append(load("res://Enemy/Waves/Lvl01/Wave001.tscn").instance())
-	waves.append(load("res://Enemy/Waves/Lvl01/Wave002.tscn").instance())
-	waves.append(load("res://Enemy/Waves/Lvl01/Wave003.tscn").instance())
 	waves.append(load("res://Enemy/Waves/Lvl01/Wave004.tscn").instance())
 		
 	for w in waves:
 		add_child(w)
-		
+	
 func _process(delta):
 	if ready:
 		var instance = waves[wave_counter].get_next_instance()

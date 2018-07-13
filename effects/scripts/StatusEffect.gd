@@ -73,6 +73,11 @@ func parent_health_changed(_health):
 		rewrite_tags()
 		parent.disconnect("health_changed",self, "parent_health_changed")
 		
+func load_settings(_settings):
+	if _settings:
+		for s in _settings:
+			set(s[0],[1])
+		
 func rewrite_tags():
 	if conditions.empty():
 		for t in removed_tags:

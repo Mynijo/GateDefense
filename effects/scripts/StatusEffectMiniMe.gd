@@ -4,6 +4,7 @@ signal spawn_MiniMe
 
 export (PackedScene) var MiniMe
 
+var test = 0
 
 func _init():
 	$Tags.add_tag($Tags.e_effect.debuff)
