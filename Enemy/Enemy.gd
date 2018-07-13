@@ -37,6 +37,9 @@ func control(delta):
 	if 	!$Animation.is_playing():
 		$Animation.play('walk')
 		
+	if speed != changed_speed:
+		$Animation.playback_speed = changed_speed/speed
+		
 	velocity = direction * changed_speed * delta * -100	
 	
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.animation):
