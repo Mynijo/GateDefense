@@ -31,16 +31,32 @@ func get_instance(counter):
 		return null
 	var instance = instance_list[counter]
 	#Enemys
-	var enemy = load(instance[0][0]).instance()
+	var test = instance[0][0]
+	var enemy = load(test).instance()
 	enemy.load_settings(instance[0][1])
 	#Status
 	var status = null
 	for s in instance[1]:
-		status = load(s[0]).instance()
-		status.load_settings(s[1])
-		enemy.add_Status(status)
+		if s[0]:
+			status = load(s[0]).instance()
+			status.load_settings(s[1])
+			enemy.add_Status(status)
 	#delay
 	var delay = instance[2]
 	#pos
 	var pos = instance[3]
 	return [enemy,delay,pos]
+
+func load_json(path):
+	var file = File.new()
+	file.open(path, file.READ)    
+	var tmp_text = file.get_as_text()
+	file.close()    
+	var data = parse_json(tmp_text)    
+	return data
+
+func write_json(path, data):
+	var file = File.new()
+	file.open(path, file.WRITE)	
+	file.store_string(to_json(data))
+	file.close()
