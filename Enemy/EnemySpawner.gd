@@ -1,6 +1,9 @@
 extends Node2D
 
 export (int) var wave_counter = 0
+
+signal Spawn_Enemy
+
 var player
 
 var ready = false
@@ -32,8 +35,7 @@ func _process(delta):
 			ready = false
 		var e = instance[0]	
 		var pos = Vector2(global_position.x + rand_range(0,100) ,rand_range(0,640))
-		_on_Spawn_Enemy(e, pos)
-		
+		emit_signal('Spawn_Enemy', e, pos)
 	
 func _on_SpawnTimer_timeout():
 	ready = true
@@ -59,7 +61,4 @@ func set_player(_player):
 	player = _player
 	player.wave_changed(wave_counter)
 	
-func _on_Spawn_Enemy(_Enemy, _pos):
-	add_child(_Enemy)
-	_Enemy.add_to_group('enemys')	
-	_Enemy.spawn(_pos)
+

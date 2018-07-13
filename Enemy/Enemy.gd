@@ -26,9 +26,10 @@ func _ready():
 func spawn(_position):
 	global_position = _position
 	health = max_health
-	$Animation.play("walk")
-	default_ftp = $Animation.frames.get_animation_speed('walk')
-	default_speed = speed
+	if $Animation.frames:
+		$Animation.play("walk")
+		default_ftp = $Animation.frames.get_animation_speed('walk')
+		default_speed = speed
 
 
 func control(delta):
@@ -41,13 +42,14 @@ func control(delta):
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.direction):
 		direction = x.effekt(direction, $Tags.e_effect.direction)	
 
-	if changed_speed == 0:
-		$Animation.frames.set_animation_speed('walk', 0)
-	else:
-		var fps =  default_ftp * (changed_speed / default_speed)
-		if fps < 1:
-			fps = 1
-		$Animation.frames.set_animation_speed('walk', fps)
+	if $Animation.frames:
+		if changed_speed == 0:
+			$Animation.frames.set_animation_speed('walk', 0)
+		else:
+			var fps =  default_ftp * (changed_speed / default_speed)
+			if fps < 1:
+				fps = 1
+			$Animation.frames.set_animation_speed('walk', fps)
 		
 	velocity = direction * changed_speed * delta * -100
 	
