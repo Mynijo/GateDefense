@@ -8,21 +8,24 @@ var player
 
 var ready = false
 var waves = []
+var actual_wave
 var first = true
 
 func _ready():
 	self.connect("Spawn_Enemy", self.get_tree().get_current_scene(), "_on_Spawn_Enemy")
 	load_waves()
+	actual_wave = load("res://Enemy/Waves/Wave.tscn").instance()
+	add_child(actual_wave)
 
 func load_waves():
-	waves.append(load("res://Enemy/Waves/Lvl01/Wave004.tscn").instance())
-		
-	for w in waves:
-		add_child(w)
+	waves.append("res://Enemy/Waves/Lvl01/Wave001.json")
+	waves.append("res://Enemy/Waves/Lvl01/Wave002.json")
+	waves.append("res://Enemy/Waves/Lvl01/Wave003.json")
+	waves.append("res://Enemy/Waves/Lvl01/Wave004.json")
 	
 func _process(delta):
 	if ready:
-		var instance = waves[wave_counter].get_next_instance()
+		var instance = actual_wave.get_next_instance()
 		if instance == null:
 			player.wave_status("Wave Done")
 			return				
@@ -41,12 +44,14 @@ func next_wave():
 	if first:
 		player.wave_changed(wave_counter +1)
 		player.wave_status("Wave Runing")
+		actual_wave.build_instance_list(waves[wave_counter])
 		first = false
 		ready = true
 		return
-	if  waves[wave_counter].counter >= waves[wave_counter].instance_list.size() and get_tree().get_nodes_in_group("enemys").size() <= 0:
-		if waves.size() > wave_counter:
+	if  actual_wave.counter >= actual_wave.instance_list.size() and get_tree().get_nodes_in_group("enemys").size() <= 0:
+		if waves.size() > wave_counter +1:
 			wave_counter += 1
+			actual_wave.build_instance_list(waves[wave_counter], true)
 			player.wave_changed(wave_counter +1)		
 			player.wave_status("Wave Runing")
 			ready = true

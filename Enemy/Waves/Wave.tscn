@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Enemy/Waves/Lvl01/scripts/Wave001.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Waves/Wave.gd" type="Script" id=1]
 
 [node name="Wave" type="Node"]
 

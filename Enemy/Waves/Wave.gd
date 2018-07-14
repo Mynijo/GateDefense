@@ -14,12 +14,16 @@ func _init():
 func reward():
 	pass
 	
-func build_instance_list():
-	pass
+func build_instance_list(_path, reset = false):
+	if reset:
+		instance_list.clear()
+		counter = 0
+	var wave = load_json(_path)
+	if wave:
+		for i in wave:
+			instance_list.append(i)
 
 func get_next_instance():
-	if instance_list.empty():
-		build_instance_list()
 	if counter  >= instance_list.size():
 		return null
 	else:
