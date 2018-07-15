@@ -89,9 +89,9 @@ func get_StatusEffects(_tag = null):
 	return  $StatusEffects.get_Status_list(_tag)
 
 func load_settings(_settings):
-	if _settings:
+	if _settings[0][0]:
 		for s in _settings:
-			set(s[0],[1])
+			set(s[0],s[1])
 
 
 func is_Enemy():

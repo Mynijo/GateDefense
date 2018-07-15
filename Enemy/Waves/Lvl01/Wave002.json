@@ -1,1 +1,6 @@
-[[["res://Enemy/Goblin.tscn",null],[["res://effects/StatusEffectMiniMe.tscn",null]],1,null],[["res://Enemy/Goblin.tscn",null],[[null,null]],1,null]]
+[
+	[["res://Enemy/Goblin.tscn"   ,[["max_health", 1000]]],[["res://effects/StatusEffectMiniMe.tscn",[[null		,null,null]]]]  ,1,null],
+	[["res://Enemy/Goblin.tscn"   ,[[null,         null]]],[[null,                                   [[null		,null,null]]]]  ,1,null],
+	[["res://Enemy/EnemyBoss.tscn",[[null,         null]]],[["res://effects/StatusEffectHoT.tscn",   [[null		,null,null]]],
+												            ["res://effects/StatusEffectShield.tscn",[["condition"	,0	 ,0.5 ]]]]  ,1,null]
+]

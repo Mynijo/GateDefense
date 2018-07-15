@@ -52,14 +52,14 @@ func get_tags():
 func has_tag(_tag):
 	return $Tags.has_tag(_tag)
 	
-func add_condition(_value, _condition):
+func add_condition(_condition, _value):
 	conditions.append([_condition, _value])
 
 func load_condition():
 	if conditions.empty():
 		return
 	for t in $Tags.get_tags():
-		if(t != $Tags.e_effect.init):
+		if(t != $Tags.e_effect.init and t!= $Tags.e_effect.buff and t!= $Tags.e_effect.debuff):
 			removed_tags.append(t)
 			$Tags.remove_tag(t)
 	for c in conditions:
@@ -74,13 +74,15 @@ func parent_health_changed(_health):
 		parent.disconnect("health_changed",self, "parent_health_changed")
 		
 func load_settings(_settings):
-	if _settings:
+	if _settings[0][0]:
 		for s in _settings:
-			set(s[0],[1])
+			if s[0] == "condition":
+				add_condition(s[1],s[2])
+			else:
+				set(s[0],s[1])
 		
 func rewrite_tags():
 	if conditions.empty():
 		for t in removed_tags:
-			if(t != $Tags.e_effect.init):
-				removed_tags.erase(t)
-				$Tags.add_tag(t)
+			removed_tags.erase(t)
+			$Tags.add_tag(t)
