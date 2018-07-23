@@ -17,11 +17,16 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 				if player.money -50 < 10:
 					return
 				player.add_money(-50)
-				accTower = tower.instance()
-				accTower.Attack = attack
-				add_child(accTower)
-				accTower.spawn(position.normalized())
+				spawn_tower()
 
-		
+
+
+func spawn_tower():
+		accTower = tower.instance()
+		accTower.Attack = attack
+		add_child(accTower)
+		accTower.spawn(position.normalized())
+	
+
 func set_player(_player):
 	player = _player

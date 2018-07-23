@@ -1,0 +1,3 @@
+[
+	[["res://Enemy/Goblin.tscn"   ,[["max_health", 150]]],[["res://effects/StatusEffectMiniMe.tscn",[["max_health", 100,null]]]]  ,1,[500,50]]
+]

@@ -4,7 +4,10 @@ signal spawn_MiniMe
 
 export (PackedScene) var MiniMe
 
+var max_health = 200
+
 var test = 0
+var settings = null
 
 func _init():
 	$Tags.add_tag($Tags.e_effect.debuff)
@@ -21,4 +24,9 @@ func effekt(value, tag):
 			
 func spawm_MiniMe_on_map():
 	var MiniMe_ins = MiniMe.instance()
+	MiniMe_ins.load_settings(settings)
 	emit_signal('spawn_MiniMe', MiniMe_ins, parent.global_position)
+	
+func load_settings(_settings):
+	.load_settings(_settings)
+	settings = _settings

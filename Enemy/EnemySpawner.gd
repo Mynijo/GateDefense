@@ -1,12 +1,15 @@
 extends Node2D
 
 export (int) var wave_counter = 0
+export (String) var lvl = "Lvl01"
+
+var ready = false
 
 signal Spawn_Enemy
 
 var player
 
-var ready = false
+
 var waves = []
 var actual_wave
 var first = true
@@ -18,23 +21,32 @@ func _ready():
 	add_child(actual_wave)
 
 func load_waves():
-	waves.append("res://Enemy/Waves/Lvl01/Wave001.json")
-	waves.append("res://Enemy/Waves/Lvl01/Wave002.json")
-	waves.append("res://Enemy/Waves/Lvl01/Wave003.json")
-	waves.append("res://Enemy/Waves/Lvl01/Wave004.json")
+	if lvl == "Lvl01":
+		waves.append("res://Enemy/Waves/Lvl01/Wave001.json")
+		waves.append("res://Enemy/Waves/Lvl01/Wave002.json")
+		waves.append("res://Enemy/Waves/Lvl01/Wave003.json")
+		waves.append("res://Enemy/Waves/Lvl01/Wave004.json")
+	if lvl == "Demo":
+		waves.append("res://Enemy/Waves/Demo/Demo001.json")		
 	
 func _process(delta):
 	if ready:
 		var instance = actual_wave.get_next_instance()
 		if instance == null:
-			player.wave_status("Wave Done")
+			if player:
+				player.wave_status("Wave Done")
+			ready = false
 			return				
 		if instance[1] != 0:
 			$SpawnTimer.wait_time =instance[1]
 			$SpawnTimer.start()
 			ready = false
 		var e = instance[0]	
-		var pos = Vector2(global_position.x + rand_range(0,100) ,rand_range(0,640))
+		var pos
+		if instance[2]:
+			pos = Vector2(instance[2][0], instance[2][1])
+		else:
+			pos = Vector2(global_position.x + rand_range(0,100) ,rand_range(0,640))
 		emit_signal('Spawn_Enemy', e, pos)
 	
 func _on_SpawnTimer_timeout():
@@ -42,8 +54,9 @@ func _on_SpawnTimer_timeout():
 	
 func next_wave():
 	if first:
-		player.wave_changed(wave_counter +1)
-		player.wave_status("Wave Runing")
+		if player:
+			player.wave_changed(wave_counter +1)
+			player.wave_status("Wave Runing")
 		actual_wave.build_instance_list(waves[wave_counter])
 		first = false
 		ready = true
@@ -52,11 +65,13 @@ func next_wave():
 		if waves.size() > wave_counter +1:
 			wave_counter += 1
 			actual_wave.build_instance_list(waves[wave_counter], true)
-			player.wave_changed(wave_counter +1)		
-			player.wave_status("Wave Runing")
+			if player:
+				player.wave_changed(wave_counter +1)		
+				player.wave_status("Wave Runing")
 			ready = true
 		else:
-			player.wave_status("Waves Empty")
+			if player:
+				player.wave_status("Waves Empty")
 
 	
 func set_player(_player):

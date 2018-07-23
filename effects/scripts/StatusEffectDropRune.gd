@@ -14,7 +14,7 @@ func effekt(value, tag):
 	if tag == $Tags.e_effect.init:
 		parent = value
 	if tag == $Tags.e_effect.cast_on_death:
-		self.connect("spawn_rune", self.get_tree().get_current_scene(), "_on_spawn_rune")
-		rune = load("res://ui/RuneStones/RuneStoneChain.tscn")
-		emit_signal('spawn_rune', rune.instance(), parent.global_position)
+		if rune:
+			self.connect("spawn_rune", self.get_tree().get_current_scene(), "_on_spawn_rune")
+			emit_signal('spawn_rune', load(rune).instance(), parent.global_position)
 	return value

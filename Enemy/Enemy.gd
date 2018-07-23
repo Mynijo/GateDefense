@@ -57,8 +57,9 @@ func take_damage(damage):
 func die():
 	for x in $StatusEffects.get_Status_list($Tags.e_effect.cast_on_death):
 			x.effekt(self,$Tags.e_effect.cast_on_death)
-			
-	get_parent().player.add_money(gold_value)
+	
+	if get_parent().player:
+		get_parent().player.add_money(gold_value)
 	if last_tower_hit:
 		last_tower_hit.add_exp(experience)
 	dead()
