@@ -2,8 +2,8 @@ extends "res://effects/scripts/StatusEffect.gd"
 
 signal spawn_MiniMe
 
-export (PackedScene) var MiniMe
-
+export (String) var MiniMePath = "res://Enemy/EnemyBlue.tscn"
+var MiniMe
 var max_health = 200
 
 var test = 0
@@ -18,7 +18,7 @@ func effekt(value, tag):
 	if tag == $Tags.e_effect.init:
 		parent = value
 	if tag == $Tags.e_effect.cast_on_death:
-		MiniMe = load("res://Enemy/EnemyBlue.tscn")
+		var MiniMe = load(MiniMePath)
 		self.connect("spawn_MiniMe", self.get_tree().get_current_scene(), "_on_Spawn_Enemy")
 		spawm_MiniMe_on_map()
 			

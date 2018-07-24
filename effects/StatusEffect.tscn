@@ -3,7 +3,7 @@
 [ext_resource path="res://effects/scripts/StatusEffect.gd" type="Script" id=1]
 [ext_resource path="res://effects/Tags.tscn" type="PackedScene" id=2]
 
-[node name="StatusEffect" type="Node"]
+[node name="StatusEffect" type="Node" index="0"]
 
 script = ExtResource( 1 )
 duration = 42.0

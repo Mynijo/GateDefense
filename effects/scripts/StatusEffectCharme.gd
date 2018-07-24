@@ -2,8 +2,8 @@ extends "res://effects/scripts/StatusEffect.gd"
 
 var dir
 var stacks = 1
-var min_stacke = 3
-var inc_speed = 1.2
+export (int) var min_stacke = 3
+export (float) var inc_speed = 1.2
 var target
 
 func _init():

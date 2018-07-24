@@ -2,7 +2,7 @@ extends "res://effects/scripts/StatusEffect.gd"
 
 signal spawn_rune
 
-var rune = null
+export (String) var rune = null
 
 func _init():
 	$Tags.add_tag($Tags.e_effect.cast_on_death)

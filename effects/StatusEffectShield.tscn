@@ -41,7 +41,6 @@ shape = SubResource( 1 )
 [node name="UnitDisplay" parent="Shield" index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 0, -45 )
-scale = Vector2( 0.4, 0.4 )
 
 [connection signal="health_changed" from="Shield" to="Shield/UnitDisplay" method="update_healthbar"]
 
