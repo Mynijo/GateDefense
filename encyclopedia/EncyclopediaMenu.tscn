@@ -21,7 +21,7 @@ func _ready():
 		
 func load_entry(entry):
 	$VBoxContainer/BottomRow/LeftColumn/EntryImage.texture 	= entry.image
-	$VBoxContainer/BottomRow/LeftColumn/EntryTitle.text 	= entry.title 
+	$VBoxContainer/EntryTitle.text 							= entry.title 
 	$VBoxContainer/BottomRow/EntryDescription.text 			= entry.description
 
 func get_all_entries():
@@ -70,15 +70,16 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 8.0
-margin_right = 226.0
+margin_right = 362.0
 margin_bottom = 218.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 alignment = 0
+_sections_unfolded = [ "Grow Direction", "Size Flags" ]
 
 [node name="EntryList" type="GridContainer" parent="VBoxContainer" index="0"]
 
@@ -86,7 +87,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 218.0
+margin_right = 354.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
 rect_pivot_offset = Vector2( 0, 0 )
@@ -98,67 +99,15 @@ size_flags_vertical = 3
 columns = 5
 _sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="BottomRow" type="HBoxContainer" parent="VBoxContainer" index="1"]
+[node name="EntryTitle" type="Label" parent="VBoxContainer" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 104.0
-margin_right = 218.0
-margin_bottom = 218.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="LeftColumn" type="VBoxContainer" parent="VBoxContainer/BottomRow" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 64.0
-margin_bottom = 114.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
-
-[node name="EntryImage" type="TextureRect" parent="VBoxContainer/BottomRow/LeftColumn" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 64.0
-margin_bottom = 96.0
-rect_min_size = Vector2( 50, 50 )
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-texture = ExtResource( 2 )
-stretch_mode = 0
-_sections_unfolded = [ "Rect" ]
-
-[node name="EntryTitle" type="Label" parent="VBoxContainer/BottomRow/LeftColumn" index="1"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_top = 100.0
-margin_right = 64.0
-margin_bottom = 114.0
+margin_right = 354.0
+margin_bottom = 118.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -170,22 +119,78 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="BottomRow" type="HBoxContainer" parent="VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 122.0
+margin_right = 354.0
+margin_bottom = 218.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="LeftColumn" type="VBoxContainer" parent="VBoxContainer/BottomRow" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 100.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 100, 0 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Rect" ]
+
+[node name="EntryImage" type="TextureRect" parent="VBoxContainer/BottomRow/LeftColumn" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 100.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+_sections_unfolded = [ "Rect" ]
+
 [node name="EntryDescription" type="RichTextLabel" parent="VBoxContainer/BottomRow" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 68.0
-margin_right = 218.0
-margin_bottom = 114.0
-rect_min_size = Vector2( 150, 0 )
+margin_left = 104.0
+margin_right = 354.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 250, 0 )
 rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
+rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
 bbcode_enabled = false
 bbcode_text = ""
 visible_characters = -1
@@ -193,10 +198,10 @@ percent_visible = 1.0
 meta_underlined = true
 tab_size = 4
 text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
-scroll_active = true
+scroll_active = false
 scroll_following = false
 selection_enabled = false
 override_selected_font_color = false
-_sections_unfolded = [ "Rect" ]
+_sections_unfolded = [ "Grow Direction", "Rect", "Size Flags" ]
 
 

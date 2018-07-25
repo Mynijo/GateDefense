@@ -7,7 +7,7 @@
 
 flags = 0
 atlas = ExtResource( 1 )
-region = Rect2( 0, 240, 54, 60 )
+region = Rect2( 270, 0, 54, 60)
 margin = Rect2( 0, 0, 0, 0 )
 filter_clip = true
 
@@ -17,6 +17,7 @@ script = ExtResource( 2 )
 _sections_unfolded = [ "Resource" ]
 id = null
 image = SubResource( 1 )
-title = "Shock"
-description = "Projectiles have a chance to shock the enemy.Killing shocked enemies makes them explode and deal damage to surrounding enemies"
+title = "Ignite"
+description = "Projectiles add an effect which deals damage
+over time to the enemy."
 
